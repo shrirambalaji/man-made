@@ -1,0 +1,4534 @@
+{
+  "version": "",
+  "dependencies": {
+    "avn": {
+      "_from": "avn",
+      "_id": "avn@0.2.3",
+      "_inBundle": false,
+      "_integrity": "sha1-r6aF4YghHD435EP2m/5p0L/9z/4=",
+      "_location": "/avn",
+      "_phantomChildren": {},
+      "_requested": {
+        "type": "tag",
+        "registry": true,
+        "raw": "avn",
+        "name": "avn",
+        "escapedName": "avn",
+        "rawSpec": "",
+        "saveSpec": null,
+        "fetchSpec": "latest"
+      },
+      "_requiredBy": [
+        "#USER"
+      ],
+      "_resolved": "https://registry.npmjs.org/avn/-/avn-0.2.3.tgz",
+      "_shasum": "afa685e188211c3e37e443f69bfe69d0bffdcffe",
+      "_spec": "avn",
+      "_where": "/Users/shrbalaj/Repositories",
+      "author": {
+        "name": "Whitney Young"
+      },
+      "bin": {
+        "avn": "./bin-public/avn"
+      },
+      "bugs": {
+        "url": "https://github.com/wbyoung/avn/issues"
+      },
+      "bundleDependencies": false,
+      "deprecated": false,
+      "description": "Automatic Node Version Switching",
+      "devDependencies": {
+        "chai": "^3.0.0",
+        "chai-as-promised": "^5.1.0",
+        "concat-stream": "^1.4.6",
+        "coveralls": "^2.10.0",
+        "istanbul": "^0.4.2",
+        "jscs": "^2.1.1",
+        "jshint": "^2.8.0",
+        "mocha": "^2.0.1",
+        "sinon": "^1.10.2",
+        "sinon-chai": "^2.8.0",
+        "temp": "^0.8.0"
+      },
+      "homepage": "https://github.com/wbyoung/avn",
+      "keywords": [
+        "nvm",
+        "n",
+        "node",
+        "version",
+        "switch",
+        "automatic",
+        "cd",
+        "change",
+        "directory"
+      ],
+      "license": "MIT",
+      "main": "index.js",
+      "name": "avn",
+      "repository": {
+        "type": "git",
+        "url": "git://github.com/wbyoung/avn.git"
+      },
+      "scripts": {
+        "test": "jshint . && jscs . && istanbul cover node_modules/.bin/_mocha --report html --",
+        "test-travis": "jshint . && jscs . && istanbul cover node_modules/.bin/_mocha --report lcovonly --"
+      },
+      "version": "0.2.3",
+      "readme": "# avn\n\n[![NPM version][npm-image]][npm-url] [![Build status][travis-image]][travis-url] [![Code Climate][codeclimate-image]][codeclimate-url] [![Coverage Status][coverage-image]][coverage-url] [![Dependencies][david-image]][david-url] [![devDependencies][david-dev-image]][david-dev-url]\n\nAutomatic Version Switching for Node.js\n\n## Install\n\n``` bash\nnpm install -g avn avn-nvm avn-n\navn setup\n```\n\nNow when you `cd` into a directory with a `.node-version` file, `avn` will\nautomatically detect the change and use your installed version manager to\nswitch to that version of node. What goes in your `.node-version` file? A\n[semver][semver] version number corresponding to the version of Node.js that\nyour project uses.\n\n\n## Plugins\n\n`avn` supports the following version managers:\n\n - [`nvm`][nvm] via [`avn-nvm`][avn-nvm]\n - [`n`][n] via [`avn-n`][avn-n]\n - [`nodebrew`][nodebrew] via [`avn-nodebrew`][avn-nodebrew]\n\nWe don't recommend using all of these tools to manage your versions of node, but feel\nfree to install all of them. They won't conflict with each other.\n\n\n## io.js\n\nPlugins support a consistent syntax in the `.node-version` file for specifying\nthe use of [io.js][io.js] rather than node. Simply add an `iojs` prefix. For\ninstance: `iojs-1.4` or `iojs-v1.4`.\n\n\n## Todo List\n\n * Support switching back to the previous version of node that you were using\n   when you leave a directory.\n\nPull requests are welcome!\n\n\n## Troubleshooting\n\nIf you're having a problem, please `cd` to the directory where your\n`.node-version` file is stored and run (note the double-underscore prefix):\n\n```bash\n__avn_debug\n```\n\nThe [contributing page][contributing] has details about where to report your issue based on the version manager you use.\n\nAlso note that the `avn setup` command will only work with the version of node\nwith which you installed it. If you install and then switch your node version,\nyou'll get an error that `avn` can't be found. This is okay, but if you need to\nrun the setup command again, simply `npm install -g avn` to get a new copy for\nyour current node version.\n\n\n## Updating\n\nSimply reinstall via npm & re-run the setup:\n\n```bash\nnpm install -g avn avn-nvm avn-n\navn setup\n```\n\n## License\n\nThis project is distributed under the MIT license.\n\n\n[travis-image]: http://img.shields.io/travis/wbyoung/avn.svg?style=flat\n[travis-url]: http://travis-ci.org/wbyoung/avn\n[npm-image]: http://img.shields.io/npm/v/avn.svg?style=flat\n[npm-url]: https://npmjs.org/package/avn\n[codeclimate-image]: http://img.shields.io/codeclimate/github/wbyoung/avn.svg?style=flat\n[codeclimate-url]: https://codeclimate.com/github/wbyoung/avn\n[coverage-image]: http://img.shields.io/coveralls/wbyoung/avn.svg?style=flat\n[coverage-url]: https://coveralls.io/r/wbyoung/avn\n[david-image]: http://img.shields.io/david/wbyoung/avn.svg?style=flat\n[david-url]: https://david-dm.org/wbyoung/avn\n[david-dev-image]: http://img.shields.io/david/dev/wbyoung/avn.svg?style=flat\n[david-dev-url]: https://david-dm.org/wbyoung/avn#info=devDependencies\n\n[contributing]: https://github.com/wbyoung/avn/blob/master/CONTRIBUTING.md\n[nvm]: https://github.com/creationix/nvm\n[n]: https://github.com/visionmedia/n\n[nodebrew]: https://github.com/hokaccha/nodebrew\n[avn-nvm]: https://github.com/wbyoung/avn-nvm\n[avn-n]: https://github.com/wbyoung/avn-n\n[avn-nodebrew]: https://github.com/kuy/avn-nodebrew\n[io.js]: https://iojs.org/\n[semver]: http://semver.org/\n",
+      "readmeFilename": "README.md",
+      "optionalDependencies": {},
+      "_dependencies": {
+        "any-promise": "^1.1.0",
+        "bluebird": "^3.1.5",
+        "chalk": "^1.0.0",
+        "commander": "^2.2.0",
+        "lodash": "^4.1.0",
+        "mz": "^2.0.0",
+        "npm": "^2.7.4"
+      },
+      "path": "/usr/local/lib/node_modules/avn",
+      "error": "[Circular]",
+      "extraneous": false
+    },
+    "avn-n": {
+      "_from": "avn-n",
+      "_id": "avn-n@0.2.0",
+      "_inBundle": false,
+      "_integrity": "sha1-W1EPT+97tgn0ViDEhxX0M+Wlceo=",
+      "_location": "/avn-n",
+      "_phantomChildren": {},
+      "_requested": {
+        "type": "tag",
+        "registry": true,
+        "raw": "avn-n",
+        "name": "avn-n",
+        "escapedName": "avn-n",
+        "rawSpec": "",
+        "saveSpec": "[Circular]",
+        "fetchSpec": "latest"
+      },
+      "_requiredBy": [
+        "#USER"
+      ],
+      "_resolved": "https://registry.npmjs.org/avn-n/-/avn-n-0.2.0.tgz",
+      "_shasum": "5b510f4fef7bb609f45620c48715f433e5a571ea",
+      "_spec": "avn-n",
+      "_where": "/Users/shrbalaj/Repositories",
+      "author": {
+        "name": "Whitney Young"
+      },
+      "bugs": {
+        "url": "https://github.com/wbyoung/avn-n/issues"
+      },
+      "bundleDependencies": false,
+      "deprecated": false,
+      "description": "avn plugin for n",
+      "devDependencies": {
+        "chai": "^2.2.0",
+        "coveralls": "^2.10.0",
+        "istanbul": "^0.3.11",
+        "jscs": "^1.13.1",
+        "jscs-jsdoc": "^1.1.0",
+        "jshint": "^2.8.0",
+        "mocha": "^2.0.1"
+      },
+      "homepage": "https://github.com/wbyoung/avn-n",
+      "keywords": [
+        "avn",
+        "node",
+        "n",
+        "version",
+        "switch",
+        "automatic",
+        "cd",
+        "change",
+        "directory"
+      ],
+      "license": "MIT",
+      "main": "index.js",
+      "name": "avn-n",
+      "peerDependencies": {
+        "avn": "0.2.x"
+      },
+      "repository": {
+        "type": "git",
+        "url": "git://github.com/wbyoung/avn-n.git"
+      },
+      "scripts": {
+        "test": "jshint . && jscs . && istanbul cover node_modules/.bin/_mocha --report html --",
+        "test-travis": "jshint . && jscs . && istanbul cover node_modules/.bin/_mocha --report lcovonly --"
+      },
+      "version": "0.2.0",
+      "readme": "# avn-n\n\n[![NPM version][npm-image]][npm-url] [![Build status][travis-image]][travis-url] [![Code Climate][codeclimate-image]][codeclimate-url] [![Coverage Status][coverage-image]][coverage-url] [![Dependencies][david-image]][david-url] [![devDependencies][david-dev-image]][david-dev-url]\n\n[`n`][n] plugin for [`avn`][avn].\n\n## License\n\nThis project is distributed under the MIT license.\n\n\n[travis-image]: http://img.shields.io/travis/wbyoung/avn-n.svg?style=flat\n[travis-url]: http://travis-ci.org/wbyoung/avn-n\n[npm-image]: http://img.shields.io/npm/v/avn-n.svg?style=flat\n[npm-url]: https://npmjs.org/package/avn-n\n[codeclimate-image]: http://img.shields.io/codeclimate/github/wbyoung/avn-n.svg?style=flat\n[codeclimate-url]: https://codeclimate.com/github/wbyoung/avn-n\n[coverage-image]: http://img.shields.io/coveralls/wbyoung/avn-n.svg?style=flat\n[coverage-url]: https://coveralls.io/r/wbyoung/avn-n\n[david-image]: http://img.shields.io/david/wbyoung/avn-n.svg?style=flat\n[david-url]: https://david-dm.org/wbyoung/avn-n\n[david-dev-image]: http://img.shields.io/david/dev/wbyoung/avn-n.svg?style=flat\n[david-dev-url]: https://david-dm.org/wbyoung/avn-n#info=devDependencies\n\n[n]: https://github.com/visionmedia/n\n[avn]: https://github.com/wbyoung/avn\n",
+      "readmeFilename": "README.md",
+      "optionalDependencies": {},
+      "_dependencies": {
+        "bluebird": "^2.9.15",
+        "semver": "^4.3.3"
+      },
+      "path": "/usr/local/lib/node_modules/avn-n",
+      "error": "[Circular]",
+      "extraneous": false
+    },
+    "avn-nvm": {
+      "_from": "avn-nvm",
+      "_id": "avn-nvm@0.2.1",
+      "_inBundle": false,
+      "_integrity": "sha1-5oKkvdApkfAL0sj9m4wRItMyOPA=",
+      "_location": "/avn-nvm",
+      "_phantomChildren": {},
+      "_requested": {
+        "type": "tag",
+        "registry": true,
+        "raw": "avn-nvm",
+        "name": "avn-nvm",
+        "escapedName": "avn-nvm",
+        "rawSpec": "",
+        "saveSpec": "[Circular]",
+        "fetchSpec": "latest"
+      },
+      "_requiredBy": [
+        "#USER"
+      ],
+      "_resolved": "https://registry.npmjs.org/avn-nvm/-/avn-nvm-0.2.1.tgz",
+      "_shasum": "e682a4bdd02991f00bd2c8fd9b8c1122d33238f0",
+      "_spec": "avn-nvm",
+      "_where": "/Users/shrbalaj/Repositories",
+      "author": {
+        "name": "Whitney Young"
+      },
+      "bugs": {
+        "url": "https://github.com/wbyoung/avn-nvm/issues"
+      },
+      "bundleDependencies": false,
+      "deprecated": false,
+      "description": "avn plugin for nvm",
+      "devDependencies": {
+        "chai": "^2.2.0",
+        "coveralls": "^2.11.2",
+        "istanbul": "^0.3.2",
+        "jscs": "^1.13.1",
+        "jscs-jsdoc": "^1.1.0",
+        "jshint": "^2.8.0",
+        "mocha": "^2.0.1",
+        "sinon": "^1.14.1"
+      },
+      "homepage": "https://github.com/wbyoung/avn-nvm",
+      "keywords": [
+        "avn",
+        "node",
+        "n",
+        "version",
+        "switch",
+        "automatic",
+        "cd",
+        "change",
+        "directory"
+      ],
+      "license": "MIT",
+      "main": "index.js",
+      "name": "avn-nvm",
+      "peerDependencies": {
+        "avn": "0.2.x"
+      },
+      "repository": {
+        "type": "git",
+        "url": "git://github.com/wbyoung/avn-nvm.git"
+      },
+      "scripts": {
+        "test": "jshint . && jscs . && istanbul cover node_modules/.bin/_mocha --report html --",
+        "test-travis": "jshint . && jscs . && istanbul cover node_modules/.bin/_mocha --report lcovonly --"
+      },
+      "version": "0.2.1",
+      "readme": "# avn-nvm\n\n[![NPM version][npm-image]][npm-url] [![Build status][travis-image]][travis-url] [![Code Climate][codeclimate-image]][codeclimate-url] [![Coverage Status][coverage-image]][coverage-url] [![Dependencies][david-image]][david-url] [![devDependencies][david-dev-image]][david-dev-url]\n\n[`nvm`][nvm] plugin for [`avn`][avn].\n\n## Issues\n\nThis plugin is maintained by the `avn` team. Please [report issues directly to `avn`][issues].\n\n## License\n\nThis project is distributed under the MIT license.\n\n\n[travis-image]: http://img.shields.io/travis/wbyoung/avn-nvm.svg?style=flat\n[travis-url]: http://travis-ci.org/wbyoung/avn-nvm\n[npm-image]: http://img.shields.io/npm/v/avn-nvm.svg?style=flat\n[npm-url]: https://npmjs.org/package/avn-nvm\n[codeclimate-image]: http://img.shields.io/codeclimate/github/wbyoung/avn-nvm.svg?style=flat\n[codeclimate-url]: https://codeclimate.com/github/wbyoung/avn-nvm\n[coverage-image]: http://img.shields.io/coveralls/wbyoung/avn-nvm.svg?style=flat\n[coverage-url]: https://coveralls.io/r/wbyoung/avn-nvm\n[david-image]: http://img.shields.io/david/wbyoung/avn-nvm.svg?style=flat\n[david-url]: https://david-dm.org/wbyoung/avn-nvm\n[david-dev-image]: http://img.shields.io/david/dev/wbyoung/avn-nvm.svg?style=flat\n[david-dev-url]: https://david-dm.org/wbyoung/avn-nvm#info=devDependencies\n\n[nvm]: https://github.com/creationix/nvm\n[avn]: https://github.com/wbyoung/avn\n[issues]: https://github.com/wbyoung/avn/issues\n",
+      "readmeFilename": "README.md",
+      "optionalDependencies": {},
+      "_dependencies": {
+        "bluebird": "^2.9.15",
+        "concat-stream": "^1.4.6",
+        "semver": "^4.3.6"
+      },
+      "path": "/usr/local/lib/node_modules/avn-nvm",
+      "error": "[Circular]",
+      "extraneous": false
+    },
+    "coffeescript": {
+      "_args": [
+        [
+          {
+            "raw": "coffeescript",
+            "scope": "[Circular]",
+            "escapedName": "coffeescript",
+            "name": "coffeescript",
+            "rawSpec": "",
+            "spec": "latest",
+            "type": "tag"
+          },
+          "/Users/shrbalaj/Desktop/team-one/repo/backend/tops"
+        ]
+      ],
+      "_from": "coffeescript@latest",
+      "_id": "coffeescript@2.3.0",
+      "_inCache": true,
+      "_location": "/coffeescript",
+      "_nodeVersion": "10.0.0",
+      "_npmOperationalInternal": {
+        "host": "s3://npm-registry-packages",
+        "tmp": "tmp/coffeescript_2.3.0_1524967227431_0.34487548636783094"
+      },
+      "_npmUser": {
+        "name": "geoffreybooth",
+        "email": "computing+npm@geoffreybooth.com"
+      },
+      "_npmVersion": "6.0.0",
+      "_phantomChildren": {},
+      "_requested": {
+        "raw": "coffeescript",
+        "scope": "[Circular]",
+        "escapedName": "coffeescript",
+        "name": "coffeescript",
+        "rawSpec": "",
+        "spec": "latest",
+        "type": "tag"
+      },
+      "_requiredBy": [
+        "#USER"
+      ],
+      "_resolved": "https://registry.npmjs.org/coffeescript/-/coffeescript-2.3.0.tgz",
+      "_shasum": "d8d77ca5b110f540d52cbdc08e394942c9109994",
+      "_shrinkwrap": "[Circular]",
+      "_spec": "coffeescript",
+      "_where": "/Users/shrbalaj/Desktop/team-one/repo/backend/tops",
+      "author": {
+        "name": "Jeremy Ashkenas"
+      },
+      "bin": {
+        "coffee": "./bin/coffee",
+        "cake": "./bin/cake"
+      },
+      "browser": "./lib/coffeescript/browser",
+      "bugs": {
+        "url": "https://github.com/jashkenas/coffeescript/issues"
+      },
+      "description": "Unfancy JavaScript",
+      "devDependencies": {
+        "babel-core": "~6.26.2",
+        "babel-preset-babili": "~0.1.4",
+        "babel-preset-env": "~1.6.1",
+        "babel-preset-minify": "^0.4.0",
+        "codemirror": "^5.37.0",
+        "docco": "~0.8.0",
+        "highlight.js": "~9.12.0",
+        "jison": ">=0.4.18",
+        "markdown-it": "~8.4.1",
+        "underscore": "~1.9.0",
+        "webpack": "~4.6.0"
+      },
+      "directories": {
+        "lib": "./lib/coffeescript"
+      },
+      "dist": {
+        "integrity": "sha512-M1AINTgv6EvFAK92LeaYdHUzsTE+j97kBQyLHjfnMz1jh21rJMjdTe471Zgs+qK7Tavpbh5e4pP2VxcRTFxm9A==",
+        "shasum": "d8d77ca5b110f540d52cbdc08e394942c9109994",
+        "tarball": "https://registry.npmjs.org/coffeescript/-/coffeescript-2.3.0.tgz",
+        "fileCount": 23,
+        "unpackedSize": 657471,
+        "npm-signature": "-----BEGIN PGP SIGNATURE-----\r\nVersion: OpenPGP.js v3.0.4\r\nComment: https://openpgpjs.org\r\n\r\nwsFcBAEBCAAQBQJa5Sc9CRA9TVsSAnZWagAA9C4P/juNGitTbqCN/6MX6SR3\nisAnbrRHI44si7oL7S8oSD+iouX0aggYyUbyvClKdQanQTb5LuHqO32/F91J\n6foedICcrCCQYdat2l5Pyl7+91GbAUu1oKtlbJNXvUFiPfuWX8r0N2LKv3vX\ndlFmP2X5JtwSI8urkSsd13zntVskQ8hKCYCjfjH0MbLxrWp9op6CC6rEZABN\nIXUc7hYvy+Msy9cGAaZ5sx+enjsFk6coWLuo/2DC5Smy4KfQS44LcarNMqQq\nt7UsJv+sK06Dd/d9PCjDjYj6hSyg7SF6rb7mr4Raq8DP4K4OhMw9pqeObiYM\nHebcUiMuUsuLzUJYxaPUpQcuCnaSMiJyWTFRSSjr+whUNZRxp+RwTcAgE6vO\nZVuMze7wzSmeFOjB8PRiK0emaOqEctxTg3HagK9j8PE+eI1ea47XJflYXW+O\nWJ2UvUTAYpSm84yjN3t9SFaUTa3WVn0OSdCeuHQptZYxzDpFPiHzvyjJx6Tc\nKW5/TcplckdGXQpBVbrivdoQ2IdrFrb/Z+LPFiTTCN5KRFu33mYVu9F8bKht\n5JjNa7GmEEY6euLxK5n0g/w5IH1jq8JT6SoRNHTIvfpjMudcbiPdJWXahhma\nG3RhT6lVIimVwenGm4A9WNoIzTWjIvO8rspcLCK+1pIHLCuUW75t6FgEfElf\nLu8w\r\n=IsWO\r\n-----END PGP SIGNATURE-----\r\n"
+      },
+      "engines": {
+        "node": ">=6"
+      },
+      "files": [
+        "bin",
+        "lib",
+        "register.js",
+        "repl.js"
+      ],
+      "gitHead": "8061ecf0e2d4ec56660de73a9ed3b95c31f9561d",
+      "homepage": "http://coffeescript.org",
+      "keywords": [
+        "javascript",
+        "language",
+        "coffeescript",
+        "compiler"
+      ],
+      "license": "MIT",
+      "main": "./lib/coffeescript/index",
+      "maintainers": [
+        {
+          "name": "geoffreybooth",
+          "email": "computing+npm@geoffreybooth.com"
+        },
+        {
+          "name": "jashkenas",
+          "email": "jashkenas@gmail.com"
+        },
+        {
+          "name": "lydell",
+          "email": "simon.lydell@gmail.com"
+        }
+      ],
+      "name": "coffeescript",
+      "optionalDependencies": {},
+      "readme": "ERROR: No README data found!",
+      "repository": {
+        "type": "git",
+        "url": "git://github.com/jashkenas/coffeescript.git"
+      },
+      "scripts": {
+        "test": "node ./bin/cake test",
+        "test-harmony": "node --harmony ./bin/cake test"
+      },
+      "version": "2.3.0",
+      "_dependencies": {},
+      "path": "/usr/local/lib/node_modules/coffeescript",
+      "error": "[Circular]",
+      "extraneous": false
+    },
+    "dos2unix": {
+      "_args": [
+        [
+          {
+            "raw": "dos2unix",
+            "scope": "[Circular]",
+            "escapedName": "dos2unix",
+            "name": "dos2unix",
+            "rawSpec": "",
+            "spec": "latest",
+            "type": "tag"
+          },
+          "/Users/shrbalaj/Desktop/team-one/repo/backend/tops"
+        ]
+      ],
+      "_from": "dos2unix@latest",
+      "_id": "dos2unix@1.1.2",
+      "_inCache": true,
+      "_location": "/dos2unix",
+      "_nodeVersion": "0.10.40",
+      "_npmUser": {
+        "name": "jamesmgreene",
+        "email": "james.m.greene@gmail.com"
+      },
+      "_npmVersion": "3.3.4",
+      "_phantomChildren": {},
+      "_requested": {
+        "raw": "dos2unix",
+        "scope": "[Circular]",
+        "escapedName": "dos2unix",
+        "name": "dos2unix",
+        "rawSpec": "",
+        "spec": "latest",
+        "type": "tag"
+      },
+      "_requiredBy": [
+        "#USER"
+      ],
+      "_resolved": "https://registry.npmjs.org/dos2unix/-/dos2unix-1.1.2.tgz",
+      "_shasum": "2e3f3d70f88e5fb52ce44d2e3e3cec1cbdee49a2",
+      "_shrinkwrap": "[Circular]",
+      "_spec": "dos2unix",
+      "_where": "/Users/shrbalaj/Desktop/team-one/repo/backend/tops",
+      "author": {
+        "name": "James M. Greene",
+        "email": "james.m.greene@gmail.com",
+        "url": "http://greene.io/"
+      },
+      "bugs": {
+        "url": "https://github.com/JamesMGreene/node-dos2unix/issues"
+      },
+      "description": "A Node.js module to convert text files with DOS line breaks to Unix line breaks, i.e. like using `dos2unix`.",
+      "devDependencies": {
+        "fs-extra": "~0.6.0",
+        "grunt": "~0.4.1",
+        "grunt-contrib-jshint": "~0.4.3",
+        "grunt-contrib-nodeunit": "~0.1.2"
+      },
+      "directories": {},
+      "dist": {
+        "shasum": "2e3f3d70f88e5fb52ce44d2e3e3cec1cbdee49a2",
+        "tarball": "https://registry.npmjs.org/dos2unix/-/dos2unix-1.1.2.tgz"
+      },
+      "engines": {
+        "node": ">= 0.8.0"
+      },
+      "gitHead": "f2a0d4dbb0879cdd7ab90b120401780bef2cfcf0",
+      "homepage": "https://github.com/JamesMGreene/node-dos2unix",
+      "keywords": [
+        "dos2unix",
+        "unix2dos",
+        "crlf",
+        "lf",
+        "carriage return",
+        "line feed",
+        "newline",
+        "new line",
+        "line endings"
+      ],
+      "licenses": [
+        {
+          "type": "MIT",
+          "url": "https://github.com/JamesMGreene/node-dos2unix/blob/master/LICENSE-MIT"
+        }
+      ],
+      "main": "index",
+      "maintainers": [
+        {
+          "name": "jamesmgreene",
+          "email": "james.m.greene@gmail.com"
+        }
+      ],
+      "name": "dos2unix",
+      "optionalDependencies": {},
+      "readme": "ERROR: No README data found!",
+      "repository": {
+        "type": "git",
+        "url": "git://github.com/JamesMGreene/node-dos2unix.git"
+      },
+      "scripts": {
+        "test": "grunt travis --verbose"
+      },
+      "version": "1.1.2",
+      "_dependencies": {
+        "async": "~0.2.9",
+        "glob": "~3.2.1",
+        "node.extend": "~1.0.5",
+        "readable-stream": "~1.0.2"
+      },
+      "path": "/usr/local/lib/node_modules/dos2unix",
+      "error": "[Circular]",
+      "extraneous": false
+    },
+    "eslint": {
+      "_from": "eslint",
+      "_id": "eslint@4.19.1",
+      "_inBundle": false,
+      "_integrity": "sha512-bT3/1x1EbZB7phzYu7vCr1v3ONuzDtX8WjuM9c0iYxe+cq+pwcKEoQjl7zd3RpC6YOLgnSy3cTN58M2jcoPDIQ==",
+      "_location": "/eslint",
+      "_phantomChildren": {},
+      "_requested": {
+        "type": "tag",
+        "registry": true,
+        "raw": "eslint",
+        "name": "eslint",
+        "escapedName": "eslint",
+        "rawSpec": "",
+        "saveSpec": "[Circular]",
+        "fetchSpec": "latest"
+      },
+      "_requiredBy": [
+        "#USER"
+      ],
+      "_resolved": "https://registry.npmjs.org/eslint/-/eslint-4.19.1.tgz",
+      "_shasum": "32d1d653e1d90408854bfb296f076ec7e186a300",
+      "_spec": "eslint",
+      "_where": "/Users/shrbalaj/Repositories/crystal-academy",
+      "author": {
+        "name": "Nicholas C. Zakas",
+        "email": "nicholas+npm@nczconsulting.com"
+      },
+      "bin": {
+        "eslint": "./bin/eslint.js"
+      },
+      "bugs": {
+        "url": "https://github.com/eslint/eslint/issues/"
+      },
+      "bundleDependencies": false,
+      "deprecated": false,
+      "description": "An AST-based pattern checker for JavaScript.",
+      "devDependencies": {
+        "babel-polyfill": "^6.23.0",
+        "babel-preset-es2015": "^6.24.1",
+        "babelify": "^7.3.0",
+        "beefy": "^2.1.8",
+        "brfs": "1.4.3",
+        "browserify": "^14.4.0",
+        "chai": "^4.0.1",
+        "cheerio": "^0.22.0",
+        "coveralls": "^2.13.1",
+        "dateformat": "^2.0.0",
+        "ejs": "^2.5.6",
+        "eslint-plugin-eslint-plugin": "^1.2.0",
+        "eslint-plugin-node": "^5.1.0",
+        "eslint-plugin-rulesdir": "^0.1.0",
+        "eslint-release": "^0.10.1",
+        "eslint-rule-composer": "^0.1.0",
+        "eslump": "1.6.0",
+        "esprima": "^4.0.0",
+        "esprima-fb": "^15001.1001.0-dev-harmony-fb",
+        "istanbul": "^0.4.5",
+        "jsdoc": "^3.4.3",
+        "karma": "^1.7.0",
+        "karma-babel-preprocessor": "^6.0.1",
+        "karma-mocha": "^1.3.0",
+        "karma-mocha-reporter": "^2.2.3",
+        "karma-phantomjs-launcher": "^1.0.4",
+        "leche": "^2.1.2",
+        "load-perf": "^0.2.0",
+        "markdownlint": "^0.6.1",
+        "mocha": "^3.4.2",
+        "mock-fs": "^4.3.0",
+        "npm-license": "^0.3.3",
+        "phantomjs-prebuilt": "^2.1.14",
+        "proxyquire": "^1.8.0",
+        "shelljs": "^0.7.7",
+        "sinon": "^3.2.1",
+        "temp": "^0.8.3",
+        "through": "^2.3.8"
+      },
+      "engines": {
+        "node": ">=4"
+      },
+      "files": [
+        "LICENSE",
+        "README.md",
+        "bin",
+        "conf",
+        "lib",
+        "messages"
+      ],
+      "homepage": "https://eslint.org",
+      "keywords": [
+        "ast",
+        "lint",
+        "javascript",
+        "ecmascript",
+        "espree"
+      ],
+      "license": "MIT",
+      "main": "./lib/api.js",
+      "name": "eslint",
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/eslint/eslint.git"
+      },
+      "scripts": {
+        "alpharelease": "node Makefile.js prerelease -- alpha",
+        "betarelease": "node Makefile.js prerelease -- beta",
+        "browserify": "node Makefile.js browserify",
+        "ci-release": "node Makefile.js ciRelease",
+        "coveralls": "cat ./coverage/lcov.info | coveralls",
+        "docs": "node Makefile.js docs",
+        "fuzz": "node Makefile.js fuzz",
+        "gensite": "node Makefile.js gensite",
+        "lint": "node Makefile.js lint",
+        "perf": "node Makefile.js perf",
+        "profile": "beefy tests/bench/bench.js --open -- -t brfs -t ./tests/bench/xform-rules.js -r espree",
+        "release": "node Makefile.js release",
+        "test": "node Makefile.js test"
+      },
+      "version": "4.19.1",
+      "readme": "[![NPM version][npm-image]][npm-url]\n[![build status][travis-image]][travis-url]\n[![Build status][appveyor-image]][appveyor-url]\n[![Test coverage][coveralls-image]][coveralls-url]\n[![Downloads][downloads-image]][downloads-url]\n[![Bountysource](https://www.bountysource.com/badge/tracker?tracker_id=282608)](https://www.bountysource.com/trackers/282608-eslint?utm_source=282608&utm_medium=shield&utm_campaign=TRACKER_BADGE)\n[![Join the chat at https://gitter.im/eslint/eslint](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/eslint/eslint?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)\n[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bhttps%3A%2F%2Fgithub.com%2Feslint%2Feslint.svg?type=shield)](https://app.fossa.io/projects/git%2Bhttps%3A%2F%2Fgithub.com%2Feslint%2Feslint?ref=badge_shield)\n\n# ESLint\n\n[Website](https://eslint.org) |\n[Configuring](https://eslint.org/docs/user-guide/configuring) |\n[Rules](https://eslint.org/docs/rules/) |\n[Contributing](https://eslint.org/docs/developer-guide/contributing) |\n[Reporting Bugs](https://eslint.org/docs/developer-guide/contributing/reporting-bugs) |\n[Code of Conduct](https://js.foundation/community/code-of-conduct) |\n[Twitter](https://twitter.com/geteslint) |\n[Mailing List](https://groups.google.com/group/eslint) |\n[Chat Room](https://gitter.im/eslint/eslint)\n\nESLint is a tool for identifying and reporting on patterns found in ECMAScript/JavaScript code. In many ways, it is similar to JSLint and JSHint with a few exceptions:\n\n* ESLint uses [Espree](https://github.com/eslint/espree) for JavaScript parsing.\n* ESLint uses an AST to evaluate patterns in code.\n* ESLint is completely pluggable, every single rule is a plugin and you can add more at runtime.\n\n## Installation and Usage\n\nPrerequisites: [Node.js](https://nodejs.org/en/) (>=4.x), npm version 2+.\n\nThere are two ways to install ESLint: globally and locally.\n\n### Local Installation and Usage\n\nIf you want to include ESLint as part of your project's build system, we recommend installing it locally. You can do so using npm:\n\n```\n$ npm install eslint --save-dev\n```\n\nYou should then setup a configuration file:\n\n```\n$ ./node_modules/.bin/eslint --init\n```\n\nAfter that, you can run ESLint on any file or directory like this:\n\n```\n$ ./node_modules/.bin/eslint yourfile.js\n```\n\nAny plugins or shareable configs that you use must also be installed locally to work with a locally-installed ESLint.\n\n### Global Installation and Usage\n\nIf you want to make ESLint available to tools that run across all of your projects, we recommend installing ESLint globally. You can do so using npm:\n\n```\n$ npm install -g eslint\n```\n\nYou should then setup a configuration file:\n\n```\n$ eslint --init\n```\n\nAfter that, you can run ESLint on any file or directory like this:\n\n```\n$ eslint yourfile.js\n```\n\nAny plugins or shareable configs that you use must also be installed globally to work with a globally-installed ESLint.\n\n**Note:** `eslint --init` is intended for setting up and configuring ESLint on a per-project basis and will perform a local installation of ESLint and its plugins in the directory in which it is run. If you prefer using a global installation of ESLint, any plugins used in your configuration must also be installed globally.\n\n## Configuration\n\nAfter running `eslint --init`, you'll have a `.eslintrc` file in your directory. In it, you'll see some rules configured like this:\n\n```json\n{\n    \"rules\": {\n        \"semi\": [\"error\", \"always\"],\n        \"quotes\": [\"error\", \"double\"]\n    }\n}\n```\n\nThe names `\"semi\"` and `\"quotes\"` are the names of [rules](https://eslint.org/docs/rules) in ESLint. The first value is the error level of the rule and can be one of these values:\n\n* `\"off\"` or `0` - turn the rule off\n* `\"warn\"` or `1` - turn the rule on as a warning (doesn't affect exit code)\n* `\"error\"` or `2` - turn the rule on as an error (exit code will be 1)\n\nThe three error levels allow you fine-grained control over how ESLint applies rules (for more configuration options and details, see the [configuration docs](https://eslint.org/docs/user-guide/configuring)).\n\n## Sponsors\n\n* Site search ([eslint.org](https://eslint.org)) is sponsored by [Algolia](https://www.algolia.com)\n\n## Team\n\nThese folks keep the project moving and are resources for help.\n\n### Technical Steering Committee (TSC)\n\n* Nicholas C. Zakas ([@nzakas](https://github.com/nzakas))\n* Ilya Volodin ([@ilyavolodin](https://github.com/ilyavolodin))\n* Brandon Mills ([@btmills](https://github.com/btmills))\n* Gyandeep Singh ([@gyandeeps](https://github.com/gyandeeps))\n* Toru Nagashima ([@mysticatea](https://github.com/mysticatea))\n* Alberto Rodríguez ([@alberto](https://github.com/alberto))\n* Kai Cataldo ([@kaicataldo](https://github.com/kaicataldo))\n* Teddy Katz ([@not-an-aardvark](https://github.com/not-an-aardvark))\n* Kevin Partington ([@platinumazure](https://github.com/platinumazure))\n\n### Development Team\n\n* Mathias Schreck ([@lo1tuma](https://github.com/lo1tuma))\n* Jamund Ferguson ([@xjamundx](https://github.com/xjamundx))\n* Ian VanSchooten ([@ianvs](https://github.com/ianvs))\n* Burak Yiğit Kaya ([@byk](https://github.com/byk))\n* Michael Ficarra ([@michaelficarra](https://github.com/michaelficarra))\n* Mark Pedrotti ([@pedrottimark](https://github.com/pedrottimark))\n* Oleg Gaidarenko ([@markelog](https://github.com/markelog))\n* Mike Sherov ([@mikesherov](https://github.com/mikesherov))\n* Henry Zhu ([@hzoo](https://github.com/hzoo))\n* Marat Dulin ([@mdevils](https://github.com/mdevils))\n* Alexej Yaroshevich ([@zxqfox](https://github.com/zxqfox))\n* Vitor Balocco ([@vitorbal](https://github.com/vitorbal))\n* James Henry ([@JamesHenry](https://github.com/JamesHenry))\n* Reyad Attiyat ([@soda0289](https://github.com/soda0289))\n* 薛定谔的猫 ([@Aladdin-ADD](https://github.com/Aladdin-ADD))\n* Victor Hom ([@VictorHom](https://github.com/VictorHom))\n\n## Releases\n\nWe have scheduled releases every two weeks on Friday or Saturday.\n\n## Code of Conduct\n\nESLint adheres to the [JS Foundation Code of Conduct](https://js.foundation/community/code-of-conduct).\n\n## Filing Issues\n\nBefore filing an issue, please be sure to read the guidelines for what you're reporting:\n\n* [Bug Report](https://eslint.org/docs/developer-guide/contributing/reporting-bugs)\n* [Propose a New Rule](https://eslint.org/docs/developer-guide/contributing/new-rules)\n* [Proposing a Rule Change](https://eslint.org/docs/developer-guide/contributing/rule-changes)\n* [Request a Change](https://eslint.org/docs/developer-guide/contributing/changes)\n\n## Semantic Versioning Policy\n\nESLint follows [semantic versioning](https://semver.org). However, due to the nature of ESLint as a code quality tool, it's not always clear when a minor or major version bump occurs. To help clarify this for everyone, we've defined the following semantic versioning policy for ESLint:\n\n* Patch release (intended to not break your lint build)\n    * A bug fix in a rule that results in ESLint reporting fewer errors.\n    * A bug fix to the CLI or core (including formatters).\n    * Improvements to documentation.\n    * Non-user-facing changes such as refactoring code, adding, deleting, or modifying tests, and increasing test coverage.\n    * Re-releasing after a failed release (i.e., publishing a release that doesn't work for anyone).\n* Minor release (might break your lint build)\n    * A bug fix in a rule that results in ESLint reporting more errors.\n    * A new rule is created.\n    * A new option to an existing rule that does not result in ESLint reporting more errors by default.\n    * An existing rule is deprecated.\n    * A new CLI capability is created.\n    * New capabilities to the public API are added (new classes, new methods, new arguments to existing methods, etc.).\n    * A new formatter is created.\n* Major release (likely to break your lint build)\n    * `eslint:recommended` is updated.\n    * A new option to an existing rule that results in ESLint reporting more errors by default.\n    * An existing formatter is removed.\n    * Part of the public API is removed or changed in an incompatible way.\n\nAccording to our policy, any minor update may report more errors than the previous release (ex: from a bug fix). As such, we recommend using the tilde (`~`) in `package.json` e.g. `\"eslint\": \"~3.1.0\"` to guarantee the results of your builds.\n\n## License\n\n[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bhttps%3A%2F%2Fgithub.com%2Feslint%2Feslint.svg?type=large)](https://app.fossa.io/projects/git%2Bhttps%3A%2F%2Fgithub.com%2Feslint%2Feslint?ref=badge_large)\n\n## Frequently Asked Questions\n\n### How is ESLint different from JSHint?\n\nThe most significant difference is that ESLint has pluggable linting rules. That means you can use the rules it comes with, or you can extend it with rules created by others or by yourself!\n\n### How does ESLint performance compare to JSHint?\n\nESLint is slower than JSHint, usually 2-3x slower on a single file. This is because ESLint uses Espree to construct an AST before it can evaluate your code whereas JSHint evaluates your code as it's being parsed. The speed is also based on the number of rules you enable; the more rules you enable, the slower the process.\n\nDespite being slower, we believe that ESLint is fast enough to replace JSHint without causing significant pain.\n\n### I heard ESLint is going to replace JSCS?\n\nYes. Since we are solving the same problems, ESLint and JSCS teams have decided to join forces and work together in the development of ESLint instead of competing with each other. You can read more about this in both [ESLint](https://eslint.org/blog/2016/04/welcoming-jscs-to-eslint) and [JSCS](https://medium.com/@markelog/jscs-end-of-the-line-bc9bf0b3fdb2#.u76sx334n) announcements.\n\n### So, should I stop using JSCS and start using ESLint?\n\nMaybe, depending on how much you need it. [JSCS has reached end of life](https://eslint.org/blog/2016/07/jscs-end-of-life), but if it is working for you then there is no reason to move yet. We are still working to smooth the transition. You can see our progress [here](https://github.com/eslint/eslint/milestones/JSCS%20Compatibility). We’ll announce when all of the changes necessary to support JSCS users in ESLint are complete and will start encouraging JSCS users to switch to ESLint at that time.\n\nIf you are having issues with JSCS, you can try to move to ESLint. We are focusing our time and energy on JSCS compatibility issues.\n\n### Is ESLint just linting or does it also check style?\n\nESLint does both traditional linting (looking for problematic patterns) and style checking (enforcement of conventions). You can use it for both.\n\n### Why can't ESLint find my plugins?\n\nESLint can be [globally or locally installed](#installation-and-usage). If you install ESLint globally, your plugins must also be installed globally; if you install ESLint locally, your plugins must also be installed locally.\n\nIf you are trying to run globally, make sure your plugins are installed globally (use `npm ls -g`).\n\nIf you are trying to run locally:\n\n* Make sure your plugins (and ESLint) are both in your project's `package.json` as devDependencies (or dependencies, if your project uses ESLint at runtime).\n* Make sure you have run `npm install` and all your dependencies are installed.\n\nIn all cases, make sure your plugins' peerDependencies have been installed as well. You can use `npm view eslint-plugin-myplugin peerDepencies` to see what peer dependencies `eslint-plugin-myplugin` has.\n\n### Does ESLint support JSX?\n\nYes, ESLint natively supports parsing JSX syntax (this must be enabled in [configuration](https://eslint.org/docs/user-guide/configuring)). Please note that supporting JSX syntax *is not* the same as supporting React. React applies specific semantics to JSX syntax that ESLint doesn't recognize. We recommend using [eslint-plugin-react](https://www.npmjs.com/package/eslint-plugin-react) if you are using React and want React semantics.\n\n### What ECMAScript versions does ESLint support?\n\nESLint has full support for ECMAScript 3, 5 (default), 2015, 2016, 2017, and 2018. You can set your desired ECMAScript syntax (and other settings, like global variables or your target environments) through [configuration](https://eslint.org/docs/user-guide/configuring).\n\n### What about experimental features?\n\nESLint doesn't natively support experimental ECMAScript language features. You can use [babel-eslint](https://github.com/babel/babel-eslint) to use any option available in Babel.\n\nOnce a language feature has been adopted into the ECMAScript standard (stage 4 according to the [TC39 process](https://tc39.github.io/process-document/)), we will accept issues and pull requests related to the new feature, subject to our [contributing guidelines](https://eslint.org/docs/developer-guide/contributing). Until then, please use the appropriate parser and plugin(s) for your experimental feature.\n\n### Where to ask for help?\n\nJoin our [Mailing List](https://groups.google.com/group/eslint) or [Chatroom](https://gitter.im/eslint/eslint).\n\n\n[npm-image]: https://img.shields.io/npm/v/eslint.svg?style=flat-square\n[npm-url]: https://www.npmjs.com/package/eslint\n[travis-image]: https://img.shields.io/travis/eslint/eslint/master.svg?style=flat-square\n[travis-url]: https://travis-ci.org/eslint/eslint\n[appveyor-image]: https://ci.appveyor.com/api/projects/status/iwxmiobcvbw3b0av/branch/master?svg=true\n[appveyor-url]: https://ci.appveyor.com/project/nzakas/eslint/branch/master\n[coveralls-image]: https://img.shields.io/coveralls/eslint/eslint/master.svg?style=flat-square\n[coveralls-url]: https://coveralls.io/r/eslint/eslint?branch=master\n[downloads-image]: https://img.shields.io/npm/dm/eslint.svg?style=flat-square\n[downloads-url]: https://www.npmjs.com/package/eslint\n",
+      "readmeFilename": "README.md",
+      "optionalDependencies": {},
+      "_dependencies": {
+        "ajv": "^5.3.0",
+        "babel-code-frame": "^6.22.0",
+        "chalk": "^2.1.0",
+        "concat-stream": "^1.6.0",
+        "cross-spawn": "^5.1.0",
+        "debug": "^3.1.0",
+        "doctrine": "^2.1.0",
+        "eslint-scope": "^3.7.1",
+        "eslint-visitor-keys": "^1.0.0",
+        "espree": "^3.5.4",
+        "esquery": "^1.0.0",
+        "esutils": "^2.0.2",
+        "file-entry-cache": "^2.0.0",
+        "functional-red-black-tree": "^1.0.1",
+        "glob": "^7.1.2",
+        "globals": "^11.0.1",
+        "ignore": "^3.3.3",
+        "imurmurhash": "^0.1.4",
+        "inquirer": "^3.0.6",
+        "is-resolvable": "^1.0.0",
+        "js-yaml": "^3.9.1",
+        "json-stable-stringify-without-jsonify": "^1.0.1",
+        "levn": "^0.3.0",
+        "lodash": "^4.17.4",
+        "minimatch": "^3.0.2",
+        "mkdirp": "^0.5.1",
+        "natural-compare": "^1.4.0",
+        "optionator": "^0.8.2",
+        "path-is-inside": "^1.0.2",
+        "pluralize": "^7.0.0",
+        "progress": "^2.0.0",
+        "regexpp": "^1.0.1",
+        "require-uncached": "^1.0.3",
+        "semver": "^5.3.0",
+        "strip-ansi": "^4.0.0",
+        "strip-json-comments": "~2.0.1",
+        "table": "4.0.2",
+        "text-table": "~0.2.0"
+      },
+      "path": "/usr/local/lib/node_modules/eslint",
+      "error": "[Circular]",
+      "extraneous": false
+    },
+    "fkill-cli": {
+      "_from": "fkill-cli",
+      "_id": "fkill-cli@5.0.0",
+      "_inBundle": false,
+      "_integrity": "sha512-0yMgYpVtbB5tR7kH5SAe0sEcaxcBaKC4M0+UO0q9ItLrWEjx7rFvBVG3zLLiKFC1tA+sFdVCxSb0y1//wM6DJQ==",
+      "_location": "/fkill-cli",
+      "_phantomChildren": {},
+      "_requested": {
+        "type": "tag",
+        "registry": true,
+        "raw": "fkill-cli",
+        "name": "fkill-cli",
+        "escapedName": "fkill-cli",
+        "rawSpec": "",
+        "saveSpec": "[Circular]",
+        "fetchSpec": "latest"
+      },
+      "_requiredBy": [
+        "#USER"
+      ],
+      "_resolved": "https://registry.npmjs.org/fkill-cli/-/fkill-cli-5.0.0.tgz",
+      "_shasum": "3a77abfb5fa4a121e6d4635275d314aa9e03ef26",
+      "_spec": "fkill-cli",
+      "_where": "/Users/shrbalaj/Repositories/node-gpodder",
+      "author": {
+        "name": "Sindre Sorhus",
+        "email": "sindresorhus@gmail.com",
+        "url": "sindresorhus.com"
+      },
+      "bin": {
+        "fkill": "cli.js"
+      },
+      "bugs": {
+        "url": "https://github.com/sindresorhus/fkill-cli/issues"
+      },
+      "bundleDependencies": false,
+      "deprecated": false,
+      "description": "Fabulously kill processes. Cross-platform.",
+      "devDependencies": {
+        "ava": "*",
+        "delay": "^2.0.0",
+        "execa": "^0.10.0",
+        "get-port": "^3.2.0",
+        "noop-process": "^3.1.0",
+        "process-exists": "^3.1.0",
+        "xo": "*"
+      },
+      "engines": {
+        "node": ">=8"
+      },
+      "files": [
+        "cli.js"
+      ],
+      "homepage": "https://github.com/sindresorhus/fkill-cli#readme",
+      "keywords": [
+        "cli-app",
+        "cli",
+        "fkill",
+        "kill",
+        "killing",
+        "killall",
+        "taskkill",
+        "sigkill",
+        "sigterm",
+        "force",
+        "exit",
+        "zap",
+        "die",
+        "ps",
+        "proc"
+      ],
+      "license": "MIT",
+      "name": "fkill-cli",
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/sindresorhus/fkill-cli.git"
+      },
+      "scripts": {
+        "test": "xo && ava"
+      },
+      "version": "5.0.0",
+      "readme": "<h1 align=\"center\">\n\t<br>\n\t<img width=\"360\" src=\"https://rawgit.com/sindresorhus/fkill/master/media/logo.svg\" alt=\"fkill\">\n\t<br>\n\t<br>\n\t<br>\n</h1>\n\n> Fabulously kill processes. Cross-platform.\n\n[![Build Status](https://travis-ci.org/sindresorhus/fkill-cli.svg?branch=master)](https://travis-ci.org/sindresorhus/fkill-cli)\n\nWorks on macOS, Linux, and Windows.\n\n\n## Install\n\n```\n$ npm install --global fkill-cli\n```\n\n<a href=\"https://www.patreon.com/sindresorhus\">\n\t<img src=\"https://c5.patreon.com/external/logo/become_a_patron_button@2x.png\" width=\"160\">\n</a>\n\n\n## Usage\n\n```\n$ fkill --help\n\n  Usage\n    $ fkill [<pid|name> …]\n\n  Options\n    --force -f    Force kill\n    --verbose -v  Show process arguments\n\n  Examples\n    $ fkill 1337\n    $ fkill safari\n    $ fkill :8080\n    $ fkill 1337 safari :8080\n    $ fkill\n\n  To kill a port, prefix it with a colon. For example: :8080.\n\n  Run without arguments to use the interactive interface.\n  The process name is case insensitive.\n```\n\n\n## Interactive UI\n\nRun `fkill` without arguments to launch the interactive UI.\n\n![](screenshot.gif)\n\n\n## Related\n\n- [fkill](https://github.com/sindresorhus/fkill) - API for this module\n- [alfred-fkill](https://github.com/SamVerschueren/alfred-fkill) - Alfred workflow for this module\n\n\n## Created by\n\n- [Sindre Sorhus](https://sindresorhus.com)\n- [Daniel Baker](https://github.com/coffeedoughnuts)\n\n\n## License\n\nMIT © [Sindre Sorhus](https://sindresorhus.com)\n",
+      "readmeFilename": "readme.md",
+      "optionalDependencies": {},
+      "_dependencies": {
+        "chalk": "^2.1.0",
+        "cli-truncate": "^1.0.0",
+        "esc-exit": "^2.0.0",
+        "fkill": "^5.2.0",
+        "inquirer": "^5.2.0",
+        "inquirer-autocomplete-prompt": "^0.12.2",
+        "meow": "^5.0.0",
+        "num-sort": "^1.0.0",
+        "pid-from-port": "^1.1.1",
+        "ps-list": "^4.0.0"
+      },
+      "path": "/usr/local/lib/node_modules/fkill-cli",
+      "error": "[Circular]",
+      "extraneous": false
+    },
+    "flow-bin": {
+      "_args": [
+        [
+          {
+            "raw": "flow-bin",
+            "scope": "[Circular]",
+            "escapedName": "flow-bin",
+            "name": "flow-bin",
+            "rawSpec": "",
+            "spec": "latest",
+            "type": "tag"
+          },
+          "/Users/shrbalaj/Repositories/semver-cal"
+        ]
+      ],
+      "_from": "flow-bin@latest",
+      "_id": "flow-bin@0.73.0",
+      "_inCache": true,
+      "_location": "/flow-bin",
+      "_nodeVersion": "8.2.1",
+      "_npmOperationalInternal": {
+        "host": "s3://npm-registry-packages",
+        "tmp": "tmp/flow-bin_0.73.0_1527196537740_0.1778764852241228"
+      },
+      "_npmUser": {
+        "name": "gabelevi",
+        "email": "gabelevi@gmail.com"
+      },
+      "_npmVersion": "5.8.0",
+      "_phantomChildren": {},
+      "_requested": {
+        "raw": "flow-bin",
+        "scope": "[Circular]",
+        "escapedName": "flow-bin",
+        "name": "flow-bin",
+        "rawSpec": "",
+        "spec": "latest",
+        "type": "tag"
+      },
+      "_requiredBy": [
+        "#USER"
+      ],
+      "_resolved": "https://registry.npmjs.org/flow-bin/-/flow-bin-0.73.0.tgz",
+      "_shasum": "da1b90a02b0ef9c439f068c2fc14968db83be425",
+      "_shrinkwrap": "[Circular]",
+      "_spec": "flow-bin",
+      "_where": "/Users/shrbalaj/Repositories/semver-cal",
+      "author": {
+        "name": "Sindre Sorhus",
+        "email": "sindresorhus@gmail.com",
+        "url": "sindresorhus.com"
+      },
+      "bin": {
+        "flow": "cli.js"
+      },
+      "bugs": {
+        "url": "https://github.com/flowtype/flow-bin/issues"
+      },
+      "description": "Binary wrapper for Flow - A static type checker for JavaScript",
+      "devDependencies": {},
+      "directories": {},
+      "dist": {
+        "integrity": "sha512-fNk2zBPSQ7X3PbQC+SqG68zps7zs2V+IDoW/E8jm2nM5MfYtN0jJKsoBtN8FuQJ1yoIHxWTFNG04aEKgl7pM2A==",
+        "shasum": "da1b90a02b0ef9c439f068c2fc14968db83be425",
+        "tarball": "https://registry.npmjs.org/flow-bin/-/flow-bin-0.73.0.tgz",
+        "fileCount": 11,
+        "unpackedSize": 37820274,
+        "npm-signature": "-----BEGIN PGP SIGNATURE-----\r\nVersion: OpenPGP.js v3.0.4\r\nComment: https://openpgpjs.org\r\n\r\nwsFcBAEBCAAQBQJbByt8CRA9TVsSAnZWagAA++YP/RGlKK/7awD/3QXf876R\nwrlPO2spapmtAN9Nf4zPI3Qzda2nb98UwoVhdgJ3QzLc+kiC6JwtdC1TT0g7\nqHPjQgHHjvUafgP+3wFQFAKrXVva8CHoiC9AoI1W0IbzCUXcrYUYj9v9Tdww\nEY8nnOab0ucIb6x/E1DUVBmerXfExe87sdbpAVI1Nhh1OBHXk2U7fP/bJH7l\nCe3PexPSD9U9289pLHR+1XXIntqRKX/lwGi3X2f+Rnwdde96sxPPcmxm39Jd\nOcTI46Yf1PbETBRgpPIzbSM3o2aeihN/tTU9wUKnugd36+96hDuZPasGgD9T\n3ioAYkQUkB6xiJMIPd7Dvbijw+eaVBpDhia4m+WrFw2JZPNn4auqacvJFszF\n6V1vI5T7ecfvCI0Gv9VZmmrxEMug5Ojem2bdxjVQulx38sZhGnvWzkmHA+dc\npp0UMiih8akxR7reWUBYdRim5EMupjutH0W88ofp91Amwxn3Ttb2+iNh9D7C\n8EJJ7/ptNSxH7y6YoooaWp1UOIZT98gjWQcBKW3s2oWdB/hR5GUnEMrBH3Qe\nYW/KtZcMQjwePtR6p+VpveeGDuqxD+F69hseU+enAUlWegBb62BrdE+QrnCd\n06HiA+Q1pDRbmvATZfIFjjoc1osBSZLVlc3htYvb0r5rSiPYURbX/VU9XkLz\nZteD\r\n=1Ezg\r\n-----END PGP SIGNATURE-----\r\n"
+      },
+      "engines": {
+        "node": ">=0.10.0"
+      },
+      "files": [
+        "flow-linux64-v*/flow",
+        "flow-osx-v*/flow",
+        "flow-win64-v*/flow.exe",
+        "vendor",
+        "cli.js",
+        "index.js",
+        "SHASUM256.txt"
+      ],
+      "gitHead": "fb2064bc1506366f12aa0de4a9bf342fa7b6719d",
+      "homepage": "https://github.com/flowtype/flow-bin#readme",
+      "keywords": [
+        "cli-app",
+        "cli",
+        "bin",
+        "binary",
+        "flow",
+        "facebook",
+        "type",
+        "inference",
+        "check",
+        "checker",
+        "javascript",
+        "js",
+        "wrapper"
+      ],
+      "license": "MIT",
+      "maintainers": [
+        {
+          "name": "avikchaudhuri",
+          "email": "avik.ch@gmail.com"
+        },
+        {
+          "name": "calebmer",
+          "email": "calebmeredith8@gmail.com"
+        },
+        {
+          "name": "fishythefish",
+          "email": "mayank.patke@gmail.com"
+        },
+        {
+          "name": "flowtype",
+          "email": "flow@fb.com"
+        },
+        {
+          "name": "gabelevi",
+          "email": "gabelevi@gmail.com"
+        },
+        {
+          "name": "kevva",
+          "email": "kevinmartensson@gmail.com"
+        },
+        {
+          "name": "mroch",
+          "email": "marshall@mroch.com"
+        },
+        {
+          "name": "nmote",
+          "email": "nat@natmote.net"
+        },
+        {
+          "name": "pvekris",
+          "email": "pvekris@fb.com"
+        },
+        {
+          "name": "samwgoldman",
+          "email": "samwgoldman@gmail.com"
+        },
+        {
+          "name": "sindresorhus",
+          "email": "sindresorhus@gmail.com"
+        }
+      ],
+      "name": "flow-bin",
+      "optionalDependencies": {},
+      "readme": "ERROR: No README data found!",
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/flowtype/flow-bin.git"
+      },
+      "scripts": {
+        "test": "echo \"Error: Run 'make test' instead.\" && exit 1",
+        "verify": "shasum -c SHASUM256.txt"
+      },
+      "version": "0.73.0",
+      "_dependencies": {},
+      "path": "/usr/local/lib/node_modules/flow-bin",
+      "error": "[Circular]",
+      "extraneous": false
+    },
+    "gatsby-cli": {
+      "_from": "gatsby-cli",
+      "_id": "gatsby-cli@1.1.58",
+      "_inBundle": false,
+      "_integrity": "sha1-Xdoka5h3q5JfalEvcjwgVXryLVc=",
+      "_location": "/gatsby-cli",
+      "_phantomChildren": {},
+      "_requested": {
+        "type": "tag",
+        "registry": true,
+        "raw": "gatsby-cli",
+        "name": "gatsby-cli",
+        "escapedName": "gatsby-cli",
+        "rawSpec": "",
+        "saveSpec": "[Circular]",
+        "fetchSpec": "latest"
+      },
+      "_requiredBy": [
+        "#USER"
+      ],
+      "_resolved": "https://registry.npmjs.org/gatsby-cli/-/gatsby-cli-1.1.58.tgz",
+      "_shasum": "5dda246b9877ab925f6a512f723c20557af22d57",
+      "_spec": "gatsby-cli",
+      "_where": "/Users/shrbalaj",
+      "author": {
+        "name": "Kyle Mathews",
+        "email": "mathews.kyle@gmail.com"
+      },
+      "bin": {
+        "gatsby": "lib/index.js"
+      },
+      "bugs": {
+        "url": "https://github.com/gatsbyjs/gatsby/issues"
+      },
+      "bundleDependencies": false,
+      "deprecated": false,
+      "description": "Gatsby command-line interface for creating new sites and running Gatsby commands",
+      "devDependencies": {
+        "babel-cli": "^6.26.0",
+        "cross-env": "^5.0.5"
+      },
+      "files": [
+        "lib"
+      ],
+      "homepage": "https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-cli#readme",
+      "keywords": [
+        "gatsby"
+      ],
+      "license": "MIT",
+      "main": "lib/index.js",
+      "name": "gatsby-cli",
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-cli"
+      },
+      "scripts": {
+        "build": "babel src --out-dir lib --ignore __tests__",
+        "prepublish": "cross-env NODE_ENV=production npm run build",
+        "watch": "babel -w src --out-dir lib --ignore __tests__"
+      },
+      "version": "1.1.58",
+      "yargs": {
+        "boolean-negation": false
+      },
+      "readme": "# gatsby-cli\n\nGatsby command line tool.\n\nLet's you create new Gatsby sites using\n[Gatsby starters](https://www.gatsbyjs.org/docs/gatsby-starters/).\n\nIt also let's you run commands on sites. The tool runs code from the `gatsby`\npackage installed locally.\n\n## Install\n\n`npm install --global gatsby-cli`\n\n## How to use\n\nRun `gatsby --help` for full help.\n\n### New\n\n`gatsby new gatsby-site`\n\nSee the [Gatsby starters docs](https://www.gatsbyjs.org/docs/gatsby-starters/)\nfor more.\n\n### Develop\n\nAt the root of a Gatsby site run `gatsby develop` to start the Gatsby\ndevelopment server.\n\nOptions\n\n```\n  -H, --host    Set host. Defaults to localhost\n  -p, --port    Set port. Defaults to 8000\n  -o, --open    Open the site in your browser for you\n  -S, --https   Use HTTPS\n```\n\nFollow the [Local HTTPS guide](https://www.gatsbyjs.org/docs/local-https/)\nto find out how you can set up an HTTPS development server using Gatsby.\n\n### Build\n\nAt the root of a Gatsby site run `gatsby build` to do a production build of a\nsite.\n\n### Serve\n\nAt the root of a Gatsby site run `gatsby serve` to serve the production build of\nthe site for testing.\n\n### Info\n\nAt the root of a Gatsby site run `gatsby info` to get helpful environment information which will be required when reporting a bug.\n",
+      "readmeFilename": "README.md",
+      "optionalDependencies": {},
+      "_dependencies": {
+        "babel-code-frame": "^6.26.0",
+        "babel-runtime": "^6.26.0",
+        "bluebird": "^3.5.0",
+        "common-tags": "^1.4.0",
+        "convert-hrtime": "^2.0.0",
+        "core-js": "^2.5.0",
+        "envinfo": "^5.8.1",
+        "execa": "^0.8.0",
+        "fs-extra": "^4.0.1",
+        "hosted-git-info": "^2.5.0",
+        "lodash": "^4.17.4",
+        "pretty-error": "^2.1.1",
+        "resolve-cwd": "^2.0.0",
+        "source-map": "^0.5.7",
+        "stack-trace": "^0.0.10",
+        "update-notifier": "^2.3.0",
+        "yargs": "^11.1.0",
+        "yurnalist": "^0.2.1"
+      },
+      "path": "/usr/local/lib/node_modules/gatsby-cli",
+      "error": "[Circular]",
+      "extraneous": false
+    },
+    "grunt": {
+      "_args": [
+        [
+          {
+            "raw": "grunt",
+            "scope": "[Circular]",
+            "escapedName": "grunt",
+            "name": "grunt",
+            "rawSpec": "",
+            "spec": "latest",
+            "type": "tag"
+          },
+          "/Users/shrbalaj"
+        ]
+      ],
+      "_from": "grunt@latest",
+      "_id": "grunt@1.0.2",
+      "_inCache": true,
+      "_location": "/grunt",
+      "_nodeVersion": "6.11.2",
+      "_npmOperationalInternal": {
+        "host": "s3://npm-registry-packages",
+        "tmp": "tmp/grunt_1.0.2_1518039811780_0.05234811200553957"
+      },
+      "_npmUser": {
+        "name": "vladikoff",
+        "email": "vlad@vladikoff.com"
+      },
+      "_npmVersion": "2.15.12",
+      "_phantomChildren": {},
+      "_requested": {
+        "raw": "grunt",
+        "scope": "[Circular]",
+        "escapedName": "grunt",
+        "name": "grunt",
+        "rawSpec": "",
+        "spec": "latest",
+        "type": "tag"
+      },
+      "_requiredBy": [
+        "#USER"
+      ],
+      "_resolved": "https://registry.npmjs.org/grunt/-/grunt-1.0.2.tgz",
+      "_shasum": "4e6a5e695b70472fd5304f5fa9e34236836a73bc",
+      "_shrinkwrap": "[Circular]",
+      "_spec": "grunt",
+      "_where": "/Users/shrbalaj",
+      "author": {
+        "name": "Grunt Development Team",
+        "url": "http://gruntjs.com/development-team"
+      },
+      "bin": {
+        "grunt": "bin/grunt"
+      },
+      "bugs": {
+        "url": "https://github.com/gruntjs/grunt/issues"
+      },
+      "contributors": [
+        {
+          "name": "\"Cowboy\" Ben Alman",
+          "url": "http://benalman.com/"
+        },
+        {
+          "name": "Kyle Robinson Young",
+          "url": "http://dontkry.com/"
+        },
+        {
+          "name": "Tyler Kellen",
+          "url": "http://goingslowly.com"
+        },
+        {
+          "name": "Sindre Sorhus",
+          "url": "http://sindresorhus.com"
+        },
+        {
+          "name": "Vlad Filippov",
+          "url": "http://vladfilippov.com/"
+        }
+      ],
+      "description": "The JavaScript Task Runner",
+      "devDependencies": {
+        "difflet": "~1.0.1",
+        "eslint-config-grunt": "~1.0.1",
+        "grunt-contrib-nodeunit": "~1.0.0",
+        "grunt-contrib-watch": "~1.0.0",
+        "grunt-eslint": "~18.1.0",
+        "semver": "5.3.0",
+        "shelljs": "~0.7.8",
+        "temporary": "~0.0.4",
+        "through2": "~2.0.0"
+      },
+      "directories": {},
+      "dist": {
+        "shasum": "4e6a5e695b70472fd5304f5fa9e34236836a73bc",
+        "tarball": "https://registry.npmjs.org/grunt/-/grunt-1.0.2.tgz",
+        "fileCount": 16,
+        "unpackedSize": 73093
+      },
+      "engines": {
+        "node": ">=0.10.0"
+      },
+      "files": [
+        "lib",
+        "bin"
+      ],
+      "gitHead": "ccc316360ba9056ccb794cc358a46cc7b8cafef9",
+      "homepage": "http://gruntjs.com/",
+      "keywords": [
+        "task",
+        "async",
+        "cli",
+        "minify",
+        "uglify",
+        "build",
+        "lodash",
+        "unit",
+        "test",
+        "qunit",
+        "nodeunit",
+        "server",
+        "init",
+        "scaffold",
+        "make",
+        "jake",
+        "tool"
+      ],
+      "license": "MIT",
+      "main": "lib/grunt",
+      "maintainers": [
+        {
+          "name": "cowboy",
+          "email": "cowboy@rj3.net"
+        },
+        {
+          "name": "shama",
+          "email": "kyle@dontkry.com"
+        },
+        {
+          "name": "tkellen",
+          "email": "tyler@sleekcode.net"
+        },
+        {
+          "name": "vladikoff",
+          "email": "vlad@vladikoff.com"
+        }
+      ],
+      "name": "grunt",
+      "optionalDependencies": {},
+      "readme": "ERROR: No README data found!",
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/gruntjs/grunt.git"
+      },
+      "scripts": {
+        "test": "node bin/grunt test",
+        "test-tap": "node bin/grunt test:tap"
+      },
+      "version": "1.0.2",
+      "_dependencies": {
+        "coffeescript": "~1.10.0",
+        "dateformat": "~1.0.12",
+        "eventemitter2": "~0.4.13",
+        "exit": "~0.1.1",
+        "findup-sync": "~0.3.0",
+        "glob": "~7.0.0",
+        "grunt-cli": "~1.2.0",
+        "grunt-known-options": "~1.1.0",
+        "grunt-legacy-log": "~1.0.0",
+        "grunt-legacy-util": "~1.0.0",
+        "iconv-lite": "~0.4.13",
+        "js-yaml": "~3.5.2",
+        "minimatch": "~3.0.2",
+        "nopt": "~3.0.6",
+        "path-is-absolute": "~1.0.0",
+        "rimraf": "~2.2.8"
+      },
+      "path": "/usr/local/lib/node_modules/grunt",
+      "error": "[Circular]",
+      "extraneous": false
+    },
+    "n": {
+      "_from": "n",
+      "_id": "n@2.1.10",
+      "_inBundle": false,
+      "_integrity": "sha512-7SB/P9HsNCDl21WyAkFcdNtD+E22akltkSDuRaKqr7y1PmfKfrUIZYfPRSjS0f8MtSctgqzVkbLo6lvdzAEfmQ==",
+      "_location": "/n",
+      "_phantomChildren": {},
+      "_requested": {
+        "type": "tag",
+        "registry": true,
+        "raw": "n",
+        "name": "n",
+        "escapedName": "n",
+        "rawSpec": "",
+        "saveSpec": "[Circular]",
+        "fetchSpec": "latest"
+      },
+      "_requiredBy": [
+        "#USER"
+      ],
+      "_resolved": "https://registry.npmjs.org/n/-/n-2.1.10.tgz",
+      "_shasum": "4b027a985d6b097580cc685d9fe5a1098f0717c5",
+      "_spec": "n",
+      "_where": "/Users/shrbalaj/Desktop/team-one/repo/frontend/inote-ui",
+      "author": {
+        "name": "TJ Holowaychuk",
+        "email": "tj@vision-media.ca"
+      },
+      "bin": {
+        "n": "./bin/n"
+      },
+      "bugs": {
+        "url": "https://github.com/tj/n/issues"
+      },
+      "bundleDependencies": false,
+      "contributors": [
+        {
+          "name": "Travis Webb",
+          "email": "me@traviswebb.com",
+          "url": "tjw.io"
+        },
+        {
+          "name": "Nimit Kalra",
+          "email": "me@nimit.io",
+          "url": "http://nimit.io"
+        },
+        {
+          "name": "Troy Connor",
+          "email": "troy0820@gmail.com",
+          "url": "https://github.com/troy0820"
+        }
+      ],
+      "deprecated": false,
+      "description": "Interactively Manage All Your Node Versions",
+      "engines": {
+        "node": "*"
+      },
+      "homepage": "https://github.com/tj/n",
+      "keywords": [
+        "nvm",
+        "node",
+        "version",
+        "manager",
+        "switcher",
+        "node",
+        "binary",
+        "env"
+      ],
+      "license": "MIT",
+      "name": "n",
+      "os": [
+        "!win32"
+      ],
+      "preferGlobal": true,
+      "repository": {
+        "type": "git",
+        "url": "git://github.com/tj/n.git"
+      },
+      "version": "2.1.10",
+      "readme": "# `n` – Interactively Manage Your Node.js Versions\n\n[![Join the chat at https://gitter.im/tj/n](https://img.shields.io/gitter/room/tj/n.svg?style=flat-square)](https://gitter.im/tj/n)\n[![npm](https://img.shields.io/npm/dt/n.svg?style=flat-square)](https://www.npmjs.com/package/n)\n[![npm](https://img.shields.io/npm/dm/n.svg?style=flat-square)](https://www.npmjs.com/package/n)\n[![npm](https://img.shields.io/npm/v/n.svg?style=flat-square)](https://www.npmjs.com/package/n)\n[![npm](https://img.shields.io/npm/l/n.svg?style=flat-square)](https://www.npmjs.com/package/n)\n\nNode.js version management: no subshells, no profile setup, no convoluted API, just **simple**.\n\n## **Want to install Node nightly releases? Try [this](https://github.com/tj/n/issues/376#issuecomment-250876666)!**\n\n![](http://nimit.io/images/n/n.gif)\n\n(Unfortunately `n` is not supported on Windows yet. If you're able to make it work, send in a pull request!)\n\n## Installation\n\nSince you probably already have `node`, the easiest way to install `n` is through `npm`:\n\n    $ npm install -g n\n\nAlternatively, you can clone this repo and\n\n    $ make install\n\nto install `n` to `bin/n` of the directory specified in the environment variable `$PREFIX`, which defaults to `/usr/local` (note that you will likely need to use `sudo`). To install `n` in a custom location (such as `$CUSTOM_LOCATION/bin/n`), run `PREFIX=$CUSTOM_LOCATION make install`.\n\nOnce installed, `n` installs `node` versions to subdirectory `n/versions` of the directory specified in environment variable `N_PREFIX`, which defaults to `/usr/local`; the _active_ `node`/`iojs` version is installed directly in `N_PREFIX`.\nTo change the default to, say, `$HOME`, prefix later calls to `n` with `N_PREFIX=$HOME ` or add `export N_PREFIX=$HOME` to your shell initialization file.\n\nAdditionally, consider third-party installer [n-install](https://github.com/mklement0/n-install), which allows installation directly from GitHub; for instance,\n\n    curl -L https://git.io/n-install | bash\n\nsets both `PREFIX` and `N_PREFIX` to `$HOME/n`, installs `n` to `$HOME/n/bin`, modifies the initialization files of supported shells to export `N_PREFIX` and add `$HOME/n/bin` to the `PATH`, and installs the latest stable `node` version.\n\n\nAs a result, both `n` itself and all `node` versions it manages are hosted inside a single, optionally configurable directory, which you can later remove with the included `n-uninstall` script. `n-update` updates `n` itself to the latest version. See the [n-install repo](https://github.com/mklement0/n-install) for more details.\n\n### Installing/Activating Versions\n\nSimply execute `n <version>` to install a version of `node`. If `<version>` has already been installed (via `n`), `n` will activate that version.\n\n    $ n 0.8.14\n    $ n 0.8.17\n    $ n 0.9.6\n\nExecute `n` on its own to view your currently installed versions. Use the up and down arrow keys to navigate and press enter or the right arrow key to select. Use ^C (control + C) to exit the selection screen.\nIf you like vim key bindings during the selection of node versions, you can use `j` and `k` to navigate up or down without using arrows. \n\n    $ n\n\n      0.8.14\n    ο 0.8.17\n      0.9.6\n\nUse or install the latest official release:\n\n    $ n latest\n\nUse or install the stable official release:\n\n    $ n stable\n\nUse or install the latest LTS official release:\n\n    $ n lts\n\n### Removing Versions\n\nRemove some versions:\n\n    $ n rm 0.9.4 v0.10.0\n\nAlternatively, you can use `-` in lieu of `rm`:\n\n    $ n - 0.9.4\n\nRemoving all versions except the current version:\n\n```bash\n$ n prune \n```\n\n### Binary Usage\n\nWhen running multiple versions of `node`, we can target\nthem directly by asking `n` for the binary path:\n\n    $ n bin 0.9.4\n    /usr/local/n/versions/0.9.4/bin/node\n\nOr by using a specific version through `n`'s `use` sub-command:\n\n    $ n use 0.9.4 some.js\n\nFlags also work here:\n\n    $ n as 0.9.4 --debug some.js\n\n### Working with `npm`\n\nAfter switching Node.js versions using `n`, `npm` may not work properly. This should fix it (thanks [@mikemoser](https://github.com/mikemoser)!):\n\n```sh\n$ curl -0 -L https://npmjs.com/install.sh | sudo sh\n```\n\n`sudo` may not be required depending on your system configuration.\n\n## Usage\n\nOutput can also be obtained from `n --help`.\n\n    Usage: n [options/env] [COMMAND] [args]\n\n    Environments:\n     n [COMMAND] [args]            Uses default env (node)\n     n io [COMMAND]                Sets env as io\n\n    Commands:\n\n      n                              Output versions installed\n      n latest                       Install or activate the latest node release\n      n -a x86 latest                As above but force 32 bit architecture\n      n stable                       Install or activate the latest stable node release\n      n lts                          Install or activate the latest LTS node release\n      n <version>                    Install node <version>\n      n use <version> [args ...]     Execute node <version> with [args ...]\n      n bin <version>                Output bin path for <version>\n      n rm <version ...>             Remove the given version(s)\n      n prune                        Remove all versions except the current version\n      n --latest                     Output the latest node version available\n      n --stable                     Output the latest stable node version available\n      n --lts                        Output the latest LTS node version available\n      n ls                           Output the versions of node available\n\n    (iojs):\n\n      n io latest                    Install or activate the latest iojs release\n      n io -a x86 latest             As above but force 32 bit architecture\n      n io <version>                 Install iojs <version>\n      n io use <version> [args ...]  Execute iojs <version> with [args ...]\n      n io bin <version>             Output bin path for <version>\n      n io rm <version ...>          Remove the given version(s)\n      n io --latest                  Output the latest iojs version available\n      n io ls                        Output the versions of iojs available\n\n    Options:\n\n      -V, --version   Output current version of n\n      -h, --help      Display help information\n      -q, --quiet     Disable curl output (if available)\n      -d, --download  Download only\n      -a, --arch      Override system architecture\n\n    Aliases:\n\n      which   bin\n      use     as\n      list    ls\n      -       rm\n\n## Custom source\n\nIf you would like to use a project other than the official Node.js or io.js projects, you can use the special `n project [command]` which allows you to control the behavior of `n` using environment variables.\n\nFor example, to grab the latest io.js version but name it \"foo\" instead,\n\n      PROJECT_NAME=\"foo\" PROJECT_URL=\"https://iojs.org/dist/\" n project latest\n\nRequired Variables:\n\n* `PROJECT_NAME`: The name the project will be stored under\n* `PROJECT_URL`: The location to download the project from. Note, this must follow the same format as the io.js/Node.js repos\n\nOptional Variables:\n\n* `HTTP_USER`: The username if the `PROJECT_URL` is protected by basic authentication\n* `HTTP_PASSWORD`: The password if the `PROJECT_URL` is protected by basic authentication\n* `PROJECT_VERSION_CHECK`: Many custom projects keep the same version number as the Node.js release they are based on, and maintain their own separate version in process. This allows you to define a JavaScript variable that will be used to check for the version of the process, for example: `process.versions.node`\n\n## Custom architecture\n\nBy default `n` picks the binaries matching your system architecture, e.g. `n` will download 64 bit binaries for a 64 bit system. You can override this by using the `-a` or `--arch` option.\n\nDownload and use latest 32 bit version of `node`:\n\n    $ n --arch x86 latest\n\nDownload and use latest 32 bit version of `iojs`:\n\n    $ n io --arch x86 latest\n\nDownload and use 64 bit LTS version of `node` for older Mac Intel Core 2 Duo systems (x86 image is no longer available but x64 runs fine):\n\n    $ n --arch x64 lts\n\n## Additional Details\n\n`n` installs versions to `/usr/local/n/versions` by default. Here, it can see what versions are currently installed and activate previously installed versions accordingly when `n <version>` is invoked again.\n\nActivated versions are then installed to the prefix `/usr/local`, which may be altered via the __`N_PREFIX`__ environment variable.\n\nTo alter where `n` operates, simply `export N_PREFIX`.\n\n`n` does not work on Windows at the moment. Pull Requests are appreciated.\n\nIf you are searching for the latest version of `n` below 2.x.x, check out the branch `1.x.x`.\n\n## Core Team\n\n* Nimit Kalra – [@qw3rtman](https://github.com/qw3rtman)\n* Ted Gaydos – [@tedgaydos](https://github.com/tedgaydos)\n* Travis Webb – [@tjwebb](https://github.com/tjwebb)\n\nPlease Read [Contributing Docs](https://github.com/tj/n/blob/master/.github/CONTRIBUTING.md)\n\n## License\n\n(The MIT License)\n\nCopyright (c) 2014 TJ Holowaychuk &lt;tj@vision-media.ca&gt;\n\nPermission is hereby granted, free of charge, to any person obtaining\na copy of this software and associated documentation files (the\n'Software'), to deal in the Software without restriction, including\nwithout limitation the rights to use, copy, modify, merge, publish,\ndistribute, sublicense, and/or sell copies of the Software, and to\npermit persons to whom the Software is furnished to do so, subject to\nthe following conditions:\n\nThe above copyright notice and this permission notice shall be\nincluded in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,\nEXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF\nMERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.\nIN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY\nCLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,\nTORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE\nSOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n",
+      "readmeFilename": "README.md",
+      "devDependencies": {},
+      "optionalDependencies": {},
+      "_dependencies": {},
+      "path": "/usr/local/lib/node_modules/n",
+      "error": "[Circular]",
+      "extraneous": false
+    },
+    "now": {
+      "_from": "now",
+      "_id": "now@11.2.2",
+      "_inBundle": false,
+      "_integrity": "sha512-kPvksMOst0MPBWoDXWp3RYBeGe3SpzKym8BbpAOOk1+MTaerSIhxyLQRt7g5DijkQiBTu3DRIMoOacqSQM2z+w==",
+      "_location": "/now",
+      "_phantomChildren": {},
+      "_requested": {
+        "type": "tag",
+        "registry": true,
+        "raw": "now",
+        "name": "now",
+        "escapedName": "now",
+        "rawSpec": "",
+        "saveSpec": "[Circular]",
+        "fetchSpec": "latest"
+      },
+      "_requiredBy": [
+        "#USER",
+        "/"
+      ],
+      "_resolved": "https://registry.npmjs.org/now/-/now-11.2.2.tgz",
+      "_shasum": "c513fbc6d39cdde72a225d5607e61c211a79575a",
+      "_spec": "now",
+      "_where": "/Users/shrbalaj/Repositories/academy-website",
+      "babel": {
+        "presets": [
+          [
+            "@babel/preset-env",
+            {
+              "targets": {
+                "node": "current"
+              }
+            }
+          ]
+        ],
+        "plugins": [
+          "@babel/plugin-transform-flow-comments",
+          "@babel/plugin-proposal-object-rest-spread",
+          "@babel/plugin-proposal-async-generator-functions"
+        ]
+      },
+      "bin": {
+        "now": "download/dist/now"
+      },
+      "bugs": {
+        "url": "https://github.com/zeit/now-cli/issues"
+      },
+      "bundleDependencies": false,
+      "deprecated": false,
+      "description": "The command-line interface for Now",
+      "devDependencies": {
+        "@babel/core": "7.0.0-beta.44",
+        "@babel/plugin-proposal-async-generator-functions": "7.0.0-beta.44",
+        "@babel/plugin-proposal-object-rest-spread": "7.0.0-beta.44",
+        "@babel/plugin-transform-flow-comments": "7.0.0-beta.44",
+        "@babel/plugin-transform-runtime": "7.0.0-beta.44",
+        "@babel/preset-env": "7.0.0-beta.44",
+        "@babel/runtime": "7.0.0-beta.44",
+        "@google/maps": "0.4.3",
+        "@zeit/dockerignore": "0.0.1",
+        "@zeit/schemas": "1.2.0",
+        "@zeit/source-map-support": "0.6.2",
+        "ajv": "6.4.0",
+        "alpha-sort": "2.0.1",
+        "ansi-escapes": "3.0.0",
+        "ansi-regex": "3.0.0",
+        "archiver": "2.0.3",
+        "arg": "2.0.0",
+        "arr-flatten": "1.1.0",
+        "async-retry": "1.1.3",
+        "async-sema": "1.2.0",
+        "ava": "0.25.0",
+        "aws-sdk": "2.124.0",
+        "babel-eslint": "8.2.2",
+        "babel-loader": "8.0.0-beta.2",
+        "bytes": "3.0.0",
+        "chalk": "2.3.1",
+        "child-process-promise": "2.2.1",
+        "clipboardy": "1.1.4",
+        "convert-stream": "1.0.2",
+        "copy-webpack-plugin": "4.0.1",
+        "credit-card": "3.0.1",
+        "death": "1.1.0",
+        "debug": "3.1.0",
+        "deployment-type": "1.0.1",
+        "docker-file-parser": "1.0.2",
+        "dotenv": "4.0.0",
+        "download": "6.2.5",
+        "email-prompt": "0.3.2",
+        "email-validator": "1.1.1",
+        "epipebomb": "1.0.0",
+        "eslint": "4.7.2",
+        "eslint-plugin-flowtype": "2.46.1",
+        "execa": "0.9.0",
+        "executable": "4.1.1",
+        "fetch-h2": "0.2.5",
+        "flow-babel-webpack-plugin": "1.1.1",
+        "fs-extra": "4.0.2",
+        "glob": "7.1.2",
+        "ignore": "3.3.5",
+        "ini": "1.3.4",
+        "inquirer": "3.3.0",
+        "is-url": "1.2.2",
+        "jsonlines": "0.1.1",
+        "lint-staged": "4.2.3",
+        "load-json-file": "3.0.0",
+        "lodash.range": "3.2.0",
+        "micro": "9.1.2",
+        "mkdirp-promise": "5.0.1",
+        "mri": "1.1.0",
+        "ms": "2.0.0",
+        "node-fetch": "1.7.3",
+        "opn": "5.1.0",
+        "ora": "1.3.0",
+        "pipe-streams-to-promise": "0.2.0",
+        "pkg": "4.3.0",
+        "pluralize": "7.0.0",
+        "pre-commit": "1.2.2",
+        "prettier": "1.7.2",
+        "printf": "0.2.5",
+        "progress": "2.0.0",
+        "psl": "1.1.20",
+        "qr-image": "3.2.0",
+        "read-pkg": "2.0.0",
+        "semver": "5.5.0",
+        "shebang-loader": "0.0.1",
+        "single-line-log": "1.1.2",
+        "sinon": "4.4.2",
+        "strip-ansi": "4.0.0",
+        "stripe": "5.1.0",
+        "supports-color": "5.2.0",
+        "tar-fs": "1.15.3",
+        "test-listen": "1.1.0",
+        "text-table": "0.2.0",
+        "then-sleep": "1.0.1",
+        "through2": "2.0.3",
+        "tmp-promise": "1.0.3",
+        "uid-promise": "1.0.0",
+        "update-check": "1.5.0",
+        "webpack": "3.6.0",
+        "webpack-node-externals": "1.6.0",
+        "which-promise": "1.0.0",
+        "write-json-file": "2.2.0"
+      },
+      "eslintConfig": {
+        "parserOptions": {
+          "ecmaVersion": 2018,
+          "sourceType": "module"
+        },
+        "parser": "babel-eslint",
+        "extends": [
+          "eslint:recommended",
+          "plugin:flowtype/recommended"
+        ],
+        "plugins": [
+          "flowtype"
+        ],
+        "env": {
+          "es6": true,
+          "node": true
+        },
+        "rules": {
+          "func-names": 0,
+          "no-console": 0,
+          "no-shadow": 0,
+          "no-extra-semi": 0,
+          "no-empty": 0
+        }
+      },
+      "eslintIgnore": [
+        "download",
+        "dist",
+        "test/fixtures"
+      ],
+      "files": [
+        "download/dist",
+        "download/install.js"
+      ],
+      "homepage": "https://github.com/zeit/now-cli#readme",
+      "license": "Apache-2.0",
+      "lint-staged": {
+        "*.js": [
+          "yarn test-lint",
+          "prettier --write --single-quote --no-semi",
+          "git add"
+        ]
+      },
+      "name": "now",
+      "pkg": {
+        "scripts": [
+          "dist/*.js"
+        ],
+        "targets": [
+          "node9-alpine-x64",
+          "node9-linux-x64",
+          "node9-macos-x64",
+          "node9-win-x64"
+        ]
+      },
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/zeit/now-cli.git"
+      },
+      "scripts": {
+        "build": "webpack",
+        "build-download": "webpack --context download --config download/webpack.config.js",
+        "bundle": "pkg dist/now.js -c package.json -o packed/now --options no-warnings",
+        "dev": "webpack -w",
+        "gzip": "ls packed/now* | xargs gzip",
+        "link": "webpack && cd link && npm link",
+        "pack": "rm -rf packed && webpack && yarn bundle",
+        "postinstall": "node download/install.js",
+        "precommit": "lint-staged",
+        "prepublishOnly": "yarn build-download && cp /dev/null download/dist/now",
+        "test": "yarn test-lint",
+        "test-integration": "ava test/integration.js --serial --fail-fast",
+        "test-lint": "eslint .",
+        "test-unit": "ava test/unit.js --fail-fast"
+      },
+      "version": "11.2.2",
+      "readme": "![now](https://github.com/zeit/art/blob/a7867d60f54a41127023a8740a221921df309d24/now-cli/repo-banner.png?raw=true)\n\n[![Build Status](https://circleci.com/gh/zeit/now-cli.svg?&style=shield)](https://circleci.com/gh/zeit/workflows/now-cli) [![Join the community on Spectrum](https://withspectrum.github.io/badge/badge.svg)](https://spectrum.chat/now)\n\n**Note**: The [canary](https://github.com/zeit/now-cli/tree/canary) branch is under heavy development – the stable release branch is [master](https://github.com/zeit/now-cli/tree/master).\n\n## Usage\n\nTo install the latest version of Now CLI, run this command:\n\n```\nnpm install -g now\n```\n\nThere are also [other installation methods](https://zeit.co/download) available.\n\n## Documentation\n\nFor details on how to use Now CLI, check out our [documentation](https://zeit.co/docs).\n\n## Caught a Bug?\n\n1. [Fork](https://help.github.com/articles/fork-a-repo/) this repository to your own GitHub account and then [clone](https://help.github.com/articles/cloning-a-repository/) it to your local device\n2. Link the package to the global module directory: `yarn run link` (not `yarn link`)\n3. You can now start using `now` from the command line!\n\nAs always, you can use `yarn test` to run the tests and see if your changes have broken anything.\n\n## How to Create a Release\n\nIf you have write access to this repository, you can read more about how to publish a release [here](https://github.com/zeit/zeit/blob/master/guides/now-cli-release.md).\n",
+      "readmeFilename": "README.md",
+      "optionalDependencies": {},
+      "_dependencies": {},
+      "path": "/usr/local/lib/node_modules/now",
+      "error": "[Circular]",
+      "extraneous": false
+    },
+    "npm": {
+      "version": "3.10.10",
+      "name": "npm",
+      "description": "a package manager for JavaScript",
+      "keywords": [
+        "install",
+        "modules",
+        "package manager",
+        "package.json"
+      ],
+      "preferGlobal": true,
+      "config": {
+        "publishtest": false
+      },
+      "homepage": "https://docs.npmjs.com/",
+      "author": {
+        "name": "Isaac Z. Schlueter",
+        "email": "i@izs.me",
+        "url": "http://blog.izs.me"
+      },
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/npm/npm.git"
+      },
+      "bugs": {
+        "url": "https://github.com/npm/npm/issues"
+      },
+      "directories": {
+        "bin": "./bin",
+        "doc": "./doc",
+        "lib": "./lib",
+        "man": "./man"
+      },
+      "main": "./lib/npm.js",
+      "bin": {
+        "npm": "./bin/npm-cli.js"
+      },
+      "bundleDependencies": [
+        "abbrev",
+        "ansi-regex",
+        "ansicolors",
+        "ansistyles",
+        "aproba",
+        "archy",
+        "asap",
+        "chownr",
+        "cmd-shim",
+        "columnify",
+        "config-chain",
+        "debuglog",
+        "dezalgo",
+        "editor",
+        "fs-vacuum",
+        "fs-write-stream-atomic",
+        "fstream",
+        "fstream-npm",
+        "glob",
+        "graceful-fs",
+        "has-unicode",
+        "hosted-git-info",
+        "iferr",
+        "imurmurhash",
+        "inflight",
+        "inherits",
+        "ini",
+        "init-package-json",
+        "lockfile",
+        "lodash._baseindexof",
+        "lodash._baseuniq",
+        "lodash._bindcallback",
+        "lodash._cacheindexof",
+        "lodash._createcache",
+        "lodash._getnative",
+        "lodash.clonedeep",
+        "lodash.restparam",
+        "lodash.union",
+        "lodash.uniq",
+        "lodash.without",
+        "mkdirp",
+        "node-gyp",
+        "nopt",
+        "normalize-git-url",
+        "normalize-package-data",
+        "npm-cache-filename",
+        "npm-install-checks",
+        "npm-package-arg",
+        "npm-registry-client",
+        "npm-user-validate",
+        "npmlog",
+        "once",
+        "opener",
+        "osenv",
+        "path-is-inside",
+        "read",
+        "read-cmd-shim",
+        "read-installed",
+        "read-package-json",
+        "read-package-tree",
+        "readable-stream",
+        "readdir-scoped-modules",
+        "realize-package-specifier",
+        "request",
+        "retry",
+        "rimraf",
+        "semver",
+        "sha",
+        "slide",
+        "sorted-object",
+        "strip-ansi",
+        "tar",
+        "text-table",
+        "uid-number",
+        "umask",
+        "unique-filename",
+        "unpipe",
+        "validate-npm-package-license",
+        "validate-npm-package-name",
+        "which",
+        "wrappy",
+        "write-file-atomic"
+      ],
+      "devDependencies": {
+        "deep-equal": "~1.0.1",
+        "marked": "~0.3.6",
+        "marked-man": "~0.1.5",
+        "npm-registry-couchapp": "~2.6.12",
+        "npm-registry-mock": "~1.0.1",
+        "require-inject": "~1.4.0",
+        "sprintf-js": "~1.0.3",
+        "standard": "~6.0.8",
+        "tacks": "~1.2.2",
+        "tap": "~7.1.2"
+      },
+      "scripts": {
+        "dumpconf": "env | grep npm | sort | uniq",
+        "prepublish": "node bin/npm-cli.js prune --prefix=. --no-global && rimraf test/*/*/node_modules && make doc-clean && make -j4 doc",
+        "preversion": "bash scripts/update-authors.sh && git add AUTHORS && git commit -m \"update AUTHORS\" || true",
+        "tap": "tap --timeout 300",
+        "tap-cover": "tap --coverage --timeout 600",
+        "test": "standard && npm run test-tap",
+        "test-coverage": "npm run tap-cover -- \"test/tap/*.js\" \"test/network/*.js\" \"test/slow/*.js\" \"test/broken-under-*/*.js\"",
+        "test-tap": "npm run tap -- \"test/tap/*.js\" \"test/network/*.js\" \"test/slow/*.js\" \"test/broken-under-*/*.js\"",
+        "test-node": "\"$NODE\" \"node_modules/.bin/tap\" --timeout 240 \"test/tap/*.js\" \"test/network/*.js\" \"test/slow/*.js\" \"test/broken-under-nyc*/*.js\""
+      },
+      "license": "Artistic-2.0",
+      "man": [
+        "/usr/local/lib/node_modules/npm/man/man1/npm-access.1",
+        "/usr/local/lib/node_modules/npm/man/man1/npm-adduser.1",
+        "/usr/local/lib/node_modules/npm/man/man1/npm-audit.1",
+        "/usr/local/lib/node_modules/npm/man/man1/npm-bin.1",
+        "/usr/local/lib/node_modules/npm/man/man1/npm-bugs.1",
+        "/usr/local/lib/node_modules/npm/man/man1/npm-build.1",
+        "/usr/local/lib/node_modules/npm/man/man1/npm-bundle.1",
+        "/usr/local/lib/node_modules/npm/man/man1/npm-cache.1",
+        "/usr/local/lib/node_modules/npm/man/man1/npm-ci.1",
+        "/usr/local/lib/node_modules/npm/man/man1/npm-completion.1",
+        "/usr/local/lib/node_modules/npm/man/man1/npm-config.1",
+        "/usr/local/lib/node_modules/npm/man/man1/npm-dedupe.1",
+        "/usr/local/lib/node_modules/npm/man/man1/npm-deprecate.1",
+        "/usr/local/lib/node_modules/npm/man/man1/npm-dist-tag.1",
+        "/usr/local/lib/node_modules/npm/man/man1/npm-docs.1",
+        "/usr/local/lib/node_modules/npm/man/man1/npm-doctor.1",
+        "/usr/local/lib/node_modules/npm/man/man1/npm-edit.1",
+        "/usr/local/lib/node_modules/npm/man/man1/npm-explore.1",
+        "/usr/local/lib/node_modules/npm/man/man1/npm-help-search.1",
+        "/usr/local/lib/node_modules/npm/man/man1/npm-help.1",
+        "/usr/local/lib/node_modules/npm/man/man1/npm-hook.1",
+        "/usr/local/lib/node_modules/npm/man/man1/npm-init.1",
+        "/usr/local/lib/node_modules/npm/man/man1/npm-install-ci-test.1",
+        "/usr/local/lib/node_modules/npm/man/man1/npm-install-test.1",
+        "/usr/local/lib/node_modules/npm/man/man1/npm-install.1",
+        "/usr/local/lib/node_modules/npm/man/man1/npm-link.1",
+        "/usr/local/lib/node_modules/npm/man/man1/npm-logout.1",
+        "/usr/local/lib/node_modules/npm/man/man1/npm-ls.1",
+        "/usr/local/lib/node_modules/npm/man/man1/npm-outdated.1",
+        "/usr/local/lib/node_modules/npm/man/man1/npm-owner.1",
+        "/usr/local/lib/node_modules/npm/man/man1/npm-pack.1",
+        "/usr/local/lib/node_modules/npm/man/man1/npm-ping.1",
+        "/usr/local/lib/node_modules/npm/man/man1/npm-prefix.1",
+        "/usr/local/lib/node_modules/npm/man/man1/npm-profile.1",
+        "/usr/local/lib/node_modules/npm/man/man1/npm-prune.1",
+        "/usr/local/lib/node_modules/npm/man/man1/npm-publish.1",
+        "/usr/local/lib/node_modules/npm/man/man1/npm-README.1",
+        "/usr/local/lib/node_modules/npm/man/man1/npm-rebuild.1",
+        "/usr/local/lib/node_modules/npm/man/man1/npm-repo.1",
+        "/usr/local/lib/node_modules/npm/man/man1/npm-restart.1",
+        "/usr/local/lib/node_modules/npm/man/man1/npm-root.1",
+        "/usr/local/lib/node_modules/npm/man/man1/npm-run-script.1",
+        "/usr/local/lib/node_modules/npm/man/man1/npm-search.1",
+        "/usr/local/lib/node_modules/npm/man/man1/npm-shrinkwrap.1",
+        "/usr/local/lib/node_modules/npm/man/man1/npm-star.1",
+        "/usr/local/lib/node_modules/npm/man/man1/npm-stars.1",
+        "/usr/local/lib/node_modules/npm/man/man1/npm-start.1",
+        "/usr/local/lib/node_modules/npm/man/man1/npm-stop.1",
+        "/usr/local/lib/node_modules/npm/man/man1/npm-tag.1",
+        "/usr/local/lib/node_modules/npm/man/man1/npm-team.1",
+        "/usr/local/lib/node_modules/npm/man/man1/npm-test.1",
+        "/usr/local/lib/node_modules/npm/man/man1/npm-token.1",
+        "/usr/local/lib/node_modules/npm/man/man1/npm-uninstall.1",
+        "/usr/local/lib/node_modules/npm/man/man1/npm-unpublish.1",
+        "/usr/local/lib/node_modules/npm/man/man1/npm-update.1",
+        "/usr/local/lib/node_modules/npm/man/man1/npm-version.1",
+        "/usr/local/lib/node_modules/npm/man/man1/npm-view.1",
+        "/usr/local/lib/node_modules/npm/man/man1/npm-whoami.1",
+        "/usr/local/lib/node_modules/npm/man/man1/npm.1",
+        "/usr/local/lib/node_modules/npm/man/man1/npx.1",
+        "/usr/local/lib/node_modules/npm/man/man5/npm-folders.5",
+        "/usr/local/lib/node_modules/npm/man/man5/npm-global.5",
+        "/usr/local/lib/node_modules/npm/man/man5/npm-json.5",
+        "/usr/local/lib/node_modules/npm/man/man5/npm-package-locks.5",
+        "/usr/local/lib/node_modules/npm/man/man5/npm-shrinkwrap.json.5",
+        "/usr/local/lib/node_modules/npm/man/man5/npmrc.5",
+        "/usr/local/lib/node_modules/npm/man/man5/package-lock.json.5",
+        "/usr/local/lib/node_modules/npm/man/man5/package.json.5",
+        "/usr/local/lib/node_modules/npm/man/man7/npm-coding-style.7",
+        "/usr/local/lib/node_modules/npm/man/man7/npm-config.7",
+        "/usr/local/lib/node_modules/npm/man/man7/npm-developers.7",
+        "/usr/local/lib/node_modules/npm/man/man7/npm-disputes.7",
+        "/usr/local/lib/node_modules/npm/man/man7/npm-index.7",
+        "/usr/local/lib/node_modules/npm/man/man7/npm-orgs.7",
+        "/usr/local/lib/node_modules/npm/man/man7/npm-registry.7",
+        "/usr/local/lib/node_modules/npm/man/man7/npm-scope.7",
+        "/usr/local/lib/node_modules/npm/man/man7/npm-scripts.7",
+        "/usr/local/lib/node_modules/npm/man/man7/removing-npm.7",
+        "/usr/local/lib/node_modules/npm/man/man7/semver.7"
+      ],
+      "contributors": [
+        {
+          "name": "Isaac Z. Schlueter",
+          "email": "i@izs.me"
+        },
+        {
+          "name": "Steve Steiner",
+          "email": "ssteinerX@gmail.com"
+        },
+        {
+          "name": "Mikeal Rogers",
+          "email": "mikeal.rogers@gmail.com"
+        },
+        {
+          "name": "Aaron Blohowiak",
+          "email": "aaron.blohowiak@gmail.com"
+        },
+        {
+          "name": "Martyn Smith",
+          "email": "martyn@dollyfish.net.nz"
+        },
+        {
+          "name": "Charlie Robbins",
+          "email": "charlie.robbins@gmail.com"
+        },
+        {
+          "name": "Francisco Treacy",
+          "email": "francisco.treacy@gmail.com"
+        },
+        {
+          "name": "Cliffano Subagio",
+          "email": "cliffano@gmail.com"
+        },
+        {
+          "name": "Christian Eager",
+          "email": "christian.eager@nokia.com"
+        },
+        {
+          "name": "Dav Glass",
+          "email": "davglass@gmail.com"
+        },
+        {
+          "name": "Alex K. Wolfe",
+          "email": "alexkwolfe@gmail.com"
+        },
+        {
+          "name": "James Sanders",
+          "email": "jimmyjazz14@gmail.com"
+        },
+        {
+          "name": "Reid Burke",
+          "email": "me@reidburke.com"
+        },
+        {
+          "name": "Arlo Breault",
+          "email": "arlolra@gmail.com"
+        },
+        {
+          "name": "Timo Derstappen",
+          "email": "teemow@gmail.com"
+        },
+        {
+          "name": "Bart Teeuwisse",
+          "email": "bart.teeuwisse@thecodemill.biz"
+        },
+        {
+          "name": "Ben Noordhuis",
+          "email": "info@bnoordhuis.nl"
+        },
+        {
+          "name": "Tor Valamo",
+          "email": "tor.valamo@gmail.com"
+        },
+        {
+          "name": "Whyme.Lyu",
+          "email": "5longluna@gmail.com"
+        },
+        {
+          "name": "Olivier Melcher",
+          "email": "olivier.melcher@gmail.com"
+        },
+        {
+          "name": "Tomaž Muraus",
+          "email": "kami@k5-storitve.net"
+        },
+        {
+          "name": "Evan Meagher",
+          "email": "evan.meagher@gmail.com"
+        },
+        {
+          "name": "Orlando Vazquez",
+          "email": "ovazquez@gmail.com"
+        },
+        {
+          "name": "Kai Chen",
+          "email": "kaichenxyz@gmail.com"
+        },
+        {
+          "name": "George Miroshnykov",
+          "email": "gmiroshnykov@lohika.com"
+        },
+        {
+          "name": "Geoff Flarity",
+          "email": "geoff.flarity@gmail.com"
+        },
+        {
+          "name": "Max Goodman",
+          "email": "c@chromakode.com"
+        },
+        {
+          "name": "Pete Kruckenberg",
+          "email": "pete@kruckenberg.com"
+        },
+        {
+          "name": "Laurie Harper",
+          "email": "laurie@holoweb.net"
+        },
+        {
+          "name": "Chris Wong",
+          "email": "chris@chriswongstudio.com"
+        },
+        {
+          "name": "Scott Bronson",
+          "email": "brons_github@rinspin.com"
+        },
+        {
+          "name": "Federico Romero",
+          "email": "federomero@gmail.com"
+        },
+        {
+          "name": "Visnu Pitiyanuvath",
+          "email": "visnupx@gmail.com"
+        },
+        {
+          "name": "Irakli Gozalishvili",
+          "email": "rfobic@gmail.com"
+        },
+        {
+          "name": "Mark Cahill",
+          "email": "mark@tiemonster.info"
+        },
+        {
+          "name": "Tony",
+          "email": "zearin@gonk.net"
+        },
+        {
+          "name": "Iain Sproat",
+          "email": "iainsproat@gmail.com"
+        },
+        {
+          "name": "Trent Mick",
+          "email": "trentm@gmail.com"
+        },
+        {
+          "name": "Felix Geisendörfer",
+          "email": "felix@debuggable.com"
+        },
+        {
+          "name": "Jameson Little",
+          "email": "t.jameson.little@gmail.com"
+        },
+        {
+          "name": "Conny Brunnkvist",
+          "email": "conny@fuchsia.se"
+        },
+        {
+          "name": "Will Elwood",
+          "email": "w.elwood08@gmail.com"
+        },
+        {
+          "name": "Dean Landolt",
+          "email": "dean@deanlandolt.com"
+        },
+        {
+          "name": "Oleg Efimov",
+          "email": "efimovov@gmail.com"
+        },
+        {
+          "name": "Martin Cooper",
+          "email": "mfncooper@gmail.com"
+        },
+        {
+          "name": "Jann Horn",
+          "email": "jannhorn@googlemail.com"
+        },
+        {
+          "name": "Andrew Bradley",
+          "email": "cspotcode@gmail.com"
+        },
+        {
+          "name": "Maciej Małecki",
+          "email": "me@mmalecki.com"
+        },
+        {
+          "name": "Stephen Sugden",
+          "email": "glurgle@gmail.com"
+        },
+        {
+          "name": "Michael Budde",
+          "email": "mbudde@gmail.com"
+        },
+        {
+          "name": "Jason Smith",
+          "email": "jhs@iriscouch.com"
+        },
+        {
+          "name": "Gautham Pai",
+          "email": "buzypi@gmail.com"
+        },
+        {
+          "name": "David Trejo",
+          "email": "david.daniel.trejo@gmail.com"
+        },
+        {
+          "name": "Paul Vorbach",
+          "email": "paul@vorb.de"
+        },
+        {
+          "name": "George Ornbo",
+          "email": "george@shapeshed.com"
+        },
+        {
+          "name": "Tim Oxley",
+          "email": "secoif@gmail.com"
+        },
+        {
+          "name": "Tyler Green",
+          "email": "tyler.green2@gmail.com"
+        },
+        {
+          "name": "Dave Pacheco",
+          "email": "dap@joyent.com"
+        },
+        {
+          "name": "Danila Gerasimov",
+          "email": "danila.gerasimov@gmail.com"
+        },
+        {
+          "name": "Rod Vagg",
+          "email": "rod@vagg.org"
+        },
+        {
+          "name": "Christian Howe",
+          "email": "coderarity@gmail.com"
+        },
+        {
+          "name": "Andrew Lunny",
+          "email": "alunny@gmail.com"
+        },
+        {
+          "name": "Henrik Hodne",
+          "email": "dvyjones@binaryhex.com"
+        },
+        {
+          "name": "Adam Blackburn",
+          "email": "regality@gmail.com"
+        },
+        {
+          "name": "Kris Windham",
+          "email": "kriswindham@gmail.com"
+        },
+        {
+          "name": "Jens Grunert",
+          "email": "jens.grunert@gmail.com"
+        },
+        {
+          "name": "Joost-Wim Boekesteijn",
+          "email": "joost-wim@boekesteijn.nl"
+        },
+        {
+          "name": "Dalmais Maxence",
+          "email": "root@ip-10-195-202-5.ec2.internal"
+        },
+        {
+          "name": "Marcus Ekwall",
+          "email": "marcus.ekwall@gmail.com"
+        },
+        {
+          "name": "Aaron Stacy",
+          "email": "aaron.r.stacy@gmail.com"
+        },
+        {
+          "name": "Phillip Howell",
+          "email": "phowell@cothm.org"
+        },
+        {
+          "name": "Domenic Denicola",
+          "email": "domenic@domenicdenicola.com"
+        },
+        {
+          "name": "James Halliday",
+          "email": "mail@substack.net"
+        },
+        {
+          "name": "Jeremy Cantrell",
+          "email": "jmcantrell@gmail.com"
+        },
+        {
+          "name": "Ribettes",
+          "email": "patlogan29@gmail.com"
+        },
+        {
+          "name": "Don Park",
+          "email": "donpark@docuverse.com"
+        },
+        {
+          "name": "Einar Otto Stangvik",
+          "email": "einaros@gmail.com"
+        },
+        {
+          "name": "Kei Son",
+          "email": "heyacct@gmail.com"
+        },
+        {
+          "name": "Nicolas Morel",
+          "email": "marsup@gmail.com"
+        },
+        {
+          "name": "Mark Dube",
+          "email": "markisdee@gmail.com"
+        },
+        {
+          "name": "Nathan Rajlich",
+          "email": "nathan@tootallnate.net"
+        },
+        {
+          "name": "Maxim Bogushevich",
+          "email": "boga1@mail.ru"
+        },
+        {
+          "name": "Meaglin",
+          "email": "Meaglin.wasabi@gmail.com"
+        },
+        {
+          "name": "Ben Evans",
+          "email": "ben@bensbit.co.uk"
+        },
+        {
+          "name": "Nathan Zadoks",
+          "email": "nathan@nathan7.eu"
+        },
+        {
+          "name": "Brian White",
+          "email": "mscdex@mscdex.net"
+        },
+        {
+          "name": "Jed Schmidt",
+          "email": "tr@nslator.jp"
+        },
+        {
+          "name": "Ian Livingstone",
+          "email": "ianl@cs.dal.ca"
+        },
+        {
+          "name": "Patrick Pfeiffer",
+          "email": "patrick@buzzle.at"
+        },
+        {
+          "name": "Paul Miller",
+          "email": "paul@paulmillr.com"
+        },
+        {
+          "name": "Ryan Emery",
+          "email": "seebees@gmail.com"
+        },
+        {
+          "name": "Carl Lange",
+          "email": "carl@flax.ie"
+        },
+        {
+          "name": "Jan Lehnardt",
+          "email": "jan@apache.org"
+        },
+        {
+          "name": "Stuart P. Bentley",
+          "email": "stuart@testtrack4.com"
+        },
+        {
+          "name": "Johan Sköld",
+          "email": "johan@skold.cc"
+        },
+        {
+          "name": "Stuart Knightley",
+          "email": "stuart@stuartk.com"
+        },
+        {
+          "name": "Niggler",
+          "email": "nirk.niggler@gmail.com"
+        },
+        {
+          "name": "Paolo Fragomeni",
+          "email": "paolo@async.ly"
+        },
+        {
+          "name": "Jaakko Manninen",
+          "email": "jaakko@rocketpack.fi"
+        },
+        {
+          "name": "Luke Arduini",
+          "email": "luke.arduini@gmail.com"
+        },
+        {
+          "name": "Larz Conwell",
+          "email": "larz@larz-laptop.(none)",
+          "url": "none"
+        },
+        {
+          "name": "Marcel Klehr",
+          "email": "mklehr@gmx.net"
+        },
+        {
+          "name": "Robert Kowalski",
+          "email": "rok@kowalski.gd"
+        },
+        {
+          "name": "Forbes Lindesay",
+          "email": "forbes@lindesay.co.uk"
+        },
+        {
+          "name": "Vaz Allen",
+          "email": "vaz@tryptid.com"
+        },
+        {
+          "name": "Jake Verbaten",
+          "email": "raynos2@gmail.com"
+        },
+        {
+          "name": "Schabse Laks",
+          "email": "Dev@SLaks.net"
+        },
+        {
+          "name": "Florian Margaine",
+          "email": "florian@margaine.com"
+        },
+        {
+          "name": "Johan Nordberg",
+          "email": "its@johan-nordberg.com"
+        },
+        {
+          "name": "Ian Babrou",
+          "email": "ibobrik@gmail.com"
+        },
+        {
+          "name": "Di Wu",
+          "email": "dwu@palantir.com"
+        },
+        {
+          "name": "Mathias Bynens",
+          "email": "mathias@qiwi.be"
+        },
+        {
+          "name": "Matt McClure",
+          "email": "matt.mcclure@mapmyfitness.com"
+        },
+        {
+          "name": "Matt Lunn",
+          "email": "matt@mattlunn.me.uk"
+        },
+        {
+          "name": "Alexey Kreschuk",
+          "email": "akrsch@gmail.com"
+        },
+        {
+          "name": "elisee",
+          "email": "elisee@sparklin.org"
+        },
+        {
+          "name": "Robert Gieseke",
+          "email": "robert.gieseke@gmail.com"
+        },
+        {
+          "name": "François Frisch",
+          "email": "francoisfrisch@gmail.com"
+        },
+        {
+          "name": "Trevor Burnham",
+          "email": "tburnham@hubspot.com"
+        },
+        {
+          "name": "Alan Shaw",
+          "email": "alan@freestyle-developments.co.uk"
+        },
+        {
+          "name": "TJ Holowaychuk",
+          "email": "tj@vision-media.ca"
+        },
+        {
+          "name": "Nicholas Kinsey",
+          "email": "pyro@feisty.io"
+        },
+        {
+          "name": "Paulo Cesar",
+          "email": "pauloc062@gmail.com"
+        },
+        {
+          "name": "Elan Shanker",
+          "email": "elan.shanker@gmail.com"
+        },
+        {
+          "name": "Jon Spencer",
+          "email": "jon@jonspencer.ca"
+        },
+        {
+          "name": "Jason Diamond",
+          "email": "jason@diamond.name"
+        },
+        {
+          "name": "Maximilian Antoni",
+          "email": "mail@maxantoni.de"
+        },
+        {
+          "name": "Thom Blake",
+          "email": "tblake@brightroll.com"
+        },
+        {
+          "name": "Jess Martin",
+          "email": "jessmartin@gmail.com"
+        },
+        {
+          "name": "Spain Train",
+          "email": "michael.spainhower@opower.com"
+        },
+        {
+          "name": "Alex Rodionov",
+          "email": "p0deje@gmail.com"
+        },
+        {
+          "name": "Matt Colyer",
+          "email": "matt@colyer.name"
+        },
+        {
+          "name": "Evan You",
+          "email": "yyx990803@gmail.com"
+        },
+        {
+          "name": "bitspill",
+          "email": "bitspill+github@bitspill.net"
+        },
+        {
+          "name": "Gabriel Falkenberg",
+          "email": "gabriel.falkenberg@gmail.com"
+        },
+        {
+          "name": "Alexej Yaroshevich",
+          "email": "alex@qfox.ru"
+        },
+        {
+          "name": "Quim Calpe",
+          "email": "quim@kalpe.com"
+        },
+        {
+          "name": "Steve Mason",
+          "email": "stevem@brandwatch.com"
+        },
+        {
+          "name": "Wil Moore III",
+          "email": "wil.moore@wilmoore.com"
+        },
+        {
+          "name": "Sergey Belov",
+          "email": "peimei@ya.ru"
+        },
+        {
+          "name": "Tom Huang",
+          "email": "hzlhu.dargon@gmail.com"
+        },
+        {
+          "name": "CamilleM",
+          "email": "camille.moulin@alterway.fr"
+        },
+        {
+          "name": "Sébastien Santoro",
+          "email": "dereckson@espace-win.org"
+        },
+        {
+          "name": "Evan Lucas",
+          "email": "evan@btc.com"
+        },
+        {
+          "name": "Quinn Slack",
+          "email": "qslack@qslack.com"
+        },
+        {
+          "name": "Alex Kocharin",
+          "email": "alex@kocharin.ru"
+        },
+        {
+          "name": "Daniel Santiago",
+          "email": "daniel.santiago@highlevelwebs.com"
+        },
+        {
+          "name": "Denis Gladkikh",
+          "email": "outcoldman@gmail.com"
+        },
+        {
+          "name": "Andrew Horton",
+          "email": "andrew.j.horton@gmail.com"
+        },
+        {
+          "name": "Zeke Sikelianos",
+          "email": "zeke@sikelianos.com"
+        },
+        {
+          "name": "Dylan Greene",
+          "email": "dylang@gmail.com"
+        },
+        {
+          "name": "Franck Cuny",
+          "email": "franck.cuny@gmail.com"
+        },
+        {
+          "name": "Yeonghoon Park",
+          "email": "sola92@gmail.com"
+        },
+        {
+          "name": "Rafael de Oleza",
+          "email": "rafa@spotify.com"
+        },
+        {
+          "name": "Mikola Lysenko",
+          "email": "mikolalysenko@gmail.com"
+        },
+        {
+          "name": "Yazhong Liu",
+          "email": "yorkiefixer@gmail.com"
+        },
+        {
+          "name": "Neil Gentleman",
+          "email": "ngentleman@gmail.com"
+        },
+        {
+          "name": "Kris Kowal",
+          "email": "kris.kowal@cixar.com"
+        },
+        {
+          "name": "Alex Gorbatchev",
+          "email": "alex.gorbatchev@gmail.com"
+        },
+        {
+          "name": "Shawn Wildermuth",
+          "email": "shawn@wildermuth.com"
+        },
+        {
+          "name": "Wesley de Souza",
+          "email": "wesleywex@gmail.com"
+        },
+        {
+          "name": "yoyoyogi",
+          "email": "yogesh.k@gmail.com"
+        },
+        {
+          "name": "J. Tangelder",
+          "email": "j.tangelder@gmail.com"
+        },
+        {
+          "name": "Jean Lauliac",
+          "email": "jean@lauliac.com"
+        },
+        {
+          "name": "Andrey Kislyuk",
+          "email": "kislyuk@gmail.com"
+        },
+        {
+          "name": "Thorsten Lorenz",
+          "email": "thlorenz@gmx.de"
+        },
+        {
+          "name": "Julian Gruber",
+          "email": "julian@juliangruber.com"
+        },
+        {
+          "name": "Benjamin Coe",
+          "email": "bencoe@gmail.com"
+        },
+        {
+          "name": "Alex Ford",
+          "email": "Alex.Ford@CodeTunnel.com"
+        },
+        {
+          "name": "Matt Hickford",
+          "email": "matt.hickford@gmail.com"
+        },
+        {
+          "name": "Sean McGivern",
+          "email": "sean.mcgivern@rightscale.com"
+        },
+        {
+          "name": "C J Silverio",
+          "email": "ceejceej@gmail.com"
+        },
+        {
+          "name": "Robin Tweedie",
+          "email": "robin@songkick.com"
+        },
+        {
+          "name": "Miroslav Bajtoš",
+          "email": "miroslav@strongloop.com"
+        },
+        {
+          "name": "David Glasser",
+          "email": "glasser@davidglasser.net"
+        },
+        {
+          "name": "Gianluca Casati",
+          "email": "casati_gianluca@yahoo.it"
+        },
+        {
+          "name": "Forrest L Norvell",
+          "email": "ogd@aoaioxxysz.net"
+        },
+        {
+          "name": "Karsten Tinnefeld",
+          "email": "k.tinnefeld@googlemail.com"
+        },
+        {
+          "name": "Bryan Burgers",
+          "email": "bryan@burgers.io"
+        },
+        {
+          "name": "David Beitey",
+          "email": "david@davidjb.com"
+        },
+        {
+          "name": "Evan You",
+          "email": "yyou@google.com"
+        },
+        {
+          "name": "Zach Pomerantz",
+          "email": "zmp@umich.edu"
+        },
+        {
+          "name": "Chris Williams",
+          "email": "cwilliams88@gmail.com"
+        },
+        {
+          "name": "sudodoki",
+          "email": "smd.deluzion@gmail.com"
+        },
+        {
+          "name": "Mick Thompson",
+          "email": "dthompson@gmail.com"
+        },
+        {
+          "name": "Felix Rabe",
+          "email": "felix@rabe.io"
+        },
+        {
+          "name": "Michael Hayes",
+          "email": "michael@hayes.io"
+        },
+        {
+          "name": "Chris Dickinson",
+          "email": "christopher.s.dickinson@gmail.com"
+        },
+        {
+          "name": "Bradley Meck",
+          "email": "bradley.meck@gmail.com"
+        },
+        {
+          "name": "GeJ",
+          "email": "geraud@gcu.info"
+        },
+        {
+          "name": "Andrew Terris",
+          "email": "atterris@gmail.com"
+        },
+        {
+          "name": "Michael Nisi",
+          "email": "michael.nisi@gmail.com"
+        },
+        {
+          "name": "fengmk2",
+          "email": "fengmk2@gmail.com"
+        },
+        {
+          "name": "Adam Meadows",
+          "email": "adam.meadows@gmail.com"
+        },
+        {
+          "name": "Chulki Lee",
+          "email": "chulki.lee@gmail.com"
+        },
+        {
+          "name": "不四",
+          "email": "busi.hyy@taobao.com"
+        },
+        {
+          "name": "dead_horse",
+          "email": "dead_horse@qq.com"
+        },
+        {
+          "name": "Kenan Yildirim",
+          "email": "kenan@kenany.me"
+        },
+        {
+          "name": "Laurie Voss",
+          "email": "git@seldo.com"
+        },
+        {
+          "name": "Rebecca Turner",
+          "email": "me@re-becca.org"
+        },
+        {
+          "name": "Hunter Loftis",
+          "email": "hunter@hunterloftis.com"
+        },
+        {
+          "name": "Peter Richardson",
+          "email": "github@zoomy.net"
+        },
+        {
+          "name": "Jussi Kalliokoski",
+          "email": "jussi.kalliokoski@gmail.com"
+        },
+        {
+          "name": "Filip Weiss",
+          "email": "me@fiws.net"
+        },
+        {
+          "name": "Timo Weiß",
+          "email": "timoweiss@Timo-MBP.local"
+        },
+        {
+          "name": "Christopher Hiller",
+          "email": "chiller@badwing.com"
+        },
+        {
+          "name": "Jérémy Lal",
+          "email": "kapouer@melix.org"
+        },
+        {
+          "name": "Anders Janmyr",
+          "email": "anders@janmyr.com"
+        },
+        {
+          "name": "Chris Meyers",
+          "email": "chris.meyers.fsu@gmail.com"
+        },
+        {
+          "name": "Ludwig Magnusson",
+          "email": "ludwig@mediatool.com"
+        },
+        {
+          "name": "Wout Mertens",
+          "email": "Wout.Mertens@gmail.com"
+        },
+        {
+          "name": "Nick Santos",
+          "email": "nick@medium.com"
+        },
+        {
+          "name": "Terin Stock",
+          "email": "terinjokes@gmail.com"
+        },
+        {
+          "name": "Faiq Raza",
+          "email": "faiqrazarizvi@gmail.com"
+        },
+        {
+          "name": "Thomas Torp",
+          "email": "thomas@erupt.no"
+        },
+        {
+          "name": "Sam Mikes",
+          "email": "smikes@cubane.com"
+        },
+        {
+          "name": "Mat Tyndall",
+          "email": "mat.tyndall@gmail.com"
+        },
+        {
+          "name": "Tauren Mills",
+          "email": "tauren@sportzing.com"
+        },
+        {
+          "name": "Ron Martinez",
+          "email": "ramartin.net@gmail.com"
+        },
+        {
+          "name": "Kazuhito Hokamura",
+          "email": "k.hokamura@gmail.com"
+        },
+        {
+          "name": "Tristan Davies",
+          "email": "github@tristan.io"
+        },
+        {
+          "name": "David Volm",
+          "email": "david@volminator.com"
+        },
+        {
+          "name": "Lin Clark",
+          "email": "lin.w.clark@gmail.com"
+        },
+        {
+          "name": "Ben Page",
+          "email": "bpage@dewalch.com"
+        },
+        {
+          "name": "Jeff Jo",
+          "email": "jeffjo@squareup.com"
+        },
+        {
+          "name": "martinvd",
+          "email": "martinvdpub@gmail.com"
+        },
+        {
+          "name": "Mark J. Titorenko",
+          "email": "nospam-github.com@titorenko.net"
+        },
+        {
+          "name": "Oddur Sigurdsson",
+          "email": "oddurs@gmail.com"
+        },
+        {
+          "name": "Eric Mill",
+          "email": "eric@konklone.com"
+        },
+        {
+          "name": "Gabriel Barros",
+          "email": "descartavel1@gmail.com"
+        },
+        {
+          "name": "KevinSheedy",
+          "email": "kevinsheedy@gmail.com"
+        },
+        {
+          "name": "Aleksey Smolenchuk",
+          "email": "aleksey@uber.com"
+        },
+        {
+          "name": "Ed Morley",
+          "email": "emorley@mozilla.com"
+        },
+        {
+          "name": "Blaine Bublitz",
+          "email": "blaine@iceddev.com"
+        },
+        {
+          "name": "Andrey Fedorov",
+          "email": "anfedorov@gmail.com"
+        },
+        {
+          "name": "Daijiro Wachi",
+          "email": "daijiro.wachi@gmail.com"
+        },
+        {
+          "name": "Luc Thevenard",
+          "email": "lucthevenard@gmail.com"
+        },
+        {
+          "name": "Aria Stewart",
+          "email": "aredridel@nbtsc.org"
+        },
+        {
+          "name": "Charlie Rudolph",
+          "email": "charles.w.rudolph@gmail.com"
+        },
+        {
+          "name": "Vladimir Rutsky",
+          "email": "rutsky@users.noreply.github.com"
+        },
+        {
+          "name": "Isaac Murchie",
+          "email": "isaac@saucelabs.com"
+        },
+        {
+          "name": "Marcin Wosinek",
+          "email": "marcin.wosinek@gmail.com"
+        },
+        {
+          "name": "David Marr",
+          "email": "davemarr@gmail.com"
+        },
+        {
+          "name": "Bryan English",
+          "email": "bryan@bryanenglish.com"
+        },
+        {
+          "name": "Anthony Zotti",
+          "email": "amZotti@users.noreply.github.com"
+        },
+        {
+          "name": "Karl Horky",
+          "email": "karl.horky@gmail.com"
+        },
+        {
+          "name": "Jordan Harband",
+          "email": "ljharb@gmail.com"
+        },
+        {
+          "name": "Guðlaugur Stefán Egilsson",
+          "email": "gulli@kolibri.is"
+        },
+        {
+          "name": "Helge Skogly Holm",
+          "email": "helge.holm@gmail.com"
+        },
+        {
+          "name": "Peter A. Shevtsov",
+          "email": "petr.shevtsov@gmail.com"
+        },
+        {
+          "name": "Alain Kalker",
+          "email": "a.c.kalker@gmail.com"
+        },
+        {
+          "name": "Bryant Williams",
+          "email": "b.n.williams@gmail.com"
+        },
+        {
+          "name": "Jonas Weber",
+          "email": "github@jonasw.de"
+        },
+        {
+          "name": "Tim Whidden",
+          "email": "twhid@twhid.com"
+        },
+        {
+          "name": "Andreas",
+          "email": "functino@users.noreply.github.com"
+        },
+        {
+          "name": "Karolis Narkevicius",
+          "email": "karolis.n@gmail.com"
+        },
+        {
+          "name": "Adrian Lynch",
+          "email": "adi_ady_ade@hotmail.com"
+        },
+        {
+          "name": "Richard Littauer",
+          "email": "richard.littauer@gmail.com"
+        },
+        {
+          "name": "Oli Evans",
+          "email": "oli@zilla.org.uk"
+        },
+        {
+          "name": "Matt Brennan",
+          "email": "mattyb1000@gmail.com"
+        },
+        {
+          "name": "Jeff Barczewski",
+          "email": "jeff.barczewski@gmail.com"
+        },
+        {
+          "name": "Danny Fritz",
+          "email": "dannyfritz@gmail.com"
+        },
+        {
+          "name": "Takaya Kobayashi",
+          "email": "jigsaw@live.jp"
+        },
+        {
+          "name": "Ra'Shaun Stovall",
+          "email": "rashaunstovall@gmail.com"
+        },
+        {
+          "name": "Julien Meddah",
+          "email": "julien.meddah@deveryware.com"
+        },
+        {
+          "name": "Michiel Sikma",
+          "email": "michiel@wedemandhtml.com"
+        },
+        {
+          "name": "Jakob Krigovsky",
+          "email": "jakob.krigovsky@gmail.com"
+        },
+        {
+          "name": "Charmander",
+          "email": "~@charmander.me"
+        },
+        {
+          "name": "Erik Wienhold",
+          "email": "git@ewie.name"
+        },
+        {
+          "name": "James Butler",
+          "email": "james.butler@sandfox.co.uk"
+        },
+        {
+          "name": "Kevin Kragenbrink",
+          "email": "kevin@gaikai.com"
+        },
+        {
+          "name": "Arnaud Rinquin",
+          "email": "rinquin.arnaud@gmail.com"
+        },
+        {
+          "name": "Mike MacCana",
+          "email": "mike.maccana@gmail.com"
+        },
+        {
+          "name": "Antti Mattila",
+          "email": "anttti@fastmail.fm"
+        },
+        {
+          "name": "laiso",
+          "email": "laiso@lai.so"
+        },
+        {
+          "name": "Matt Zorn",
+          "email": "zornme@gmail.com"
+        },
+        {
+          "name": "Kyle Mitchell",
+          "email": "kyle@kemitchell.com"
+        },
+        {
+          "name": "Jeremiah Senkpiel",
+          "email": "fishrock123@rocketmail.com"
+        },
+        {
+          "name": "Michael Klein",
+          "email": "mischkl@users.noreply.github.com"
+        },
+        {
+          "name": "Simen Bekkhus",
+          "email": "sbekkhus91@gmail.com"
+        },
+        {
+          "name": "Victor",
+          "email": "victor.shih@gmail.com"
+        },
+        {
+          "name": "thefourtheye",
+          "email": "thechargingvolcano@gmail.com"
+        },
+        {
+          "name": "Clay Carpenter",
+          "email": "claycarpenter@gmail.com"
+        },
+        {
+          "name": "bangbang93",
+          "email": "bangbang93@163.com"
+        },
+        {
+          "name": "Nick Malaguti",
+          "email": "nmalaguti@palantir.com"
+        },
+        {
+          "name": "Cedric Nelson",
+          "email": "cedric.nelson@gmail.com"
+        },
+        {
+          "name": "Kat Marchán",
+          "email": "kzm@sykosomatic.org"
+        },
+        {
+          "name": "Andrew",
+          "email": "talktome@aboutandrew.co.uk"
+        },
+        {
+          "name": "Eduardo Pinho",
+          "email": "enet4mikeenet@gmail.com"
+        },
+        {
+          "name": "Rachel Hutchison",
+          "email": "rhutchix@intel.com"
+        },
+        {
+          "name": "Ryan Temple",
+          "email": "ryantemple145@gmail.com"
+        },
+        {
+          "name": "Eugene Sharygin",
+          "email": "eush77@gmail.com"
+        },
+        {
+          "name": "James Talmage",
+          "email": "james@talmage.io"
+        },
+        {
+          "name": "jane arc",
+          "email": "jane@uber.com"
+        },
+        {
+          "name": "Joseph Dykstra",
+          "email": "josephdykstra@gmail.com"
+        },
+        {
+          "name": "Andrew Crites",
+          "email": "ajcrites@gmail.com"
+        },
+        {
+          "name": "Joshua Egan",
+          "email": "josh-egan@users.noreply.github.com"
+        },
+        {
+          "name": "Carlos Alberto",
+          "email": "euprogramador@gmail.com"
+        },
+        {
+          "name": "Thomas Cort",
+          "email": "thomasc@ssimicro.com"
+        },
+        {
+          "name": "Thaddee Tyl",
+          "email": "thaddee.tyl@gmail.com"
+        },
+        {
+          "name": "Steve Klabnik",
+          "email": "steve@steveklabnik.com"
+        },
+        {
+          "name": "Andrew Murray",
+          "email": "radarhere@gmail.com"
+        },
+        {
+          "name": "Stephan Bönnemann",
+          "email": "stephan@excellenteasy.com"
+        },
+        {
+          "name": "Kyle M. Tarplee",
+          "email": "kyle.tarplee@numerica.us"
+        },
+        {
+          "name": "Derek Peterson",
+          "email": "derekpetey@gmail.com"
+        },
+        {
+          "name": "Greg Whiteley",
+          "email": "greg.whiteley@atomos.com"
+        },
+        {
+          "name": "murgatroid99",
+          "email": "mlumish@google.com"
+        },
+        {
+          "name": "Marcin Cieslak",
+          "email": "saper@saper.info"
+        },
+        {
+          "name": "João Reis",
+          "email": "reis@janeasystems.com"
+        },
+        {
+          "name": "Matthew Hasbach",
+          "email": "hasbach.git@gmail.com"
+        },
+        {
+          "name": "Jon Hall",
+          "email": "jon_hall@outlook.com"
+        },
+        {
+          "name": "Anna Henningsen",
+          "email": "sqrt@entless.org"
+        },
+        {
+          "name": "James Treworgy",
+          "email": "jamietre@gmail.com"
+        },
+        {
+          "name": "James Hartig",
+          "email": "james@levenlabs.com"
+        },
+        {
+          "name": "Stephanie Snopek",
+          "email": "stephaniesnopek@gmail.com"
+        },
+        {
+          "name": "Kent C. Dodds",
+          "email": "kent@doddsfamily.us"
+        },
+        {
+          "name": "Aaron Krause",
+          "email": "aaronjkrause@gmail.com"
+        },
+        {
+          "name": "Daniel K O'Leary",
+          "email": "daniel@dko.io"
+        },
+        {
+          "name": "fscherwi",
+          "email": "fscherwi@users.noreply.github.com"
+        },
+        {
+          "name": "Thomas Reggi",
+          "email": "thomas@reggi.com"
+        },
+        {
+          "name": "Thomas Michael McTiernan",
+          "email": "thomasmctiernan@gmail.com"
+        },
+        {
+          "name": "Jason Kurian",
+          "email": "JaKXz@users.noreply.github.com"
+        },
+        {
+          "name": "Sebastiaan Deckers",
+          "email": "seb@ninja.sg"
+        },
+        {
+          "name": "lady3bean",
+          "email": "lady3bean@users.noreply.github.com"
+        },
+        {
+          "name": "Tomi Carr",
+          "email": "TaMe3971@users.noreply.github.com"
+        },
+        {
+          "name": "Juan Caicedo",
+          "email": "retiredcanadianpoet@gmail.com"
+        },
+        {
+          "name": "Ashley Williams",
+          "email": "ashley@npmjs.com"
+        },
+        {
+          "name": "Andrew Marcinkevičius",
+          "email": "andrew.web@ifdattic.com"
+        },
+        {
+          "name": "Jorrit Schippers",
+          "email": "jorrit@ncode.nl"
+        },
+        {
+          "name": "Alex Lukin",
+          "email": "alex.lukin@softgrad.com"
+        },
+        {
+          "name": "Aria Stewart",
+          "email": "aredridel@dinhe.net"
+        },
+        {
+          "name": "Tiago Rodrigues",
+          "email": "tmcrodrigues@gmail.com"
+        },
+        {
+          "name": "Tim",
+          "email": "tim-github@baverstock.org.uk"
+        },
+        {
+          "name": "Nick Williams",
+          "email": "WickyNilliams@users.noreply.github.com"
+        },
+        {
+          "name": "Louis Larry",
+          "email": "louis.larry@gmail.com"
+        },
+        {
+          "name": "Ben Gotow",
+          "email": "bengotow@gmail.com"
+        },
+        {
+          "name": "Jakub Gieryluk",
+          "email": "jakub.g.opensource@gmail.com"
+        },
+        {
+          "name": "Kevin Lorenz",
+          "email": "mail@kevinlorenz.com"
+        },
+        {
+          "name": "Martin von Gagern",
+          "email": "Martin.vGagern@gmx.net"
+        },
+        {
+          "name": "Eymen Gunay",
+          "email": "eymen@egunay.com"
+        },
+        {
+          "name": "Martin Ek",
+          "email": "mail@ekmartin.com"
+        },
+        {
+          "name": "Rafał Pocztarski",
+          "email": "r.pocztarski@gmail.com"
+        },
+        {
+          "name": "Mark Reeder",
+          "email": "mreeder@uber.com"
+        },
+        {
+          "name": "Chris Rebert",
+          "email": "github@chrisrebert.com"
+        },
+        {
+          "name": "Scott Addie",
+          "email": "tobias.addie@gmail.com"
+        },
+        {
+          "name": "Jeff McMahan",
+          "email": "jeffrey.lee.mcmahan@gmail.com"
+        },
+        {
+          "name": "Tim Krins",
+          "email": "timkrins@gmail.com"
+        },
+        {
+          "name": "Hal Henke",
+          "email": "halhenke@gmail.com"
+        },
+        {
+          "name": "Julian Simioni",
+          "email": "julian@simioni.org"
+        },
+        {
+          "name": "Jimb Esser",
+          "email": "jimb@yahoo-inc.com"
+        },
+        {
+          "name": "Alexis Campailla",
+          "email": "alexis@janeasystems.com"
+        },
+        {
+          "name": "Chris Chua",
+          "email": "chris.sirhc@gmail.com"
+        },
+        {
+          "name": "Beau Gunderson",
+          "email": "beau@beaugunderson.com"
+        },
+        {
+          "name": "Dave Galbraith",
+          "email": "dave@jut.io"
+        },
+        {
+          "name": "s100",
+          "email": "shughes1@uk.ibm.com"
+        },
+        {
+          "name": "Sergey Simonchik",
+          "email": "sergey.simonchik@jetbrains.com"
+        },
+        {
+          "name": "Vanja Radovanović",
+          "email": "elvanja@gmail.com"
+        },
+        {
+          "name": "Jonathan Persson",
+          "email": "persson.jonathan@gmail.com"
+        },
+        {
+          "name": "Vedat Mahir YILMAZ",
+          "email": "mahir@vedatmahir.com"
+        },
+        {
+          "name": "Samuel Reed",
+          "email": "samuel.trace.reed@gmail.com"
+        },
+        {
+          "name": "Rafał Legiędź",
+          "email": "rafal.legiedz@gmail.com"
+        },
+        {
+          "name": "Jan Schär",
+          "email": "jscissr@gmail.com"
+        },
+        {
+          "name": "Xcat Liu",
+          "email": "xcatliu@gmail.com"
+        },
+        {
+          "name": "harryh",
+          "email": "Aourin@users.noreply.github.com"
+        },
+        {
+          "name": "Prayag Verma",
+          "email": "prayag.verma@gmail.com"
+        },
+        {
+          "name": "Neil Kistner",
+          "email": "neil.kistner@gmail.com"
+        },
+        {
+          "name": "Zoujie Wzj",
+          "email": "zoujie.wzj@alibaba-inc.com"
+        },
+        {
+          "name": "Ryan Hendrickson",
+          "email": "ryan.hendrickson@alum.mit.edu"
+        },
+        {
+          "name": "Arturo Coronel",
+          "email": "aoitsu3@gmail.com"
+        },
+        {
+          "name": "Hutson Betts",
+          "email": "hbetts@factset.com"
+        },
+        {
+          "name": "Lewis Cowper",
+          "email": "lewis.cowper@googlemail.com"
+        },
+        {
+          "name": "Adam Byrne",
+          "email": "misterbyrne@gmail.com"
+        },
+        {
+          "name": "Ifeanyi Oraelosi",
+          "email": "ifeanyioraelosi@gmail.com"
+        },
+        {
+          "name": "Robert Ludwig",
+          "email": "rob.ludwig@rideamigos.com"
+        },
+        {
+          "name": "Chris Warren",
+          "email": "chris@ixalon.net"
+        },
+        {
+          "name": "Scott Plumlee",
+          "email": "scott@plumlee.org"
+        },
+        {
+          "name": "Daniel Pedersen",
+          "email": "daniel@scandinav.se"
+        },
+        {
+          "name": "rhgb",
+          "email": "kaiserdaemon@gmail.com"
+        },
+        {
+          "name": "doug.wade",
+          "email": "doug.wade@redfin.com"
+        },
+        {
+          "name": "Zac",
+          "email": "zdoege@gm.slc.edu"
+        },
+        {
+          "name": "GriffinSchneider",
+          "email": "griffinschneider@gmail.com"
+        },
+        {
+          "name": "Andres Kalle",
+          "email": "mjomble@gmail.com"
+        },
+        {
+          "name": "thefourtheye",
+          "email": "thefourtheye@users.noreply.github.com"
+        },
+        {
+          "name": "Yael",
+          "email": "yaelz@users.noreply.github.com"
+        },
+        {
+          "name": "Yann Odeyer",
+          "email": "yann@odeyer.com"
+        },
+        {
+          "name": "James Monger",
+          "email": "jameskmonger@hotmail.co.uk"
+        },
+        {
+          "name": "Thomas Hallock",
+          "email": "thomas@1stdibs.com"
+        },
+        {
+          "name": "Paul Irish",
+          "email": "paul.irish@gmail.com"
+        },
+        {
+          "name": "Paul O'Leary McCann",
+          "email": "polm@dampfkraft.com"
+        },
+        {
+          "name": "Francis Gulotta",
+          "email": "wizard@roborooter.com"
+        },
+        {
+          "name": "Felix Rieseberg",
+          "email": "felix@felixrieseberg.com"
+        },
+        {
+          "name": "Glen Mailer",
+          "email": "glenjamin@gmail.com"
+        },
+        {
+          "name": "Federico Brigante",
+          "email": "bfred-it@users.noreply.github.com"
+        },
+        {
+          "name": "Steve Mao",
+          "email": "maochenyan@gmail.com"
+        },
+        {
+          "name": "Anna Henningsen",
+          "email": "anna@addaleax.net"
+        },
+        {
+          "name": "Rachel Evans",
+          "email": "git@rve.org.uk"
+        },
+        {
+          "name": "Sam Minnee",
+          "email": "sam@silverstripe.com"
+        },
+        {
+          "name": "Zirak",
+          "email": "zirakertan@gmail.com"
+        },
+        {
+          "name": "Daniel Lupu",
+          "email": "lupu.daniel.f@gmail.com"
+        },
+        {
+          "name": "Gianluca Casati",
+          "email": "fibo@users.noreply.github.com"
+        },
+        {
+          "name": "André Herculano",
+          "email": "andresilveirah@gmail.com"
+        },
+        {
+          "name": "Wyatt Preul",
+          "email": "wpreul@gmail.com"
+        },
+        {
+          "name": "Myles Borins",
+          "email": "mborins@us.ibm.com"
+        },
+        {
+          "name": "Elliot Lee",
+          "email": "github.public@intelliot.com"
+        },
+        {
+          "name": "Dmitry Kirilyuk",
+          "email": "gk.joker@gmail.com"
+        },
+        {
+          "name": "Aaron Tribou",
+          "email": "aaron.tribou@gmail.com"
+        },
+        {
+          "name": "Tapani Moilanen",
+          "email": "moilanen.tapani@gmail.com"
+        },
+        {
+          "name": "Han Seoul-Oh",
+          "email": "laughinghan@gmail.com"
+        },
+        {
+          "name": "Aleksey Shvayka",
+          "email": "shvaikalesh@gmail.com"
+        },
+        {
+          "name": "Emma Ramirez",
+          "email": "ramirez.emma.g@gmail.com"
+        },
+        {
+          "name": "Julian Duque",
+          "email": "julianduquej@gmail.com"
+        },
+        {
+          "name": "Simon MacDonald",
+          "email": "simon.macdonald@gmail.com"
+        },
+        {
+          "name": "Adam Stankiewicz",
+          "email": "sheerun@sher.pl"
+        },
+        {
+          "name": "Gregers Gram Rygg",
+          "email": "gregers.gram.rygg@finn.no"
+        },
+        {
+          "name": "Peter Dave Hello",
+          "email": "hsu@peterdavehello.org"
+        },
+        {
+          "name": "Jordan Klassen",
+          "email": "forivall@gmail.com"
+        },
+        {
+          "name": "Jason Palmer",
+          "email": "jason@jason-palmer.com"
+        },
+        {
+          "name": "Michael Hart",
+          "email": "michael.hart.au@gmail.com"
+        },
+        {
+          "name": "Sasha Koss",
+          "email": "koss@nocorp.me"
+        },
+        {
+          "name": "David Emmerson",
+          "email": "david.emmerson@gmail.com"
+        },
+        {
+          "name": "Christophe Hurpeau",
+          "email": "christophe@hurpeau.com"
+        },
+        {
+          "name": "Daniel Paz-Soldan",
+          "email": "daniel.pazsoldan@gmail.com"
+        },
+        {
+          "name": "Sakthipriyan Vairamani",
+          "email": "thechargingvolcano@gmail.com"
+        },
+        {
+          "name": "Zach Renner",
+          "email": "zarenner@microsoft.com"
+        },
+        {
+          "name": "Christopher Hiller",
+          "email": "boneskull@boneskull.com"
+        },
+        {
+          "name": "legodude17",
+          "email": "legodudejb@gmail.com"
+        },
+        {
+          "name": "Andrew Meyer",
+          "email": "andrewm.bpi@gmail.com"
+        },
+        {
+          "name": "Michael Jasper",
+          "email": "mdjasper@gmail.com"
+        },
+        {
+          "name": "Max",
+          "email": "contact@mstoiber.com"
+        },
+        {
+          "name": "Szymon Nowak",
+          "email": "szimek@gmail.com"
+        },
+        {
+          "name": "Jason Karns",
+          "email": "jason.karns@gmail.com"
+        },
+        {
+          "name": "Lucas Holmquist",
+          "email": "lholmqui@redhat.com"
+        },
+        {
+          "name": "Ionică Bizău",
+          "email": "bizauionica@gmail.com"
+        },
+        {
+          "name": "Alex Chesters",
+          "email": "AlexChesters@users.noreply.github.com"
+        },
+        {
+          "name": "Robert Gay",
+          "email": "robert.gay@redfin.com"
+        },
+        {
+          "name": "Steven",
+          "email": "stevokk@hotmail.com"
+        }
+      ],
+      "readme": "npm(1) -- a JavaScript package manager\n==============================\n[![Build Status](https://img.shields.io/travis/npm/npm/master.svg)](https://travis-ci.org/npm/npm)\n## SYNOPSIS\n\nThis is just enough info to get you up and running.\n\nMuch more info available via `npm help` once it's installed.\n\n## IMPORTANT\n\n**You need node v0.10 or higher to run this program.**\n\nTo install an old **and unsupported** version of npm that works on node 0.3\nand prior, clone the git repo and dig through the old tags and branches.\n\n**npm is configured to use npm, Inc.'s public package registry at\n<https://registry.npmjs.org> by default.**\n\nYou can configure npm to use any compatible registry you\nlike, and even run your own registry. Check out the [doc on\nregistries](https://docs.npmjs.com/misc/registry).\n\nUse of someone else's registry may be governed by terms of use. The\nterms of use for the default public registry are available at\n<https://www.npmjs.com>.\n\n## Super Easy Install\n\nnpm is bundled with [node](http://nodejs.org/download/).\n\n### Windows Computers\n\n[Get the MSI](http://nodejs.org/download/).  npm is in it.\n\n### Apple Macintosh Computers\n\n[Get the pkg](http://nodejs.org/download/).  npm is in it.\n\n### Other Sorts of Unices\n\nRun `make install`.  npm will be installed with node.\n\nIf you want a more fancy pants install (a different version, customized\npaths, etc.) then read on.\n\n## Fancy Install (Unix)\n\nThere's a pretty robust install script at\n<https://www.npmjs.com/install.sh>.  You can download that and run it.\n\nHere's an example using curl:\n\n```sh\ncurl -L https://www.npmjs.com/install.sh | sh\n```\n\n### Slightly Fancier\n\nYou can set any npm configuration params with that script:\n\n```sh\nnpm_config_prefix=/some/path sh install.sh\n```\n\nOr, you can run it in uber-debuggery mode:\n\n```sh\nnpm_debug=1 sh install.sh\n```\n\n### Even Fancier\n\nGet the code with git.  Use `make` to build the docs and do other stuff.\nIf you plan on hacking on npm, `make link` is your friend.\n\nIf you've got the npm source code, you can also semi-permanently set\narbitrary config keys using the `./configure --key=val ...`, and then\nrun npm commands by doing `node cli.js <cmd> <args>`.  (This is helpful\nfor testing, or running stuff without actually installing npm itself.)\n\n## Windows Install or Upgrade\n\nMany improvements for Windows users have been made in npm 3 - you will have a better\nexperience if you run a recent version of npm. To upgrade, either use [Microsoft's\nupgrade tool](https://github.com/felixrieseberg/npm-windows-upgrade),\n[download a new version of Node](http://nodejs.org/download/),\nor follow the Windows upgrade instructions in the\n[npm Troubleshooting Guide](https://github.com/npm/npm/wiki/Troubleshooting#upgrading-on-windows).\n\nIf that's not fancy enough for you, then you can fetch the code with\ngit, and mess with it directly.\n\n## Installing on Cygwin\n\nNo.\n\n## Uninstalling\n\nSo sad to see you go.\n\n```sh\nsudo npm uninstall npm -g\n```\nOr, if that fails,\n\n```sh\nsudo make uninstall\n```\n\n## More Severe Uninstalling\n\nUsually, the above instructions are sufficient.  That will remove\nnpm, but leave behind anything you've installed.\n\nIf you would like to remove all the packages that you have installed,\nthen you can use the `npm ls` command to find them, and then `npm rm` to\nremove them.\n\nTo remove cruft left behind by npm 0.x, you can use the included\n`clean-old.sh` script file.  You can run it conveniently like this:\n\n```sh\nnpm explore npm -g -- sh scripts/clean-old.sh\n```\n\nnpm uses two configuration files, one for per-user configs, and another\nfor global (every-user) configs.  You can view them by doing:\n\n```sh\nnpm config get userconfig   # defaults to ~/.npmrc\nnpm config get globalconfig # defaults to /usr/local/etc/npmrc\n```\n\nUninstalling npm does not remove configuration files by default.  You\nmust remove them yourself manually if you want them gone.  Note that\nthis means that future npm installs will not remember the settings that\nyou have chosen.\n\n## More Docs\n\nCheck out the [docs](https://docs.npmjs.com/),\n\nYou can use the `npm help` command to read any of them.\n\nIf you're a developer, and you want to use npm to publish your program,\nyou should [read this](https://docs.npmjs.com/misc/developers)\n\n## BUGS\n\nWhen you find issues, please report them:\n\n* web:\n  <https://github.com/npm/npm/issues>\n\nBe sure to include *all* of the output from the npm command that didn't work\nas expected.  The `npm-debug.log` file is also helpful to provide.\n\nYou can also look for isaacs in #node.js on irc://irc.freenode.net.  He\nwill no doubt tell you to put the output in a gist or email.\n\n## SEE ALSO\n\n* npm(1)\n* npm-help(1)\n* npm-index(7)\n",
+      "readmeFilename": "README.md",
+      "_id": "npm@3.10.10",
+      "optionalDependencies": {},
+      "_dependencies": {
+        "abbrev": "~1.0.9",
+        "ansicolors": "~0.3.2",
+        "ansistyles": "~0.1.3",
+        "aproba": "~1.0.4",
+        "archy": "~1.0.0",
+        "asap": "~2.0.5",
+        "chownr": "~1.0.1",
+        "cmd-shim": "~2.0.2",
+        "columnify": "~1.5.4",
+        "config-chain": "~1.1.11",
+        "dezalgo": "~1.0.3",
+        "editor": "~1.0.0",
+        "fs-vacuum": "~1.2.9",
+        "fs-write-stream-atomic": "~1.0.8",
+        "fstream": "~1.0.10",
+        "fstream-npm": "~1.2.0",
+        "glob": "~7.1.0",
+        "graceful-fs": "~4.1.9",
+        "has-unicode": "~2.0.1",
+        "hosted-git-info": "~2.1.5",
+        "iferr": "~0.1.5",
+        "inflight": "~1.0.5",
+        "inherits": "~2.0.3",
+        "ini": "~1.3.4",
+        "init-package-json": "~1.9.4",
+        "lockfile": "~1.0.2",
+        "lodash._baseuniq": "~4.6.0",
+        "lodash.clonedeep": "~4.5.0",
+        "lodash.union": "~4.6.0",
+        "lodash.uniq": "~4.5.0",
+        "lodash.without": "~4.4.0",
+        "mkdirp": "~0.5.1",
+        "node-gyp": "~3.4.0",
+        "nopt": "~3.0.6",
+        "normalize-git-url": "~3.0.2",
+        "normalize-package-data": "~2.3.5",
+        "npm-cache-filename": "~1.0.2",
+        "npm-install-checks": "~3.0.0",
+        "npm-package-arg": "~4.2.0",
+        "npm-registry-client": "~7.2.1",
+        "npm-user-validate": "~0.1.5",
+        "npmlog": "~4.0.0",
+        "once": "~1.4.0",
+        "opener": "~1.4.2",
+        "osenv": "~0.1.3",
+        "path-is-inside": "~1.0.2",
+        "read": "~1.0.7",
+        "read-cmd-shim": "~1.0.1",
+        "read-installed": "~4.0.3",
+        "read-package-json": "~2.0.4",
+        "read-package-tree": "~5.1.5",
+        "readable-stream": "~2.1.5",
+        "realize-package-specifier": "~3.0.3",
+        "request": "~2.75.0",
+        "retry": "~0.10.0",
+        "rimraf": "~2.5.4",
+        "semver": "~5.3.0",
+        "sha": "~2.0.1",
+        "slide": "~1.1.6",
+        "sorted-object": "~2.0.1",
+        "strip-ansi": "~3.0.1",
+        "tar": "~2.2.1",
+        "text-table": "~0.2.0",
+        "uid-number": "0.0.6",
+        "umask": "~1.1.0",
+        "unique-filename": "~1.1.0",
+        "unpipe": "~1.0.0",
+        "validate-npm-package-name": "~2.2.2",
+        "which": "~1.2.11",
+        "wrappy": "~1.0.2",
+        "write-file-atomic": "~1.2.0",
+        "ansi-regex": "*",
+        "debuglog": "*",
+        "imurmurhash": "*",
+        "lodash._baseindexof": "*",
+        "lodash._bindcallback": "*",
+        "lodash._cacheindexof": "*",
+        "lodash._createcache": "*",
+        "lodash._getnative": "*",
+        "lodash.restparam": "*",
+        "readdir-scoped-modules": "*",
+        "validate-npm-package-license": "*"
+      },
+      "path": "/usr/local/lib/node_modules/npm",
+      "error": "[Circular]",
+      "extraneous": false
+    },
+    "npm-man": {
+      "_args": [
+        [
+          {
+            "raw": "npm-man",
+            "scope": "[Circular]",
+            "escapedName": "npm-man",
+            "name": "npm-man",
+            "rawSpec": "",
+            "spec": "latest",
+            "type": "tag"
+          },
+          "/Users/shrbalaj"
+        ]
+      ],
+      "_from": "npm-man@latest",
+      "_id": "npm-man@0.4.3",
+      "_inCache": true,
+      "_location": "/npm-man",
+      "_nodeVersion": "6.9.1",
+      "_npmOperationalInternal": {
+        "host": "s3://npm-registry-packages",
+        "tmp": "tmp/npm-man-0.4.3.tgz_1499494476849_0.4809115023817867"
+      },
+      "_npmUser": {
+        "name": "eush77",
+        "email": "eush77@gmail.com"
+      },
+      "_npmVersion": "3.10.9",
+      "_phantomChildren": {},
+      "_requested": {
+        "raw": "npm-man",
+        "scope": "[Circular]",
+        "escapedName": "npm-man",
+        "name": "npm-man",
+        "rawSpec": "",
+        "spec": "latest",
+        "type": "tag"
+      },
+      "_requiredBy": [
+        "#USER"
+      ],
+      "_resolved": "https://registry.npmjs.org/npm-man/-/npm-man-0.4.3.tgz",
+      "_shasum": "4ee5c3122e70b2ef67ea6ae5a75d0af7b470ddfe",
+      "_shrinkwrap": "[Circular]",
+      "_spec": "npm-man",
+      "_where": "/Users/shrbalaj",
+      "author": {
+        "name": "Eugene Sharygin",
+        "email": "eush77@gmail.com"
+      },
+      "bin": {
+        "npm-man": "cli.js"
+      },
+      "bugs": {
+        "url": "https://github.com/eush77/npm-man/issues"
+      },
+      "description": "Open any package readme from npm as a man page",
+      "devDependencies": {},
+      "directories": {},
+      "dist": {
+        "shasum": "4ee5c3122e70b2ef67ea6ae5a75d0af7b470ddfe",
+        "tarball": "https://registry.npmjs.org/npm-man/-/npm-man-0.4.3.tgz"
+      },
+      "files": [
+        "cli.js",
+        "index.js"
+      ],
+      "gitHead": "1f03b54f4f656058ce51badf467262d855400af5",
+      "homepage": "https://github.com/eush77/npm-man",
+      "keywords": [
+        "api",
+        "cli",
+        "docs",
+        "less",
+        "man",
+        "manual",
+        "more",
+        "npm",
+        "pager",
+        "readme",
+        "unix",
+        "viewer"
+      ],
+      "license": "MIT",
+      "maintainers": [
+        {
+          "name": "eush77",
+          "email": "eush77@gmail.com"
+        }
+      ],
+      "name": "npm-man",
+      "optionalDependencies": {},
+      "preferGlobal": true,
+      "readme": "ERROR: No README data found!",
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/eush77/npm-man.git"
+      },
+      "scripts": {},
+      "version": "0.4.3",
+      "_dependencies": {
+        "got": "^5.3.0",
+        "help-version": "^1.0.0",
+        "man-pager": "^1.0.0",
+        "npm-expansion": "^1.0.0",
+        "readme-to-man-page": "^0.6.0",
+        "registry-url": "^3.0.3"
+      },
+      "path": "/usr/local/lib/node_modules/npm-man",
+      "error": "[Circular]",
+      "extraneous": false
+    },
+    "serve": {
+      "_args": [
+        [
+          {
+            "raw": "serve",
+            "scope": "[Circular]",
+            "escapedName": "serve",
+            "name": "serve",
+            "rawSpec": "",
+            "spec": "latest",
+            "type": "tag"
+          },
+          "/Users/shrbalaj/Repositories/semver-cal"
+        ]
+      ],
+      "_from": "serve@latest",
+      "_id": "serve@7.1.5",
+      "_inCache": true,
+      "_location": "/serve",
+      "_nodeVersion": "10.2.1",
+      "_npmOperationalInternal": {
+        "host": "s3://npm-registry-packages",
+        "tmp": "tmp/serve_7.1.5_1527718344220_0.6031332666845437"
+      },
+      "_npmUser": {
+        "name": "leo",
+        "email": "leo@zeit.co"
+      },
+      "_npmVersion": "5.6.0",
+      "_phantomChildren": {},
+      "_requested": {
+        "raw": "serve",
+        "scope": "[Circular]",
+        "escapedName": "serve",
+        "name": "serve",
+        "rawSpec": "",
+        "spec": "latest",
+        "type": "tag"
+      },
+      "_requiredBy": [
+        "#USER"
+      ],
+      "_resolved": "https://registry.npmjs.org/serve/-/serve-7.1.5.tgz",
+      "_shasum": "503eb3d5d0d4b0243474444db0077f69415e1b40",
+      "_shrinkwrap": "[Circular]",
+      "_spec": "serve",
+      "_where": "/Users/shrbalaj/Repositories/semver-cal",
+      "author": {
+        "name": "leo"
+      },
+      "bin": {
+        "serve": "./bin/serve.js"
+      },
+      "bugs": {
+        "url": "https://github.com/zeit/serve/issues"
+      },
+      "description": "Static file serving and directory listing",
+      "devDependencies": {
+        "@zeit/eslint-config-node": "0.2.13",
+        "@zeit/git-hooks": "0.1.4",
+        "eslint": "4.19.1"
+      },
+      "directories": {},
+      "dist": {
+        "integrity": "sha512-6NbpOvnOin9prxz9vvKyl1/SDAZNMnB+2c7mmLPwC8PeGCOaMZ4pXzD78Zuu8V5ti/n2LlKcAyPlqEohpJkacw==",
+        "shasum": "503eb3d5d0d4b0243474444db0077f69415e1b40",
+        "tarball": "https://registry.npmjs.org/serve/-/serve-7.1.5.tgz",
+        "fileCount": 4,
+        "unpackedSize": 12512,
+        "npm-signature": "-----BEGIN PGP SIGNATURE-----\r\nVersion: OpenPGP.js v3.0.4\r\nComment: https://openpgpjs.org\r\n\r\nwsFcBAEBCAAQBQJbDyHICRA9TVsSAnZWagAAzPAP/1Ikii6xa6+St5jmVNzh\n1Nb+XsDSsE9/IPwfkSDtZ4ostTN1KY0gQMbBxCu49dG42VbAuL+p8lowqM+Z\ncobuP8h9vyFrJrXyRGhIHEsusiqrEZmuJ/GIAR+HlASdr9QmyjJM1416R3uM\nOhuEvSC5qlmlTgz/bwqu8CmYnDedKTywqcAizmGKJ384yn4vAjogphWjciyB\nio1rX0Za6ynUfCtthubB92Dg9JZDuNgzlHdQ2GDjy8CX9u6WZmShrjagMqML\ndO9YPfSthm69eQwlQQwF+2GzoyCHhrX1DuQBlHkLTJMkpVoubIcGA6Uny8dF\nhFaVCdEhouEmGMyBhLrILELgCKAm5HlezJoprSjjEWcbkkemA25ZJbUNFFxI\nFP3W6LJc3clh6Xou1MCPodHofc79AAaPcvk1Xu8i88fPrK37ZlJZqBuWbZOp\nh5Ll6it0JUuU0MgJv4JLSX9yk5FGX4zMdGrlDPysMUYnUO6yAiV03xeayU/x\nFr2/qHwX8rX0hA2OcGMASZuWLYf6b5GD4716ERnFYSJDUyRnMDxvFB+Y2OWt\nfxMQ8o0m10OEGkI3bDAyNuqW7F8JVyafydVELL2NAUwM5o+USbDdvwx7g0tu\niUHBzzvqNjQ6TIC1ot0Wu7SuOp2OvJZgodH2GYfKKlzc9ZR+in4onHq/Hyn8\n65Ud\r\n=optN\r\n-----END PGP SIGNATURE-----\r\n"
+      },
+      "eslintConfig": {
+        "extends": [
+          "@zeit/eslint-config-node"
+        ]
+      },
+      "files": [
+        "bin"
+      ],
+      "git": {
+        "pre-commit": "lint-staged"
+      },
+      "gitHead": "a29c5daa00b748029846206f529120a0628b4238",
+      "homepage": "https://github.com/zeit/serve#readme",
+      "keywords": [
+        "now",
+        "serve",
+        "micro",
+        "http-server"
+      ],
+      "license": "MIT",
+      "maintainers": [
+        {
+          "name": "arunoda",
+          "email": "arunoda.susiripala@gmail.com"
+        },
+        {
+          "name": "leo",
+          "email": "leo@zeit.co"
+        },
+        {
+          "name": "rauchg",
+          "email": "rauchg@gmail.com"
+        },
+        {
+          "name": "timneutkens",
+          "email": "tim@timneutkens.nl"
+        }
+      ],
+      "name": "serve",
+      "optionalDependencies": {},
+      "readme": "ERROR: No README data found!",
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/zeit/serve.git"
+      },
+      "scripts": {
+        "lint": "zeit-eslint --ext .jsx,.js .",
+        "lint-staged": "git diff --diff-filter=ACMRT --cached --name-only '*.js' '*.jsx' | xargs zeit-eslint",
+        "test": "yarn lint"
+      },
+      "version": "7.1.5",
+      "_dependencies": {
+        "@zeit/schemas": "1.1.2",
+        "ajv": "6.5.0",
+        "arg": "2.0.0",
+        "chalk": "2.4.1",
+        "serve-handler": "2.3.16",
+        "update-check": "1.5.2"
+      },
+      "path": "/usr/local/lib/node_modules/serve",
+      "error": "[Circular]",
+      "extraneous": false
+    },
+    "speed-test": {
+      "_from": "speed-test",
+      "_id": "speed-test@2.0.0",
+      "_inBundle": false,
+      "_integrity": "sha512-jssA6PY3cBTvgfX4GNmjO93ohnyFRuiu7DzqSkU60glsG1QxzJ73gdWwMAM0eLTIwD/l+xkZ4FluAbaMdIj0VA==",
+      "_location": "/speed-test",
+      "_phantomChildren": {},
+      "_requested": {
+        "type": "tag",
+        "registry": true,
+        "raw": "speed-test",
+        "name": "speed-test",
+        "escapedName": "speed-test",
+        "rawSpec": "",
+        "saveSpec": "[Circular]",
+        "fetchSpec": "latest"
+      },
+      "_requiredBy": [
+        "#USER"
+      ],
+      "_resolved": "https://registry.npmjs.org/speed-test/-/speed-test-2.0.0.tgz",
+      "_shasum": "5d5e9c3d06f819e79b0e35440fbdcd6c34782654",
+      "_spec": "speed-test",
+      "_where": "/Users/shrbalaj/Repositories/node-gpodder",
+      "author": {
+        "name": "Sindre Sorhus",
+        "email": "sindresorhus@gmail.com",
+        "url": "sindresorhus.com"
+      },
+      "bin": {
+        "speed-test": "cli.js"
+      },
+      "bugs": {
+        "url": "https://github.com/sindresorhus/speed-test/issues"
+      },
+      "bundleDependencies": false,
+      "deprecated": false,
+      "description": "Test your internet connection speed and ping using speedtest.net from the CLI",
+      "devDependencies": {
+        "ava": "*",
+        "execa": "^0.9.0",
+        "xo": "*"
+      },
+      "engines": {
+        "node": ">=8"
+      },
+      "files": [
+        "cli.js"
+      ],
+      "homepage": "https://github.com/sindresorhus/speed-test#readme",
+      "keywords": [
+        "cli-app",
+        "cli",
+        "speed",
+        "test",
+        "tester",
+        "speed-test",
+        "speedtest",
+        "connection",
+        "internet",
+        "bandwidth",
+        "ping",
+        "measure",
+        "check"
+      ],
+      "license": "MIT",
+      "name": "speed-test",
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/sindresorhus/speed-test.git"
+      },
+      "scripts": {
+        "test": "xo && ava"
+      },
+      "version": "2.0.0",
+      "readme": "# speed-test [![Build Status](https://travis-ci.org/sindresorhus/speed-test.svg?branch=master)](https://travis-ci.org/sindresorhus/speed-test)\n\n> Test your internet connection speed and ping using [speedtest.net](http://www.speedtest.net) from the CLI\n\n**Discuss it on [Product Hunt](https://www.producthunt.com/posts/speed-test-cli)**\n\n<img src=\"screenshot.gif\" width=\"404\">\n\n\n## Install\n\nEnsure you have Node.js version 0.10 or higher installed. Then run the following:\n\n```\n$ npm install --global speed-test\n```\n\n\n## Usage\n\n```\n$ speed-test --help\n\n  Usage\n    $ speed-test\n\n  Options\n    --json -j     Output the result as JSON\n    --bytes -b    Output the result in megabytes per second (MBps)\n    --verbose -v  Output more detailed information\n```\n\n\n## Related\n\n- [fast-cli](https://github.com/sindresorhus/fast-cli) - Test your download speed using fast.com\n\n\n## License\n\nMIT © [Sindre Sorhus](https://sindresorhus.com)\n",
+      "readmeFilename": "readme.md",
+      "optionalDependencies": {},
+      "_dependencies": {
+        "chalk": "^2.3.0",
+        "log-symbols": "^2.2.0",
+        "log-update": "^2.3.0",
+        "meow": "^4.0.0",
+        "ora": "^1.4.0",
+        "round-to": "^2.0.0",
+        "speedtest-net": "^1.2.4",
+        "update-notifier": "^2.3.0"
+      },
+      "path": "/usr/local/lib/node_modules/speed-test",
+      "error": "[Circular]",
+      "extraneous": false
+    },
+    "tern": {
+      "_from": "tern",
+      "_id": "tern@0.21.0",
+      "_inBundle": false,
+      "_integrity": "sha1-gJyHqCbhEklDmM+IlPfC0bNGTrc=",
+      "_location": "/tern",
+      "_phantomChildren": {},
+      "_requested": {
+        "type": "tag",
+        "registry": true,
+        "raw": "tern",
+        "name": "tern",
+        "escapedName": "tern",
+        "rawSpec": "",
+        "saveSpec": "[Circular]",
+        "fetchSpec": "latest"
+      },
+      "_requiredBy": [
+        "#USER"
+      ],
+      "_resolved": "https://registry.npmjs.org/tern/-/tern-0.21.0.tgz",
+      "_shasum": "809c87a826e112494398cf8894f7c2d1b3464eb7",
+      "_spec": "tern",
+      "_where": "/Users/shrbalaj/.cache/vim/dein/repos/github.com/carlitux/deoplete-ternjs",
+      "author": {
+        "name": "Marijn Haverbeke",
+        "email": "marijnh@gmail.com"
+      },
+      "bin": {
+        "tern": "./bin/tern"
+      },
+      "blint": {
+        "allowedGlobals": [
+          "tern",
+          "acorn",
+          "define",
+          "clearTimeout",
+          "setTimeout",
+          "__dirname",
+          "global",
+          "process"
+        ]
+      },
+      "bugs": {
+        "url": "https://github.com/ternjs/tern/issues"
+      },
+      "bundleDependencies": false,
+      "contributors": [
+        {
+          "name": "List of Tern contributors. Updated before every release."
+        },
+        {
+          "name": "A2ZH"
+        },
+        {
+          "name": "Adam Faulkner"
+        },
+        {
+          "name": "Adrian Toncean"
+        },
+        {
+          "name": "Albertina Durante"
+        },
+        {
+          "name": "Alex Pinder"
+        },
+        {
+          "name": "Alex Saveliev"
+        },
+        {
+          "name": "Amila Welihinda"
+        },
+        {
+          "name": "Anders Thøgersen"
+        },
+        {
+          "name": "angelozerr"
+        },
+        {
+          "name": "Antonina Cherednichenko"
+        },
+        {
+          "name": "Ben Joldersma"
+        },
+        {
+          "name": "Ben McCormick"
+        },
+        {
+          "name": "Boris Jonica"
+        },
+        {
+          "name": "Brian Frichette"
+        },
+        {
+          "name": "CentricStorm"
+        },
+        {
+          "name": "chemzqm"
+        },
+        {
+          "name": "Claus Reinke"
+        },
+        {
+          "name": "Connor Osborn"
+        },
+        {
+          "name": "Curtis Windatt"
+        },
+        {
+          "name": "Damien Diederen"
+        },
+        {
+          "name": "Dani Hodovic"
+        },
+        {
+          "name": "Danny Su"
+        },
+        {
+          "name": "Dewdrops"
+        },
+        {
+          "name": "dloverin"
+        },
+        {
+          "name": "Dmitry Gutov"
+        },
+        {
+          "name": "Eloy Toro"
+        },
+        {
+          "name": "Erik Tierney"
+        },
+        {
+          "name": "Fabian Zeindl"
+        },
+        {
+          "name": "Forbes Lindesay"
+        },
+        {
+          "name": "Francisc Romano"
+        },
+        {
+          "name": "Francis Murillo"
+        },
+        {
+          "name": "Hans Huebner"
+        },
+        {
+          "name": "Hiroaki Otsu"
+        },
+        {
+          "name": "Iku Iwasa"
+        },
+        {
+          "name": "impinball"
+        },
+        {
+          "name": "i-p"
+        },
+        {
+          "name": "Jackson Ray Hamilton"
+        },
+        {
+          "name": "J David Smith"
+        },
+        {
+          "name": "Jeffrey Fisher"
+        },
+        {
+          "name": "Jonathan Persson"
+        },
+        {
+          "name": "Josh Giles"
+        },
+        {
+          "name": "jzhang"
+        },
+        {
+          "name": "katspaugh"
+        },
+        {
+          "name": "Kim Se-won"
+        },
+        {
+          "name": "Kyle P Davis"
+        },
+        {
+          "name": "Marcel Gerber"
+        },
+        {
+          "name": "Marcello Bastea-Forte"
+        },
+        {
+          "name": "Marijn Haverbeke"
+        },
+        {
+          "name": "Matt"
+        },
+        {
+          "name": "Matthias Dahl"
+        },
+        {
+          "name": "MetaMemoryT"
+        },
+        {
+          "name": "Michael Russell"
+        },
+        {
+          "name": "Michał Grzejszczak"
+        },
+        {
+          "name": "Miguel Castillo"
+        },
+        {
+          "name": "Mihai Bazon"
+        },
+        {
+          "name": "Mike Rennie"
+        },
+        {
+          "name": "Mikko Rantanen"
+        },
+        {
+          "name": "Miroslav Bajtoš"
+        },
+        {
+          "name": "Mounir Lamouri"
+        },
+        {
+          "name": "Nate Eagleson"
+        },
+        {
+          "name": "Nick Malaguti"
+        },
+        {
+          "name": "Nicolas Petton"
+        },
+        {
+          "name": "Nico Weber"
+        },
+        {
+          "name": "Olivier Ligot"
+        },
+        {
+          "name": "Ossi Herrala"
+        },
+        {
+          "name": "othree"
+        },
+        {
+          "name": "Paris Kasidiaris"
+        },
+        {
+          "name": "Paul Bakker"
+        },
+        {
+          "name": "Paul Verest"
+        },
+        {
+          "name": "Peter Elmers"
+        },
+        {
+          "name": "Peter Farland"
+        },
+        {
+          "name": "Piotr Tomiak"
+        },
+        {
+          "name": "Quinn Slack"
+        },
+        {
+          "name": "Ralf Kistner"
+        },
+        {
+          "name": "Randy Edmunds"
+        },
+        {
+          "name": "Renato F"
+        },
+        {
+          "name": "Renato Ferreira"
+        },
+        {
+          "name": "Reuben Thomas"
+        },
+        {
+          "name": "Ryan Stewart"
+        },
+        {
+          "name": "SAKURAI Masashi"
+        },
+        {
+          "name": "Sean Usick"
+        },
+        {
+          "name": "Sergey Chikuyonok"
+        },
+        {
+          "name": "Sérgio Ramos"
+        },
+        {
+          "name": "sevin7676"
+        },
+        {
+          "name": "Se-Won Kim"
+        },
+        {
+          "name": "Sindre Sorhus"
+        },
+        {
+          "name": "Slava Kim"
+        },
+        {
+          "name": "Stephan Seidt"
+        },
+        {
+          "name": "Steve Purcell"
+        },
+        {
+          "name": "stoskov"
+        },
+        {
+          "name": "Tim M. Madsen"
+        },
+        {
+          "name": "Timothy Gu"
+        },
+        {
+          "name": "Tommy Troy Lin"
+        },
+        {
+          "name": "Trey Thomas"
+        },
+        {
+          "name": "vheon"
+        },
+        {
+          "name": "Vincent Woo"
+        },
+        {
+          "name": "xd1le"
+        }
+      ],
+      "deprecated": false,
+      "description": "A JavaScript code analyzer for deep, cross-editor language support",
+      "devDependencies": {
+        "codemirror": "git://github.com/codemirror/CodeMirror.git"
+      },
+      "homepage": "https://github.com/ternjs/tern#readme",
+      "license": "MIT",
+      "main": "lib/tern.js",
+      "name": "tern",
+      "repository": {
+        "type": "git",
+        "url": "git://github.com/ternjs/tern.git"
+      },
+      "scripts": {
+        "test": "node ./bin/test"
+      },
+      "version": "0.21.0",
+      "readme": "# Tern\n\n[![Build Status](https://secure.travis-ci.org/ternjs/tern.svg)](http://travis-ci.org/ternjs/tern)\n[![NPM version](https://img.shields.io/npm/v/tern.svg)](https://www.npmjs.org/package/tern)  \n[Funding status: ![maintainer happiness](https://marijnhaverbeke.nl/fund/status_s.png?again)](https://marijnhaverbeke.nl/fund/)\n\nThis is [Tern][1]. Tern is a stand-alone, editor-independent\nJavaScript analyzer that can be used to improve the JavaScript\nintegration of existing editors.\n\nThanks to a group of generous [crowd funders][2], Tern is open-source\nsoftware, under an MIT license.\n\nThere are currently plugins available for [Emacs][emacs] (and Emacs\n[company-mode][cmode]), [Vim][vim], [Sublime Text][st], [Eclipse (and general Java API)][ec],\n[Light Table][lt], [Atom][atom], [TextMate][tm] and [gedit][gedit], and built-in support in\n[Brackets][brackets], [Edge Code][edge_code], [CodeLite](http://codelite.org/),\n[vy](https://github.com/iogf/vy), and [SourceLair][sourcelair].\n\nFor further documentation, see the [project page][1] and the\n[manual][3]. To report issues, use the\n[issue tracker](https://github.com/ternjs/tern/issues). For questions\nand documentation, see the\n[discussion forum](https://discuss.ternjs.net).\n\n[1]: http://ternjs.net\n[2]: http://www.indiegogo.com/projects/tern-intelligent-javascript-editing\n[3]: http://ternjs.net/doc/manual.html\n\n[emacs]: http://ternjs.net/doc/manual.html#emacs\n[ec]: https://github.com/angelozerr/tern.java\n[vim]: https://github.com/ternjs/tern_for_vim\n[st]: https://github.com/ternjs/tern_for_sublime\n[lt]: https://github.com/mortalapeman/LT-TernJS\n[atom]: https://atom.io/packages/atom-ternjs\n[gedit]: https://github.com/Swatinem/tern_for_gedit\n[brackets]: http://brackets.io\n[edge_code]: http://html.adobe.com/edge/code\n[cmode]: https://github.com/proofit404/company-tern\n[tm]: https://github.com/fab1an/JavaScript-Tern-Completion.tmbundle\n[sourcelair]: https://www.sourcelair.com\n",
+      "readmeFilename": "README.md",
+      "optionalDependencies": {},
+      "_dependencies": {
+        "acorn": "^4.0.9",
+        "enhanced-resolve": "^2.2.2",
+        "glob": "^7.1.1",
+        "minimatch": "^3.0.3",
+        "resolve-from": "2.0.0"
+      },
+      "path": "/usr/local/lib/node_modules/tern",
+      "error": "[Circular]",
+      "extraneous": false
+    },
+    "uglifycss": {
+      "_args": [
+        [
+          {
+            "raw": "uglifycss",
+            "scope": "[Circular]",
+            "escapedName": "uglifycss",
+            "name": "uglifycss",
+            "rawSpec": "",
+            "spec": "latest",
+            "type": "tag"
+          },
+          "/Users/shrbalaj/Desktop/team-one/repo/backend/tops"
+        ]
+      ],
+      "_from": "uglifycss@latest",
+      "_id": "uglifycss@0.0.29",
+      "_inCache": true,
+      "_location": "/uglifycss",
+      "_nodeVersion": "9.9.0",
+      "_npmOperationalInternal": {
+        "host": "s3://npm-registry-packages",
+        "tmp": "tmp/uglifycss_0.0.29_1521672178129_0.3910346655370771"
+      },
+      "_npmUser": {
+        "name": "fmarcia",
+        "email": "franck.marcia@gmail.com"
+      },
+      "_npmVersion": "5.7.1",
+      "_phantomChildren": {},
+      "_requested": {
+        "raw": "uglifycss",
+        "scope": "[Circular]",
+        "escapedName": "uglifycss",
+        "name": "uglifycss",
+        "rawSpec": "",
+        "spec": "latest",
+        "type": "tag"
+      },
+      "_requiredBy": [
+        "#USER"
+      ],
+      "_resolved": "https://registry.npmjs.org/uglifycss/-/uglifycss-0.0.29.tgz",
+      "_shasum": "abe49531155d146e75dd2fdf933d371bc1180054",
+      "_shrinkwrap": "[Circular]",
+      "_spec": "uglifycss",
+      "_where": "/Users/shrbalaj/Desktop/team-one/repo/backend/tops",
+      "author": {
+        "name": "Franck Marcia",
+        "email": "franck.marcia@gmail.com",
+        "url": "https://github.com/fmarcia"
+      },
+      "bin": {
+        "uglifycss": "./uglifycss"
+      },
+      "bugs": {
+        "url": "https://github.com/fmarcia/uglifycss/issues"
+      },
+      "description": "Port of YUI CSS Compressor to NodeJS",
+      "devDependencies": {},
+      "directories": {},
+      "dist": {
+        "integrity": "sha512-J2SQ2QLjiknNGbNdScaNZsXgmMGI0kYNrXaDlr4obnPW9ni1jljb1NeEVWAiTgZ8z+EBWP2ozfT9vpy03rjlMQ==",
+        "shasum": "abe49531155d146e75dd2fdf933d371bc1180054",
+        "tarball": "https://registry.npmjs.org/uglifycss/-/uglifycss-0.0.29.tgz",
+        "fileCount": 6,
+        "unpackedSize": 38456
+      },
+      "engines": {
+        "node": ">=6.4.0"
+      },
+      "gitHead": "3a4312ef9a321643ab27cf7438b85c92498af19b",
+      "homepage": "https://github.com/fmarcia/uglifycss",
+      "keywords": [
+        "css",
+        "stylesheet",
+        "uglify",
+        "minify"
+      ],
+      "license": "MIT",
+      "main": "./index.js",
+      "maintainers": [
+        {
+          "name": "fmarcia",
+          "email": "franck.marcia@gmail.com"
+        }
+      ],
+      "name": "uglifycss",
+      "optionalDependencies": {},
+      "readme": "ERROR: No README data found!",
+      "repository": {
+        "type": "git",
+        "url": "git://github.com/fmarcia/uglifycss.git"
+      },
+      "version": "0.0.29",
+      "_dependencies": {},
+      "path": "/usr/local/lib/node_modules/uglifycss",
+      "error": "[Circular]",
+      "extraneous": false
+    },
+    "wscat": {
+      "_from": "wscat",
+      "_id": "wscat@2.1.1",
+      "_inBundle": false,
+      "_integrity": "sha512-dAkA5v8LGFF0ceCCa5KmZBzTOD2X942E4u5LN+f5kSapzP9AcuXHEqDc46yMP54KeTyu/dLEFLeyOPPr3uamAw==",
+      "_location": "/wscat",
+      "_phantomChildren": {},
+      "_requested": {
+        "type": "tag",
+        "registry": true,
+        "raw": "wscat",
+        "name": "wscat",
+        "escapedName": "wscat",
+        "rawSpec": "",
+        "saveSpec": "[Circular]",
+        "fetchSpec": "latest"
+      },
+      "_requiredBy": [
+        "#USER"
+      ],
+      "_resolved": "https://registry.npmjs.org/wscat/-/wscat-2.1.1.tgz",
+      "_shasum": "8f1e4e45dd558f71effcc1ab6e887b26c2f7e1c5",
+      "_spec": "wscat",
+      "_where": "/Users/shrbalaj",
+      "author": {
+        "name": "Arnout Kazemier, Einar Otto Stangvik"
+      },
+      "bin": {
+        "wscat": "./bin/wscat"
+      },
+      "bugs": {
+        "url": "https://github.com/websockets/wscat/issues"
+      },
+      "bundleDependencies": false,
+      "deprecated": false,
+      "description": "WebSocket cat",
+      "homepage": "https://github.com/websockets/wscat#readme",
+      "keywords": [
+        "wscat",
+        "websocket",
+        "cat"
+      ],
+      "license": "MIT",
+      "main": "index.js",
+      "name": "wscat",
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/websockets/wscat.git"
+      },
+      "scripts": {
+        "test": "echo \"No test specified\""
+      },
+      "version": "2.1.1",
+      "readme": "# wscat\n\nWebSocket cat.\n\n## Installation\n\nThis module needs to be installed globally so use the `-g` flag when installing:\n\n```\nnpm install -g wscat\n```\n\n## Usage\n\n```\n$ wscat -c ws://echo.websocket.org \nconnected (press CTRL+C to quit)\n> hi there\n< hi there\n> are you a happy parrot?\n< are you a happy parrot?\n```\n\n## License\n\nMIT\n",
+      "readmeFilename": "README.md",
+      "devDependencies": {},
+      "optionalDependencies": {},
+      "_dependencies": {
+        "commander": "~2.12.0",
+        "read": "~1.0.7",
+        "ws": "~3.3.0"
+      },
+      "path": "/usr/local/lib/node_modules/wscat",
+      "error": "[Circular]",
+      "extraneous": false
+    },
+    "yarn": {
+      "_from": "yarn",
+      "_id": "yarn@1.7.0",
+      "_inBundle": false,
+      "_integrity": "sha1-AHa5/eYBDgGVBSamCbxTvBde+SU=",
+      "_location": "/yarn",
+      "_phantomChildren": {},
+      "_requested": {
+        "type": "tag",
+        "registry": true,
+        "raw": "yarn",
+        "name": "yarn",
+        "escapedName": "yarn",
+        "rawSpec": "",
+        "saveSpec": "[Circular]",
+        "fetchSpec": "latest"
+      },
+      "_requiredBy": [
+        "#USER"
+      ],
+      "_resolved": "https://registry.npmjs.org/yarn/-/yarn-1.7.0.tgz",
+      "_shasum": "0076b9fde6010e01950526a609bc53bc175ef925",
+      "_spec": "yarn",
+      "_where": "/Users/shrbalaj/Repositories/semver-cal",
+      "bin": {
+        "yarn": "./bin/yarn.js",
+        "yarnpkg": "./bin/yarn.js"
+      },
+      "bugs": {
+        "url": "https://github.com/yarnpkg/yarn/issues"
+      },
+      "bundleDependencies": false,
+      "config": {
+        "commitizen": {
+          "path": "./node_modules/cz-conventional-changelog"
+        }
+      },
+      "deprecated": false,
+      "description": "📦🐈 Fast, reliable, and secure dependency management.",
+      "engines": {
+        "node": ">=4.0.0"
+      },
+      "homepage": "https://github.com/yarnpkg/yarn#readme",
+      "installationMethod": "tar",
+      "license": "BSD-2-Clause",
+      "name": "yarn",
+      "preferGlobal": true,
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/yarnpkg/yarn.git"
+      },
+      "version": "1.7.0",
+      "readme": "<p align=\"center\">\n  <a href=\"https://yarnpkg.com/\">\n    <img alt=\"Yarn\" src=\"https://github.com/yarnpkg/assets/blob/master/yarn-kitten-full.png?raw=true\" width=\"546\">\n  </a>\n</p>\n\n<p align=\"center\">\n  Fast, reliable, and secure dependency management.\n</p>\n\n<p align=\"center\">\n  <a href=\"https://circleci.com/gh/yarnpkg/yarn\"><img alt=\"Circle Status\" src=\"https://circleci.com/gh/yarnpkg/yarn.svg?style=shield&circle-token=5f0a78473b0f440afb218bf2b82323cc6b3cb43f\"></a>\n  <a href=\"https://ci.appveyor.com/project/kittens/yarn/branch/master\"><img alt=\"Appveyor Status\" src=\"https://ci.appveyor.com/api/projects/status/0xdv8chwe2kmk463?svg=true\"></a>\n  <a href=\"https://discord.gg/yarnpkg\"><img alt=\"Discord Chat\" src=\"https://img.shields.io/discord/226791405589233664.svg\"></a>\n  <a href=\"http://commitizen.github.io/cz-cli/\"><img alt=\"Commitizen friendly\" src=\"https://img.shields.io/badge/commitizen-friendly-brightgreen.svg\"></a>\n</p>\n\n---\n\n**Fast:** Yarn caches every package it has downloaded, so it never needs to download the same package again. It also does almost everything concurrently to maximize resource utilization. This means even faster installs.\n\n**Reliable:** Using a detailed but concise lockfile format and a deterministic algorithm for install operations, Yarn is able to guarantee that any installation that works on one system will work exactly the same on another system.\n\n**Secure:** Yarn uses checksums to verify the integrity of every installed package before its code is executed.\n\n## Features\n\n* **Offline Mode.** If you've installed a package before, then you can install it again without an internet connection.\n* **Deterministic.** The same dependencies will be installed in the same exact way on any machine, regardless of installation order.\n* **Network Performance.** Yarn efficiently queues requests and avoids request waterfalls in order to maximize network utilization.\n* **Network Resilience.** A single request that fails will not cause the entire installation to fail. Requests are automatically retried upon failure.\n* **Flat Mode.** Yarn resolves mismatched versions of dependencies to a single version to avoid creating duplicates.\n* **More emojis.** 🐈\n\n## Installing Yarn\n\nRead the [Installation Guide](https://yarnpkg.com/en/docs/install) on our website for detailed instructions on how to install Yarn.\n\n## Using Yarn\n\nRead the [Usage Guide](https://yarnpkg.com/en/docs/usage) on our website for detailed instructions on how to use Yarn.\n\n## Contributing to Yarn\n\nContributions are always welcome, no matter how large or small. Substantial feature requests should be proposed as an [RFC](https://github.com/yarnpkg/rfcs). Before contributing, please read the [code of conduct](CODE_OF_CONDUCT.md).\n\nSee [Contributing](https://yarnpkg.com/org/contributing/).\n\n## Prior art\n\nYarn wouldn't exist if it wasn't for excellent prior art. Yarn has been inspired by the following projects:\n\n - [Bundler](https://github.com/bundler/bundler)\n - [Cargo](https://github.com/rust-lang/cargo)\n - [npm](https://github.com/npm/npm)\n\n## Credits\n\nThanks to [Sam Holmes](https://github.com/samholmes) for donating the npm package name!\n",
+      "readmeFilename": "README.md",
+      "devDependencies": {},
+      "optionalDependencies": {},
+      "_dependencies": {},
+      "path": "/usr/local/lib/node_modules/yarn",
+      "error": "[Circular]",
+      "extraneous": false
+    }
+  },
+  "devDependencies": {},
+  "optionalDependencies": {},
+  "_dependencies": {},
+  "path": "/usr/local/lib",
+  "error": {
+    "errno": -2,
+    "code": "ENOENT",
+    "syscall": "open",
+    "path": "/usr/local/lib/package.json"
+  },
+  "extraneous": false
+}

@@ -1,0 +1,39 @@
+{
+	"name": "man-made",
+	"version": "1.0.0",
+	"description": "Generates man pages for globally installed modules",
+	"main": "src/index.js",
+	"scripts": {
+		"test": "ava",
+		"precommit": "pretty-quick --staged"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Shriram-Balaji/man-made.git"
+	},
+	"author": "Shriram Balaji",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/Shriram-Balaji/man-made/issues"
+	},
+	"ava": {
+		"files": [
+			"__tests__/**/*.js"
+		]
+	},
+	"homepage": "https://github.com/Shriram-Balaji/man-made#readme",
+	"dependencies": {
+		"bluebird": "^3.5.1",
+		"child-process-promise": "^2.2.1",
+		"chokidar": "^2.0.4",
+		"find-up": "^3.0.0",
+		"fs-extra": "^6.0.1",
+		"npm-man": "^0.4.3",
+		"object.pick": "^1.3.0",
+		"readme-to-man-page": "^0.6.0",
+		"util-box": "^1.0.9"
+	},
+	"devDependencies": {
+		"ava": "1.0.0-beta.6"
+	}
+}

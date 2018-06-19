@@ -1,0 +1,4 @@
+node_modules/
+__tests__/unit/fixtures/.man-made/
+
+npm-debug.*
