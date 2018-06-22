@@ -4,7 +4,7 @@
 	"description": "Generates man pages for globally installed modules",
 	"main": "src/index.js",
 	"scripts": {
-		"test": "ava",
+		"test": "TEST=true ava",
 		"precommit": "pretty-quick --staged"
 	},
 	"repository": {
@@ -17,9 +17,7 @@
 		"url": "https://github.com/Shriram-Balaji/man-made/issues"
 	},
 	"ava": {
-		"files": [
-			"__tests__/**/*.js"
-		]
+		"files": [ "__tests__/**/*.js" ]
 	},
 	"homepage": "https://github.com/Shriram-Balaji/man-made#readme",
 	"dependencies": {

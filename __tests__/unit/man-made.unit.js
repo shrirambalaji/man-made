@@ -6,22 +6,6 @@ const HOMEDIR = path.join(__dirname, '..', '..');
 const TESTDIR = path.join(HOMEDIR, '__tests__', 'unit');
 const fileUtil = require('util-box').fileUtil;
 
-test('createWritableStream returns a writable file stream', async (t) => {
-	try {
-		const fileName = `${TESTDIR}/fixtures/writeFile.txt`;
-		const out = await manMade.createWritableStream(fileName);
-		const date = `${new Date().toDateString()}`;
-		out.write(`Running Test at ${date}`);
-		const fileOutput = await fileUtil.readFile(fileName);
-		t.regex(fileOutput.trim(), new RegExp(`Running Test at ${date}`), 'Regex matched');
-		const truncatedFile = await fileUtil.truncateFile(fileName);
-		const readTruncatedFile = await fileUtil.readFile(fileName);
-		t.is(readTruncatedFile.length, 0);
-	} catch (error) {
-		t.falsy(error);
-	}
-});
-
 test('addManDirectoryToPath adds MANPATH to the directory', async (t) => {
 	const shellPath = `${TESTDIR}/fixtures/.zshrc`;
 	const manPath = `~/.man-made`;
@@ -54,10 +38,14 @@ test('findGlobalModules returns the list of global modules installed', async (t)
 	}
 });
 
-test('generate ManPages generates manDocs for global Modules', async (t) => {
+test.serial('generate ManPages generates manDocs for global Modules', async (t) => {
 	try {
-		const generatedManPages = await manMade.generateManPages(`${TESTDIR}/fixtures/.man-made`);
-		t.pass();
+		const manualDirectoryPath = `${TESTDIR}/fixtures/.man-made/man1`;
+		const generatedManPages = await manMade.generateManPages(manualDirectoryPath);
+		const directories = await fs.readdir(manualDirectoryPath);
+		directories.forEach((dir) => {
+			t.regex(dir, new RegExp('.gz'));
+		});
 	} catch (err) {
 		t.falsy(err);
 	}

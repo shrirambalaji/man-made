@@ -2,77 +2,56 @@
 
 const readMeToManual = require('readme-to-man-page');
 const os = require('os');
+const zlib = require('zlib');
 const fse = require('fs-extra');
+const fs = require('fs');
 const findUp = require('find-up');
 const chokidar = require('chokidar');
 const pick = require('object.pick');
 const Promise = require('bluebird');
-const promisifiedExec = Promise.promisify(require('child_process').exec);
 const fileUtil = require('util-box').fileUtil;
 const { error, success, debug } = require('util-box').outputUtil;
-const DEFAULT_DIRECTORY = `${os.homedir()}/.man-made`;
-const REQUIRED_MODULE_PROPERTIES = [
-	'name',
-	'path',
-	'readme',
-	'readmeFilename',
-	'description',
-	'version'
-];
-module.exports = {
+const promisifiedExec = Promise.promisify(require('child_process').exec);
+const shellUtil = require('./util/shell.util');
+const config = require('./config');
+const DEFAULT_DIRECTORY = `${os.homedir()}/.man-made/man1`;
+const PACKAGE_PROPERTIES = config.packageProps;
+
+class ManMade {
 	addManDirectoryToPath(shellPath, manualDirectory) {
-		return this.createWritableStream(shellPath)
-			.then((out) => {
-				out.write(`export MANPATH=$MANPATH:${manualDirectory}`);
-				return out;
-			})
-			.then((out) => {
-				out.end();
-			});
-	},
+		return new Promise((resolve, reject) => {
+			const data = config.shellExportText(manualDirectory);
+			fileUtil
+				.appendFile(shellPath, data)
+				.then((shellPath) => resolve(shellPath))
+				.catch((err) => reject(err));
+		});
+	}
 
-	createManDirectory(dir) {
+	createManDirectory(dir, section) {
 		if (!dir) dir = DEFAULT_DIRECTORY;
+		else {
+			if (!section) section = 1;
+			dir = `${dir}/man${section}`;
+		}
 		return Promise.resolve(fse.ensureDir(dir));
-	},
-
-	createWritableStream(destination) {
-		return Promise.resolve(fse.createWriteStream(destination));
-	},
+	}
 
 	findGlobalModules() {
 		return new Promise((resolve, reject) => {
-			promisifiedExec('npm list -g --depth=0 --json=true --long=true')
+			promisifiedExec(config.cmd.listModules)
 				.then((result) => JSON.parse(result))
 				.then((json) => {
 					const globalModules = json['dependencies'];
 					Object.keys(globalModules).map((pkg) => {
-						globalModules[pkg] = pick(globalModules[pkg], REQUIRED_MODULE_PROPERTIES);
+						globalModules[pkg] = pick(globalModules[pkg], PACKAGE_PROPERTIES);
 					});
 					resolve(globalModules);
 				})
 				.then((globalModules) => resolve(globalModules))
 				.catch((err) => reject(err));
 		});
-	},
-
-	findShellConfigurationFile() {
-		const shell = process.env['SHELL']
-			.split(process.platform !== 'win32' ? '/' : '\\')
-			.slice(-1)[0];
-		const defaultShellPaths = {
-			bash: '~/.bashrc',
-			zsh: '~/.zshrc',
-			ksh: '~/.kshrc',
-			csh: '~/.cshrc',
-			fish: '~/.config/fish/config.fish'
-		};
-		for (x in defaultShellPaths) {
-			if (RegExp(`${x}`).test(shell)) {
-				return defaultShellPaths[x].replace('~', process.env.HOME);
-			}
-		}
-	},
+	}
 
 	maybeLookupReadme(pkgName) {
 		return new Promise((resolve, reject) => {
@@ -80,7 +59,7 @@ module.exports = {
 				err ? reject(err) : resolve(man);
 			});
 		});
-	},
+	}
 
 	convertReadmeToManual(readmeFilePath, options) {
 		return new Promise((resolve, reject) => {
@@ -91,16 +70,26 @@ module.exports = {
 				})
 				.catch((err) => reject(err));
 		});
-	},
+	}
 
 	writeManualToFile(data, filePath) {
 		return new Promise((resolve, reject) => {
-			fileUtil
-				.writeFile(filePath, data)
-				.then((fileName) => resolve(fileName))
-				.catch((err) => reject(err));
+			this.compressData(data).then((buffer) => {
+				fs.writeFile(filePath, buffer, (err) => {
+					err ? reject(err) : resolve(filePath);
+				});
+			});
 		});
-	},
+	}
+
+	// performs gzip compression on input data and returns a buffer
+	compressData(data) {
+		return new Promise((resolve, reject) => {
+			zlib.gzip(data, (err, buffer) => {
+				err ? reject(err) : resolve(buffer);
+			});
+		});
+	}
 
 	convertPackageToManual(pkg, manualDir) {
 		return new Promise((resolve, reject) => {
@@ -109,42 +98,50 @@ module.exports = {
 				const options = {
 					name: pkg.name,
 					version: pkg.version,
-					description: pkg.description
+					description: pkg.description,
+					section: 1
 				};
 				if (pkg.readmeFilename) {
-					const readme = `${pkg.path}/${pkg.readmeFilename}`;
-					const manualFileName = `${manualDir}/${pkg.name}.1`;
-					this.convertReadmeToManual(readme, options)
-						.then((manualDoc) => {
-							this.writeManualToFile(manualDoc, manualFileName)
-								.then((filePath) => {
-									resolve(filePath);
-								})
+					const sourceReadme = `${pkg.path}/${pkg.readmeFilename}`;
+					const manualDestionationFile = `${manualDir}/${pkg.name}.1.gz`;
+					this.convertReadmeToManual(sourceReadme, options)
+						.then((manualData) => {
+							this.writeManualToFile(manualData, manualDestionationFile)
+								.then((writtenFilePath) =>
+									debug(
+										`Manual page for ${pkg.name} is now at ${writtenFilePath}`
+									)
+								)
 								.catch((err) => reject(err));
 						})
 						.catch((err) => reject(err));
 				}
 			}
 		});
-	},
+	}
 
-	generateManPages(manualDir) {
-		this.createManDirectory(manualDir).then(() => {
-			const shellPath = '__tests__/unit/fixtures/.zshrc';
-			this.addManDirectoryToPath(shellPath, manualDir).then(() => {
-				return this.findGlobalModules()
-					.then((globalModules) => {
-						Object.keys(globalModules).map((el) => {
-							const pkg = globalModules[el];
-							this.convertPackageToManual(pkg, manualDir)
-								.then((filePath) => success(filePath))
-								.catch((err) => error(err));
-						});
-					})
-					.catch((e) => {
-						error(e);
-					});
+	generateManPages(manualSourceDirectory) {
+		return this.findGlobalModules().then((globalModules) => {
+			Object.keys(globalModules).map((el) => {
+				const pkg = globalModules[el];
+				this.convertPackageToManual(pkg, manualSourceDirectory)
+					.then((filePath) => success(filePath))
+					.catch((err) => error(err));
 			});
 		});
 	}
-};
+
+	main() {
+		const isTestShell = false;
+		if (process.env.TEST || process.env.test) isTestShell = true;
+		this.createManDirectory(manualSourceDirectory, manualSectionNumber)
+			.then(() => {
+				const shellOptions = { default: isTestShell };
+				const shellPath = shellUtil.findShellConfigurationFile(shellOptions);
+				this.addManDirectoryToPath(shellPath, manualSourceDirectory).then(() => {});
+			})
+			.catch((err) => error(err));
+	}
+}
+
+module.exports = new ManMade();
