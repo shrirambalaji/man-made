@@ -1,20 +1,18 @@
 #!/usr/bin/env node
-
-const readMeToManual = require('readme-to-man-page');
 const os = require('os');
 const zlib = require('zlib');
 const fse = require('fs-extra');
 const fs = require('fs');
-const findUp = require('find-up');
 const chokidar = require('chokidar');
 const pick = require('object.pick');
 const Promise = require('bluebird');
-const fileUtil = require('util-box').fileUtil;
-const { error, success, debug } = require('util-box').outputUtil;
+const readMeToManual = require('readme-to-man-page');
+const npmMan = require('npm-man');
+const { outputUtil, fileUtil } = require('util-box');
+const { error, success, debug } = outputUtil;
 const promisifiedExec = Promise.promisify(require('child_process').exec);
 const shellUtil = require('./util/shell.util');
 const config = require('./config');
-const npmMan = require('npm-man');
 const DEFAULT_DIRECTORY = process.env.TEST ? config.test.defaultDir : `${os.homedir()}/.man-made`;
 const DEFAULT_SECTION = process.env.TEST
 	? config.test.defaultSection
@@ -66,10 +64,15 @@ class ManMade {
 	updateManPath(shellPath, manualDirectory) {
 		return new Promise((resolve, reject) => {
 			const data = config.manual.shellExportText(manualDirectory);
-			fileUtil
-				.appendFile(shellPath, data)
-				.then((shellPath) => resolve(shellPath))
-				.catch((err) => reject(err));
+			fileUtil.readFile(shellPath).then((data) => {
+				if (/custom man-\pages set by man-made/.test(data)) {
+					// manPath has already been updated, so stop updating.
+				} else
+					fileUtil
+						.appendFile(shellPath, data)
+						.then((shellPath) => resolve(shellPath))
+						.catch((err) => reject(err));
+			});
 		});
 	}
 
