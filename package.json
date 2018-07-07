@@ -5,7 +5,8 @@
 	"main": "src/index.js",
 	"scripts": {
 		"test": "TEST=true ava",
-		"precommit": "pretty-quick --staged"
+		"precommit": "pretty-quick --staged",
+		"postinstall": "node src/install.js"
 	},
 	"repository": {
 		"type": "git",

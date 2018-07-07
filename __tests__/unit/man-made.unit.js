@@ -1,18 +1,29 @@
 const path = require('path');
 const fs = require('fs-extra');
 const test = require('ava');
-const manMade = require('../../');
-const HOMEDIR = path.join(__dirname, '..', '..');
-const TESTDIR = path.join(HOMEDIR, '__tests__', 'unit');
+const SRCDIR = path.join('..', '..', 'src');
+const manMade = require(path.join(SRCDIR));
 const fileUtil = require('util-box').fileUtil;
+const postInstall = require(path.join(SRCDIR, 'install'));
+const config = require(path.join(SRCDIR, 'config'));
 
-test('addManDirectoryToPath adds MANPATH to the directory', async (t) => {
-	const shellPath = `${TESTDIR}/fixtures/.zshrc`;
+test('createManualDirectory creates the Manual Directory', async (t) => {
+	const manPath = config.test.defaultDir;
+	try {
+		const srcDir = await manMade.createManualDirectory();
+		t.is(srcDir, '__tests__/unit/fixtures/.man-made');
+	} catch (error) {
+		t.falsy(error);
+	}
+});
+
+test('updateManPath adds MANPATH to the directory', async (t) => {
+	const shellPath = `${config.test.defaultShell}`;
 	const manPath = `~/.man-made`;
 	try {
 		const shellFile = await fs.ensureFile(shellPath); // create or return existing shell file
 		const manDir = await fs.ensureDir(manPath); // create or return existing directory
-		const modifiedShellFile = await manMade.addManDirectoryToPath(shellPath, manPath);
+		const modifiedShellFile = await manMade.updateManPath(shellPath, manPath);
 		const readModifiedShellFile = await fileUtil.readFile(shellPath);
 		t.regex(readModifiedShellFile, new RegExp(/export MANPATH=\$MANPATH:~\/.man-made/));
 		const truncateShellFile = await fileUtil.truncateFile(shellPath);
@@ -32,15 +43,16 @@ test('findGlobalModules returns the list of global modules installed', async (t)
 			t.truthy(pkg.name);
 			t.truthy(pkg.description);
 			t.truthy(pkg.version);
+			t.truthy(pkg.readme);
 		});
 	} catch (e) {
 		t.falsy(e);
 	}
 });
 
-test.serial('generate ManPages generates manDocs for global Modules', async (t) => {
+test('generate ManPages generates manDocs for global Modules', async (t) => {
 	try {
-		const manualDirectoryPath = `${TESTDIR}/fixtures/.man-made/man1`;
+		const manualDirectoryPath = `${config.test.defaultDir}/man${config.test.defaultSection}`;
 		const generatedManPages = await manMade.generateManPages(manualDirectoryPath);
 		const directories = await fs.readdir(manualDirectoryPath);
 		directories.forEach((dir) => {
@@ -48,5 +60,18 @@ test.serial('generate ManPages generates manDocs for global Modules', async (t) 
 		});
 	} catch (err) {
 		t.falsy(err);
+	}
+});
+
+test('end-to-end post install script', async (t) => {
+	const install = postInstall();
+	const manualDirectoryPath = `./${config.test.defaultDir}/man${config.test.defaultSection}`;
+	try {
+		const directories = await fs.readdir(manualDirectoryPath);
+		directories.forEach((dir) => {
+			t.regex(dir, new RegExp('.gz'));
+		});
+	} catch (e) {
+		t.falsy(e);
 	}
 });
