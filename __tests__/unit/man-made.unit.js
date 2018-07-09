@@ -64,6 +64,16 @@ test('generate ManPages generates manDocs for global Modules', async (t) => {
 	}
 });
 
+test('finds the global module directory path', async (t) => {
+	try {
+		const dir = await manMade.getGlobalModuleDirectory();
+		t.is(dir, '/usr/local/lib/node_modules');
+	} catch (error) {
+		t.falsy(error);
+	}
+});
+
+// test('watch for newly added modules', async (t) => {});
 test('end-to-end post install script', async (t) => {
 	const install = postInstall();
 	const manualDirectoryPath = `./${config.test.defaultDir}/man${config.test.defaultSection}`;

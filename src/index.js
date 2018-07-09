@@ -39,6 +39,7 @@ class ManMade {
 					success('Successfully Generated ManPages for Global Modules');
 				});
 			})
+			.then(() => this.watchForNewModules())
 			.catch((err) => error(err));
 	}
 
@@ -178,6 +179,27 @@ class ManMade {
 				err ? reject(err) : resolve(buffer);
 			});
 		});
+	}
+
+	getGlobalModuleDirectory() {
+		return new Promise((resolve, reject) => {
+			promisifiedExec(config.cmd.watchDir)
+				.then((moduleDirectory) => {
+					resolve(moduleDirectory.trim());
+				})
+				.catch((err) => reject(err));
+		});
+	}
+
+	watchForNewModules() {
+		this.getGlobalModuleDirectory()
+			.then((moduleDirectory) => {
+				this.watcher = chokidar.watch(moduleDirectory, { depth: 0 });
+				this.watcher.on('addDir', (path) => {
+					console.log('>>>-SHRIRAM->>> NEW DIRECTORY ADDED', path);
+				});
+			})
+			.catch((err) => error(err));
 	}
 }
 
