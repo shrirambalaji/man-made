@@ -11,7 +11,7 @@ test('createManualDirectory creates the Manual Directory', async (t) => {
 	const manPath = config.test.defaultDir;
 	try {
 		const srcDir = await manMade.createManualDirectory();
-		t.is(srcDir, '__tests__/unit/fixtures/.man-made');
+		t.is(srcDir, './__tests__/unit/fixtures/.man-made');
 	} catch (error) {
 		t.falsy(error);
 	}

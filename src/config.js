@@ -1,7 +1,7 @@
 const config = {};
 config.test = {};
-config.test.defaultShell = '__tests__/unit/fixtures/.zshrc';
-config.test.defaultDir = '__tests__/unit/fixtures/.man-made';
+config.test.defaultShell = './__tests__/unit/fixtures/.zshrc';
+config.test.defaultDir = './__tests__/unit/fixtures/.man-made';
 config.test.defaultSection = '1';
 config.packageProps = [ 'name', 'path', 'readme', 'readmeFilename', 'description', 'version' ];
 config.cmd = {};

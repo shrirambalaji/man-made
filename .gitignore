@@ -62,5 +62,9 @@ typings/
 # next.js build output
 .next
 
+
+# fixtures
+__tests__/unit/fixtures/.man-made/man1/*.gz
+
 # Finder meta
 .DS_Store

@@ -77,24 +77,19 @@ class ManMade {
 	}
 
 	generateManPages(destination) {
-		fse
-			.ensureDir(destination)
-			.then(() => {
-				return this.findGlobalModules().then((globalModules) => {
-					Object.keys(globalModules).map((el) => {
-						const pkg = globalModules[el];
-						const fileName = `${destination}/${pkg.name}.${this.getSection()}.gz`;
-						this.getPackageReadme(pkg)
-							.then((readmeContents) => {
-								this.writeToCompressedFile(readmeContents, fileName).catch((err) =>
-									error(err)
-								);
-							})
-							.catch((err) => error(err));
-					});
-				});
-			})
-			.catch((err) => error(err));
+		return this.findGlobalModules().then((globalModules) => {
+			Object.keys(globalModules).map((el) => {
+				const pkg = globalModules[el];
+				const fileName = `${destination}/${pkg.name}.${this.getSection()}.gz`;
+				this.getPackageReadme(pkg)
+					.then((readmeContents) => {
+						this.writeToCompressedFile(readmeContents, fileName).catch((err) =>
+							error(err)
+						);
+					})
+					.catch((err) => error(err));
+			});
+		});
 	}
 
 	findGlobalModules() {
