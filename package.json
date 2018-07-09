@@ -1,6 +1,6 @@
 {
 	"name": "man-made",
-	"version": "1.0.2",
+	"version": "1.0.3",
 	"description": "Generates man pages for globally installed modules",
 	"main": "src/index.js",
 	"scripts": {
