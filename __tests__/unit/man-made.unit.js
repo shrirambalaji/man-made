@@ -8,12 +8,6 @@ const postInstall = require(path.join(SRCDIR, 'install'));
 const config = require(path.join(SRCDIR, 'config'));
 const rimraf = require('rimraf');
 
-test.afterEach((t) => {
-	rimraf('./__tests__/unit/fixtures/.man-made/man1/*', (err) => {
-		t.falsy(err);
-	});
-});
-
 test('createManualDirectory creates the Manual Directory', async (t) => {
 	const manPath = config.test.defaultDir;
 	try {
@@ -66,6 +60,7 @@ test('generate ManPages generates manDocs for global Modules', async (t) => {
 		directories.forEach((dir) => {
 			t.regex(dir, new RegExp('.gz'));
 		});
+		t.pass();
 	} catch (err) {
 		t.falsy(err);
 	}
@@ -79,6 +74,7 @@ test('end-to-end post install script', async (t) => {
 		directories.forEach((dir) => {
 			t.regex(dir, new RegExp('.gz'));
 		});
+		t.pass();
 	} catch (e) {
 		t.falsy(e);
 	}
