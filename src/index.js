@@ -36,7 +36,6 @@ class ManMade {
 				const shellPath = shellUtil.findShellConfigurationFile(shellOptions);
 				this.updateManPath(shellPath, mainDirectory).then(() => {
 					this.generateManPages(createdDirectory);
-					success('Successfully Generated ManPages for Global Modules');
 				});
 			})
 			.catch((err) => error(err));
@@ -77,19 +76,21 @@ class ManMade {
 	}
 
 	generateManPages(destination) {
-		return this.findGlobalModules().then((globalModules) => {
-			Object.keys(globalModules).map((el) => {
-				const pkg = globalModules[el];
-				const fileName = `${destination}/${pkg.name}.${this.getSection()}.gz`;
-				this.getPackageReadme(pkg)
-					.then((readmeContents) => {
-						this.writeToCompressedFile(readmeContents, fileName).catch((err) =>
-							error(err)
-						);
-					})
-					.catch((err) => error(err));
-			});
-		});
+		return this.findGlobalModules()
+			.then((globalModules) => {
+				Object.keys(globalModules).map((el) => {
+					const pkg = globalModules[el];
+					const fileName = `${destination}/${pkg.name}.${this.getSection()}.gz`;
+					this.getPackageReadme(pkg)
+						.then((readmeContents) => {
+							this.writeToCompressedFile(readmeContents, fileName).catch((err) =>
+								error(err)
+							);
+						})
+						.catch((err) => error(err));
+				});
+			})
+			.then(() => success('Successfully Generated ManPages for Global Modules'));
 	}
 
 	findGlobalModules() {
