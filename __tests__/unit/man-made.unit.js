@@ -23,6 +23,7 @@ test('updateManPath adds MANPATH to the directory', async (t) => {
 	try {
 		const shellFile = await fs.ensureFile(shellPath); // create or return existing shell file
 		const manDir = await fs.ensureDir(manPath); // create or return existing directory
+		const truncate = await fileUtil.truncateFile(shellPath);
 		const modifiedShellFile = await manMade.updateManPath(shellPath, manPath);
 		const readModifiedShellFile = await fileUtil.readFile(shellPath);
 		t.regex(readModifiedShellFile, new RegExp(/export MANPATH=\$MANPATH:~\/.man-made/));

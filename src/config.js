@@ -6,6 +6,7 @@ config.test.defaultSection = '1';
 config.packageProps = [ 'name', 'path', 'readme', 'readmeFilename', 'description', 'version' ];
 config.cmd = {};
 config.cmd.listModules = 'npm list -g --depth=0 --json=true --long=true';
+config.cmd.watchDir = 'npm root -g';
 config.manual = {};
 config.manual.defaultDir = '~/man-made';
 config.manual.defaultSection = '1';

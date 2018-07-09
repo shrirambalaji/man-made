@@ -13,6 +13,7 @@ const { error, success, debug } = outputUtil;
 const promisifiedExec = Promise.promisify(require('child_process').exec);
 const shellUtil = require('./util/shell.util');
 const config = require('./config');
+const wait = require('./wait');
 const DEFAULT_DIRECTORY = process.env.TEST ? config.test.defaultDir : `${os.homedir()}/.man-made`;
 const DEFAULT_SECTION = process.env.TEST
 	? config.test.defaultSection
@@ -20,6 +21,10 @@ const DEFAULT_SECTION = process.env.TEST
 const PACKAGE_PROPERTIES = config.packageProps;
 
 class ManMade {
+	constructor() {
+		this.watcher = null;
+	}
+
 	main() {
 		let isTestShell = false;
 		if (process.env.TEST || process.env.test) isTestShell = true;
@@ -64,15 +69,10 @@ class ManMade {
 	updateManPath(shellPath, manualDirectory) {
 		return new Promise((resolve, reject) => {
 			const data = config.manual.shellExportText(manualDirectory);
-			fileUtil.readFile(shellPath).then((data) => {
-				if (/custom man-\pages set by man-made/.test(data)) {
-					// manPath has already been updated, so stop updating.
-				} else
-					fileUtil
-						.appendFile(shellPath, data)
-						.then((shellPath) => resolve(shellPath))
-						.catch((err) => reject(err));
-			});
+			fileUtil
+				.appendFile(shellPath, data)
+				.then((shellPath) => resolve(shellPath))
+				.catch((err) => reject(err));
 		});
 	}
 
@@ -83,13 +83,12 @@ class ManMade {
 				return this.findGlobalModules().then((globalModules) => {
 					Object.keys(globalModules).map((el) => {
 						const pkg = globalModules[el];
-						const manualDestinationFile = `${destination}/${pkg.name}.1.gz`;
+						const fileName = `${destination}/${pkg.name}.${this.getSection()}.gz`;
 						this.getPackageReadme(pkg)
 							.then((readmeContents) => {
-								this.writeToCompressedFile(
-									readmeContents,
-									manualDestinationFile
-								).catch((err) => error(err));
+								this.writeToCompressedFile(readmeContents, fileName).catch((err) =>
+									error(err)
+								);
 							})
 							.catch((err) => error(err));
 					});
@@ -100,6 +99,7 @@ class ManMade {
 
 	findGlobalModules() {
 		return new Promise((resolve, reject) => {
+			const stopSpinner = wait('Finding Globally Installed Node Modules');
 			promisifiedExec(config.cmd.listModules)
 				.then((result) => JSON.parse(result))
 				.then((json) => {
@@ -109,7 +109,10 @@ class ManMade {
 					});
 					return globalModules;
 				})
-				.then((globalModules) => resolve(globalModules))
+				.then((globalModules) => {
+					stopSpinner();
+					resolve(globalModules);
+				})
 				.catch((err) => reject(err));
 		});
 	}
@@ -122,7 +125,7 @@ class ManMade {
 					name: pkg.name,
 					version: pkg.version,
 					description: pkg.description,
-					section: 1
+					section: this.getSection()
 				};
 				if (!pkg.readmeFilename) {
 					// package lacks local readme - npm readme lookup
