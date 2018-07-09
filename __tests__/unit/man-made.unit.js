@@ -6,6 +6,13 @@ const manMade = require(path.join(SRCDIR));
 const fileUtil = require('util-box').fileUtil;
 const postInstall = require(path.join(SRCDIR, 'install'));
 const config = require(path.join(SRCDIR, 'config'));
+const rimraf = require('rimraf');
+
+test.afterEach((t) => {
+	rimraf('./__tests__/unit/fixtures/.man-made/man1/*', (err) => {
+		t.falsy(err);
+	});
+});
 
 test('createManualDirectory creates the Manual Directory', async (t) => {
 	const manPath = config.test.defaultDir;
