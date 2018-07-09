@@ -11,7 +11,7 @@ test('createManualDirectory creates the Manual Directory', async (t) => {
 	const manPath = config.test.defaultDir;
 	try {
 		const srcDir = await manMade.createManualDirectory();
-		t.is(srcDir, '__tests__/unit/fixtures/.man-made');
+		t.is(srcDir, './__tests__/unit/fixtures/.man-made');
 	} catch (error) {
 		t.falsy(error);
 	}
@@ -59,6 +59,7 @@ test('generate ManPages generates manDocs for global Modules', async (t) => {
 		directories.forEach((dir) => {
 			t.regex(dir, new RegExp('.gz'));
 		});
+		t.pass();
 	} catch (err) {
 		t.falsy(err);
 	}
@@ -82,6 +83,7 @@ test('end-to-end post install script', async (t) => {
 		directories.forEach((dir) => {
 			t.regex(dir, new RegExp('.gz'));
 		});
+		t.pass();
 	} catch (e) {
 		t.falsy(e);
 	}
