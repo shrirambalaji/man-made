@@ -32,6 +32,16 @@ This works with most shells, including
 - csh
 - ksh
 
+## Usage
+
+```
+man package-name
+```
+
+### Note
+
+Please make sure to spin up a new terminal session after installing to view the updated manual docs for the npm package, after installation.
+
 ## License
 
 MIT

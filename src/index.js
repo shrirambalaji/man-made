@@ -14,6 +14,7 @@ const promisifiedExec = Promise.promisify(require('child_process').exec);
 const shellUtil = require('./util/shell.util');
 const config = require('./config');
 const wait = require('./wait');
+const chalk = require('chalk');
 const DEFAULT_DIRECTORY = process.env.TEST ? config.test.defaultDir : `${os.homedir()}/.man-made`;
 const DEFAULT_SECTION = process.env.TEST
 	? config.test.defaultSection
@@ -90,7 +91,16 @@ class ManMade {
 						.catch((err) => error(err));
 				});
 			})
-			.then(() => success('Successfully Generated ManPages for Global Modules'));
+			.then(() => success('Generated man-pages for all global node_modules'))
+			.then(() =>
+				console.log(
+					chalk.grey(
+						`
+     Please reload your shell configuration or move to a new terminal session.
+						`
+					)
+				)
+			);
 	}
 
 	findGlobalModules() {
