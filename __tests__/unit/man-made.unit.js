@@ -6,7 +6,6 @@ const manMade = require(path.join(SRCDIR));
 const fileUtil = require('util-box').fileUtil;
 const postInstall = require(path.join(SRCDIR, 'install'));
 const config = require(path.join(SRCDIR, 'config'));
-const rimraf = require('rimraf');
 
 test('createManualDirectory creates the Manual Directory', async (t) => {
 	const manPath = config.test.defaultDir;

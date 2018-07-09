@@ -28,14 +28,14 @@ class ManMade {
 	main() {
 		let isTestShell = false;
 		if (process.env.TEST || process.env.test) isTestShell = true;
-		let src = this.getDirectory();
+		let mainDirectory = this.getDirectory();
 		let section = this.getSection();
-		this.createManualDirectory(src, section)
-			.then((manualDirectory) => {
+		this.createManualDirectory(mainDirectory, section)
+			.then((createdDirectory) => {
 				const shellOptions = { default: isTestShell };
 				const shellPath = shellUtil.findShellConfigurationFile(shellOptions);
-				this.updateManPath(shellPath, manualDirectory).then(() => {
-					this.generateManPages(manualDirectory);
+				this.updateManPath(shellPath, mainDirectory).then(() => {
+					this.generateManPages(createdDirectory);
 					success('Successfully Generated ManPages for Global Modules');
 				});
 			})
