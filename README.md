@@ -4,11 +4,11 @@
 	<img width="360" src="media/logo.png" alt="Got">
 	<br>
 	<br>
+	<br>
 </div>
 
-> Man Pages for Global Node Modules, right in the terminal.
 
-Man-made is a tool to generate manual pages for globally installed node modules.
+> Man Pages for Global Node Modules, right in the terminal.
 
 ## Installation
 
