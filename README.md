@@ -10,6 +10,8 @@
 
 > Man Pages for Global Node Modules, right in the terminal.
 
+[![Build Status](https://travis-ci.org/Shriram-Balaji/man-made.svg?branch=master)](https://travis-ci.org/Shriram-Balaji/man-made)
+
 ## Installation
 
 ```
