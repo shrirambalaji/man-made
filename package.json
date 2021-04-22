@@ -24,7 +24,7 @@
 	},
 	"homepage": "https://github.com/Shriram-Balaji/man-made#readme",
 	"dependencies": {
-		"ansi-escapes": "^4.2.1",
+		"ansi-escapes": "^5.0.0",
 		"bluebird": "^3.5.1",
 		"chalk": "^2.4.1",
 		"child-process-promise": "^2.2.1",
